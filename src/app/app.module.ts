@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -21,6 +21,7 @@ import { Exercise2Component } from './exercise2/exercise2.component'
  import { HomeComponent } from './home/home.component';
  import { ListUserComponent } from './user/list/list-user.component';
  import { EditUserComponent } from './user/edit/edit-user.component';
+ import { InputPassComponent } from './directive/input-pass/input-pass.component';
 
 import { BsDatepickerConfig, BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
@@ -40,6 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgetPassUserComponent,
     PhoneFormatPipe,
     SimpleComponent,
+    InputPassComponent,
       Exercise1Component,
       Exercise2Component,
       HomeComponent,
@@ -49,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

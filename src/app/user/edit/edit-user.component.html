@@ -1,103 +1,97 @@
 ﻿<div class="div-edit-user" style="width: 790px;">
     <div class="modal-header bg-primary text-light">
         <h5 class="modal-title fw-bold" id="exampleModalLongTitle">{{data.title}}</h5>
-        <button type="button" (click)="close()" class="close text-white" data-dismiss="modal" aria-label="Close"
+        <!-- <button type="button" (click)="close()" class="close text-white" data-dismiss="modal" aria-label="Close"
             style="opacity: 1;">
             <i class="fa-solid fa-xmark"></i>
-        </button>
+        </button> -->
+
+        <div type="button" (click)="close()">
+            <i class="fa-solid fa-xmark   "></i>
+          </div>
+
     </div>
     <div class="modal-body bg-white">
         <div class="d-flex">
-            <div class="col-6">
-                <div class="d-flex form-group ">
+            <div class="col-6 pe-3">
+                <div class="  input-group mb-3 ">
+                <div class="  input-group  ">
                     <div class=" form-text div-flex-center col-5 ">
                         <label>Tên đăng nhập</label>
                         <label class="color-red">*</label>
                     </div>
-                    <input type="text" class="form-control margin-top-5 " name="txt-username"
+                    <div class="col">
+                    <input type="text" [formControl]="checkUsername" class="form-control  "  
                         [disabled]="data.statusForm == 'edit'" maxlength="50" [(ngModel)]="user.username"
-                        placeholder=" " required="true"  (blur)="checkValid()" aria-label="Username"
+                        placeholder=" " required="true"    aria-label="Username"
                         aria-describedby="basic-addon1">
+                    </div>
                         <!-- (change)="checkChangeUsername()" -->
 
                 </div>
-                <div class="col-12">
-                    <label *ngIf="showErrorTxtUsername" class="text-danger">{{errorTxtUsername}}</label>
+                <div class="col-12 ">
+                    <label  *ngIf="checkUsername.invalid && (checkUsername.dirty || checkUsername.touched)" class="text-danger mt-1">Tên đăng nhập từ 1 đến 50 ký tự, chỉ viết liền, không dấu</label>
                 </div>
-                <div class="d-flex form-group ">
+            </div>
+            <div class="  input-group mb-3 ">
+                <div class="  input-group   ">
                     <div class=" form-text div-flex-center col-5 ">
                         <label>Ngày sinh</label>
                         <label class="color-red">*</label>
                     </div>
-
-                    <input type="text" class="form-control     " bsDatepicker name="txt-ngay-sinh"
-                        [(ngModel)]="user.birthday"   (ngModelChange)="checkValid()"  placeholder="Chọn ngày">
+<div class="col">
+                    <input type="text" class="form-control     "  [formControl]="checkBirthday"  bsDatepicker name="txt-ngay-sinh"
+                        [(ngModel)]="user.birthday"      placeholder="Chọn ngày">
+                    </div>
                         <!-- (ngModelChange)="checkChangeNgaySinh()" -->
                 </div>
-                <div class="col-12">
-                    <label *ngIf="showErrorTxtNgaySinh" class="text-danger">{{errorTxtNgaySinh}}</label>
+                <div class="col-12 ">
+                    <label *ngIf="checkBirthday.invalid && (checkBirthday.dirty || checkBirthday.touched)" class="text-danger mt-1">sai ngày sinh</label>
                 </div>
-                <div class="d-flex form-group ">
-                    <div class=" form-text div-flex-center col-5 ">
-                        <label>Email</label>
-                    </div>
-                    <input type="text" class="form-control margin-top-5" name="txt-mail" maxlength="200"
-                        [(ngModel)]="user.email" placeholder=" "    (blur)="checkValid()"  >
-                        <!-- (change)="checkChangeMail()" -->
-                </div>
-                <div class="col-12">
-                    <label *ngIf="showErrorTxtMail" class="text-danger">{{errorTxtMail}}</label>
-                </div>
-
-                <div class="d-flex form-group">
-                    <div class="div-flex-center col-5 ">
-                        <label role="button" for="isAdmin">Là Admin</label>
-                    </div>
-                    <input class="mb-2 " role="button" type="checkbox" [(ngModel)]="user.isAdmin" id="isAdmin">
-
-                </div>
-                <div class="d-flex form-group  ">
-                    <div class="form-check-label div-flex-center col-5 ">
-                        <label role="button" for="isActive">Hoạt động</label>
-                    </div>
-
-                    <input class="mb-2 " type="checkbox" role="button" [(ngModel)]="user.is_active" id="isActive">
-
-                </div>
-
             </div>
-            <div class="col-6">
-                <div class="d-flex form-group ">
-                    <div class=" form-text div-flex-center col-5 ">
-                        <label>Họ tên nhân viên</label>
-                        <label class="color-red">*</label>
-                    </div>
-                    <input type="text" class="form-control margin-top-5" name="txt-ten" maxlength="200"
-                        [(ngModel)]="user.fullName" placeholder=" "    (blur)="checkValid()"   >
-                        <!-- (change)="checkChangeTen()" -->
-                </div>
-                <div class="col-12">
-                    <label *ngIf="showErrorTxtTen" class="text-danger">{{errorTxtTen}}</label>
-                </div>
-                <div class="d-flex form-group ">
-                    <div class=" form-text div-flex-center col-5 ">
-                        <label>Giới tính</label>
-                        <label class="color-red">*</label>
-                    </div>
-                    <select class="form-control margin-top-5" [(ngModel)]="user.sexId">
-                        <option *ngFor="let option of gioiTinhList" [value]="option.value">
-                            {{ option.viewValue }}</option>
-                    </select>
 
 
 
-                </div>
-                <div class="d-flex form-group ">
+<!-- test -->
+<!-- <div class="col-12">
+<input type="text" id="name" name="name" class="form-control"
+      required minlength="4" appForbiddenName="bob"
+      [(ngModel)]="user.name" #name="ngModel">
+
+<div *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert">
+
+  <div *ngIf="name.errors?.['required']">
+    Name is required.
+  </div>
+  <div *ngIf="name.errors?.['minlength']">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="name.errors?.['forbiddenName']">
+    Name cannot be Bob.
+  </div>
+
+</div></div> -->
+<!-- end test -->
+
+
+
+            <div class="  input-group mb-3 ">
+                <div class="  input-group  ">
                     <div class=" form-text div-flex-center col-5 ">
                         <label>Điện thoại</label>
                         <label class="color-red">*</label>
                     </div>
-                    <!-- <input type="text" class="form-control margin-top-5" 
+                    <div class="col">
+                    <input [formControl]="checkPhone"  type="text" class="form-control " id="checkPhone"
+                    name="checkPhone" maxlength="10"
+                    [(ngModel)]="user.phone" required >
+
+                 
+
+
+                </div>
+                    <!-- <input type="text" class="form-control " 
                     name="phone" id="phone" maxlength="10"
                     formControlName="phoneNumber" 
                         placeholder=" "    
@@ -107,61 +101,176 @@
                         <!-- (change)="checkChangeSdt()"  (blur)="checkValid()" -->
 
                 </div>
-                <div class="col-12">
-                    <label    *ngIf="phone.invalid"   class="text-danger">{{errorTxtSdt}}</label>
+                <div class="col-12 ">
+                    <div *ngIf="checkPhone.invalid && (checkPhone.dirty || checkPhone.touched)">
+                      
+                        <div   class="text-danger mt-1">Số điện thoại tối đa 10 ký tự, chỉ nhập số</div>
+      
+                          </div>
+                    <!-- <label    *ngIf="showErrorTxtSdt"   class="text-danger mt-1">{{errorTxtSdt}}</label> -->
                 </div>
+            </div>
                 <!-- *ngIf="showErrorTxtSdt"  *ngIf="phoneNumber.invalid   -->
-                <div class="d-flex form-group " *ngIf="data.statusForm == 'add'">
+                <div class="  input-group mb-3 ">
+                <div class="  input-group   " *ngIf="data.statusForm == 'add'">
                     <div class="form-text div-flex-center col-5 ">
                         <label>Mật khẩu</label>
                         <label class="color-red">*</label>
                     </div>
 
+ 
 
-                    <div class="input-group">
+
+<div class="col">
+
+<app-input-pass [(password)]="user.password"  [(checkVaild)]="checkPass"  inputName="txt-pass"   ></app-input-pass>
+
+    <!-- <div class="input-group ">
+        <input type="password" name="txt-pass" maxlength="100" id="exampleInputPassword11"
+                            [(ngModel)]="user.password" placeholder=" "    (blur)="checkValid()" 
+                            class="form-control" data-toggle="password">
+
+        <span class="input-group-text"  (click)="showPass1()" role="button">
+            <i role="button" class="fa-regular fa-eye"></i>
+        </span>
+      </div> -->
+
+
+</div>
+
+                    <!-- <div class="input-group">
                         <input type="password" name="txt-pass" maxlength="100" id="exampleInputPassword11"
                             [(ngModel)]="user.password" placeholder=" "    (blur)="checkValid()" 
                             class="form-control" data-toggle="password">
 
-                            <!-- (change)="checkChangePass()" -->
+                            (change)="checkChangePass()"
 
                         <div class="input-group-append" (click)="showPass1()" role="button">
                             <span class="input-group-text">
                                 <i role="button" class="fa-regular fa-eye"></i>
                             </span>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
-                <div class="col-12">
-                    <label *ngIf="showErrorTxtPass" class="text-danger">{{errorTxtPass}}</label>
+                <div class="col-12 ">
+                    <label  *ngIf="checkPass.invalid && (checkPass.dirty || checkPass.touched)" class="text-danger mt-1">Pass sai</label>
                 </div>
-                <div class="d-flex form-group " *ngIf="data.statusForm == 'add'">
+            </div>
+            <div class="  input-group mb-3 ">
+                <div class="  input-group   " *ngIf="data.statusForm == 'add'">
                     <div class="form-text div-flex-center col-5">
                         <label>Nhập lại mật khẩu</label>
                         <label class="color-red">*</label>
                     </div>
+                    <div class="col">
 
+                        <app-input-pass [(password)]="user.rePassword"  [(checkVaild)]="checkRePass"  inputName="txt-repass"   ></app-input-pass>
+                        </div>
 
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <input type="password" name="txt-repass" maxlength="100" id="exampleInputPassword12"
                             [(ngModel)]="user.rePassword" placeholder=" "    (blur)="checkValid()" 
                             class="form-control" data-toggle="password">
 
-                            <!-- (change)="checkChangeRePass()" -->
+                              (change)="checkChangeRePass()"  
 
                         <div class="input-group-append" role="button" (click)="showPass2()">
                             <span class="input-group-text">
                                 <i class="fa-regular fa-eye"></i>
                             </span>
                         </div>
-                    </div>
+                    </div> -->
  
 
                 </div>
-                <div class="col-12">
-                    <label *ngIf="showErrorTxtRePass" class="text-danger">{{errorTxtRePass}}</label>
+                <div class="col-12 ">
+                    <label *ngIf="showErrorTxtRePass" class="text-danger mt-1">{{errorTxtRePass}}</label>
                 </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class="col-6">
+                <div class="  input-group mb-3 ">
+                <div class="  input-group   ">
+                    <div class=" form-text div-flex-center col-5 ">
+                        <label>Họ tên nhân viên</label>
+                        <label class="color-red">*</label>
+                    </div>
+                    <div class="col">
+                    <input type="text" class="form-control " name="txt-ten" maxlength="200"
+                        [(ngModel)]="user.fullName" placeholder=" "    (blur)="checkValid()"   >
+                    </div>
+                        <!-- (change)="checkChangeTen()" -->
+                </div>
+                <div class="col-12 ">
+                    <label *ngIf="showErrorTxtTen" class="text-danger mt-1">{{errorTxtTen}}</label>
+                </div>
+            </div>
+
+                <div class="  input-group mb-3 ">
+                    <div class=" form-text div-flex-center col-5 ">
+                        <label>Giới tính</label>
+                        <label class="color-red">*</label>
+                    </div>
+                    <div class="col">
+                    <select class="form-control " [(ngModel)]="user.sexId">
+                        <option *ngFor="let option of gioiTinhList" [value]="option.value">
+                            {{ option.viewValue }}</option>
+                    </select>
+                </div>
+
+
+
+                </div>
+              
+
+
+<div class="  input-group mb-3 ">
+                <div class="  input-group   ">
+                    <div class=" form-text div-flex-center col-5 ">
+                        <label>Email</label>
+                    </div>
+                    <div class="col">
+                    <input type="text" [formControl]="checkEmail" class="form-control " name="txt-mail" maxlength="200"
+                        [(ngModel)]="user.email" placeholder=" "      >
+                    </div>
+                        <!-- (change)="checkChangeMail()" -->
+                </div>
+                <div class="col-12">
+                    <label  *ngIf="checkEmail.invalid && (checkEmail.dirty || checkEmail.touched)" class="text-danger">Email phải đúng định dạng, chỉ viết liền, không dấu</label>
+                </div>
+            </div>
+
+
+                <div class="  input-group form-control border-0 mb-3 px-0">
+                    <div class="div-flex-center col-5  form-text ">
+                        <label role="button" for="isAdmin">Là Admin</label>
+                    </div>
+                    <div>
+                    <input class="mb-2 form-check-input" role="button" type="checkbox" [(ngModel)]="user.isAdmin" id="isAdmin">
+                </div>
+                </div>
+                <div class="  input-group form-control border-0 mb-3 px-0  ">
+                    <div class="form-check-label div-flex-center col-5 form-text ">
+                        <label role="button" for="isActive">Hoạt động</label>
+                    </div>
+<div class="">
+                    <input class="mb-2 form-check-input" type="checkbox" role="button" [(ngModel)]="user.is_active" id="isActive">
+                </div>
+                </div>
+
+
+
+
             </div>
         </div>
     </div>

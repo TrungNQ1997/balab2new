@@ -1,10 +1,10 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../service/shared.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-edit-user',
@@ -15,10 +15,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class EditUserComponent {
     /*form: FormGroup;*/
     @Input() data: any;
+    inputField:any;
+    checkPhone: any; 
+    checkEmail: any; 
+    checkUsername: any; 
+    checkBirthday: any; 
+    checkPass: any; 
+    checkFullname: any; 
+    checkRePass:any;
+    @ViewChild('inputFieldRef') inputFieldRef!: ElementRef ;
     regexPatternUsername = /^[a-zA-Z0-9]{1,50}$/;
     regexPatternPass = /^[a-zA-Z0-9]{6,100}$/;
     regexPatternSdt = /^[0-9]{1,10}$/;
+    
     regexPatternEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,200}$/;
+    regexASdt ='[0-9]{1,10}'; 
+    regexAUsername = '[a-zA-Z0-9]{1,50}';
+    regexAPass = '[a-zA-Z0-9]{6,100}';
+    regexAEmail = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,200}';
     // phoneNumberForm: FormGroup;
     errorTxtUsername: string="";
     isLoadList: boolean = false;
@@ -39,10 +53,13 @@ export class EditUserComponent {
     notis: string="";
     user: any;
     phone:any;
+    heroForm:any;
     // data: any;
     showMes: boolean=false;
     disabledAdd:boolean = true;
     gioiTinhList: any;
+ 
+
     constructor(
  
         private http: HttpClient,
@@ -58,6 +75,12 @@ export class EditUserComponent {
     }
 
     ngOnInit() {
+
+
+        
+
+
+        this.inputField = ViewChild('inputFieldRef')
         this.notis = '';
         this.showErrorTxtUsername = false;
         this.errorTxtUsername = '';
@@ -72,12 +95,87 @@ export class EditUserComponent {
             this.refreshUser();
         }
 
+      
+        this.genValidFormControl()
+        // this.heroForm = new FormGroup({
+        //     checkPhone: new FormControl(this.user.phone, [
+        //       Validators.required,
+        //       Validators.pattern('[a-zA-Z]+')
+        //       //forbiddenNameValidator(/bob/i) // <-- Here's how you pass in the custom validator.
+        //     ])
+        // })
+
         this.gioiTinhList = [{ value: 1, viewValue: "Nam" },
         { value: 2, viewValue: "Nữ" },
         { value: 3, viewValue: "Khác" }]
 
     }
 
+    genValidFormControl(){
+        this.checkPhone  = new FormControl(this.user.phone, [
+            Validators.required,
+            Validators.pattern(this.regexASdt)
+          ]);
+          this.checkEmail  = new FormControl(this.user.email, [
+            Validators.pattern(this.regexAEmail)
+          ]);
+          this.checkUsername  = new FormControl(this.user.phone, [
+            Validators.required,
+            Validators.pattern(this.regexAUsername)
+          ]);
+          this.checkBirthday  = new FormControl(this.user.birthday, [
+            Validators.required,
+             this.emailConditionallyRequiredValidator
+          ]);
+          this.checkPass  = new FormControl(this.user.password, [
+            Validators.required,
+            Validators.pattern(this.regexAPass)
+          ]);
+          this.checkRePass  = new FormControl(this.user.rePassword, [
+            Validators.required,
+            Validators.pattern(this.regexAPass)
+          ]);
+          this.checkFullname  = new FormControl(this.user.fullName, [
+            Validators.required
+            
+          ]);
+    }
+     emailConditionallyRequiredValidator(formControl: AbstractControl ) {
+
+
+        if (formControl.value) {
+
+            var t1 = new Date(formControl.value)
+            if ((new Date()).getFullYear() - t1.getFullYear() >= 18) {
+return null
+            } else {
+                return {
+                    checkBirthdayConditionallyRequired:true
+                };
+            }
+        } else {
+            return {
+                checkBirthdayConditionallyRequired:true
+            };
+        }
+
+
+        // if (!formControl.parent) {
+        //   return null;
+        // }
+        
+        // if (formControl.parent.get('myCheckbox').value) {
+        //   return Validators.required(formControl); 
+        // }
+        // return null;
+      }
+    checkValidBirthday(control: FormControl) {
+    const value: string = control.value;
+    if (value && value !== 'custom') {
+      return { customCondition: true };
+    }
+    return null;
+  }
     checkChangeUsername() {
 
         var check = this.sharedService.checkChangeProperty(this.regexPatternUsername, this.user, "username", "txt-username", this, "showErrorTxtUsername");
@@ -202,7 +300,7 @@ export class EditUserComponent {
             validPass = this.checkChangePass();
             validRePass = this.checkChangeRePass()
         }
-        var validSdt = this.checkChangeSdt()
+        var validSdt = true //this.checkChangeSdt()
         var validTen = this.checkChangeTen()
 
         if (validNgaySinh && validUsername
@@ -245,6 +343,7 @@ export class EditUserComponent {
 
                         this.modal.close("ok");
                     } else {
+                        this.user.birthday = this.user.birthdayOld;
                         if (response.data.message.includes("UNIQUE KEY")) {
                             this.toastr.error('Username bị trùng', 'Thêm người dùng thất bại');
                         } else {
@@ -267,6 +366,7 @@ export class EditUserComponent {
                             this.toastr.success('Sửa người dùng thành công', 'Thông báo');
                             this.modal.close("ok");
                         } else {
+                            this.user.birthday = this.user.birthdayOld;
                             this.toastr.error('Sửa người dùng thất bại ', 'Thông báo');
                         }
 
@@ -278,7 +378,7 @@ export class EditUserComponent {
 
     prepareData() {
         if (this.user.birthday) {
-
+            this.user.birthdayOld = this.user.birthday;
             const offset = new Date(this.user.birthday).getTimezoneOffset();
             this.user.birthday = new Date(new Date(this.user.birthday).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
@@ -301,6 +401,7 @@ export class EditUserComponent {
                         this.isLoadList = true;
                         this.refreshUser();
                     } else {
+                        this.user.birthday = this.user.birthdayOld;
                         if (response.data.message.includes("UNIQUE KEY")) {
                             this.toastr.error('Username bị trùng', 'Thêm người dùng thất bại');
                         } else {

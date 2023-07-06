@@ -11,6 +11,10 @@
 // @import url("../node_modules/ngx-toastr/toastr.css");
 // @import url("../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css");
 
+.ng-invalid{
+  border: 1px solid red;
+}
+
 a {
   color: #0366d6;
 }
