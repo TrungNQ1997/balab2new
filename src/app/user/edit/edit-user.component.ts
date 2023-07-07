@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../service/shared.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-edit-user',
@@ -15,58 +15,58 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 export class EditUserComponent {
     /*form: FormGroup;*/
     @Input() data: any;
-    inputField:any;
-    checkPhone: any; 
-    checkEmail: any; 
-    checkUsername: any; 
-    checkBirthday: any; 
-    checkPass: any; 
-    checkFullname: any; 
-    checkRePass:any;
-    @ViewChild('inputFieldRef') inputFieldRef!: ElementRef ;
+    inputField: any;
+    checkPhone: any;
+    checkEmail: any;
+    checkUsername: any;
+    checkBirthday: any;
+    checkPass: any;
+    checkFullname: any;
+    checkRePass: any;
+    @ViewChild('inputFieldRef') inputFieldRef!: ElementRef;
     regexPatternUsername = /^[a-zA-Z0-9]{1,50}$/;
     regexPatternPass = /^[a-zA-Z0-9]{6,100}$/;
     regexPatternSdt = /^[0-9]{1,10}$/;
-    
+
     regexPatternEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,200}$/;
-    regexASdt ='[0-9]{1,10}'; 
+    regexASdt = '[0-9]{1,10}';
     regexAUsername = '[a-zA-Z0-9]{1,50}';
     regexAPass = '[a-zA-Z0-9]{6,100}';
     regexAEmail = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,200}';
     // phoneNumberForm: FormGroup;
-    errorTxtUsername: string="";
+    errorTxtUsername: string = "";
     isLoadList: boolean = false;
     showErrorTxtNgaySinh: boolean = false;
-    errorTxtNgaySinh: string="";
+    errorTxtNgaySinh: string = "";
     showErrorTxtSdt: boolean = false;
-    errorTxtSdt: string="";
+    errorTxtSdt: string = "";
     showErrorTxtTen: boolean = false;
-    errorTxtTen: string="";
+    errorTxtTen: string = "";
     showErrorTxtRePass: boolean = false;
-    errorTxtRePass: string="";
+    errorTxtRePass: string = "";
     showErrorTxtPass: boolean = false;
-    errorTxtPass: string="";
-    showErrorTxtUsername: boolean=false;
+    errorTxtPass: string = "";
+    showErrorTxtUsername: boolean = false;
     showErrorTxtMail: boolean = false;
-    errorTxtMail: string="";
-    description: string="";
-    notis: string="";
+    errorTxtMail: string = "";
+    description: string = "";
+    notis: string = "";
     user: any;
-    phone:any;
-    heroForm:any;
+    phone: any;
+    heroForm: any;
     // data: any;
-    showMes: boolean=false;
-    disabledAdd:boolean = true;
+    showMes: boolean = false;
+    disabledAdd: boolean = true;
     gioiTinhList: any;
- 
+
 
     constructor(
- 
+
         private http: HttpClient,
         private toastr: ToastrService,
         private sharedService: SharedService,
         public modal: NgbActiveModal,
-        
+        private fb: FormBuilder
     ) {
         // this.phoneNumberForm = new FormGroup({
         //     phoneNumber: new FormControl('', [Validators.required, Validators.pattern(this.regexPatternSdt)])
@@ -77,7 +77,7 @@ export class EditUserComponent {
     ngOnInit() {
 
 
-        
+
 
 
         this.inputField = ViewChild('inputFieldRef')
@@ -95,7 +95,7 @@ export class EditUserComponent {
             this.refreshUser();
         }
 
-      
+
         this.genValidFormControl()
         // this.heroForm = new FormGroup({
         //     checkPhone: new FormControl(this.user.phone, [
@@ -111,51 +111,67 @@ export class EditUserComponent {
 
     }
 
-    genValidFormControl(){
-        this.checkPhone  = new FormControl(this.user.phone, [
+    genValidFormControl() {
+        
+        this.checkPhone = new FormControl(this.user.phone, [
             Validators.required,
             Validators.pattern(this.regexASdt)
-          ]);
-          this.checkEmail  = new FormControl(this.user.email, [
+        ]);
+        this.checkEmail = new FormControl(this.user.email, [
             Validators.pattern(this.regexAEmail)
-          ]);
-          this.checkUsername  = new FormControl(this.user.phone, [
+        ]);
+        this.checkUsername = new FormControl({value:this.user.phone,
+            disabled: this.data.statusForm == 'edit'}, [
             Validators.required,
             Validators.pattern(this.regexAUsername)
-          ]);
-          this.checkBirthday  = new FormControl(this.user.birthday, [
+        ]);
+        this.checkBirthday = new FormControl(this.user.birthday, [
             Validators.required,
-             this.emailConditionallyRequiredValidator
-          ]);
-          this.checkPass  = new FormControl(this.user.password, [
-            Validators.required,
-            Validators.pattern(this.regexAPass)
-          ]);
-          this.checkRePass  = new FormControl(this.user.rePassword, [
+            this.emailConditionallyRequiredValidator
+        ]);
+        this.checkPass = new FormControl(this.user.password, [
             Validators.required,
             Validators.pattern(this.regexAPass)
-          ]);
-          this.checkFullname  = new FormControl(this.user.fullName, [
-            Validators.required
+        ]);
+        this.checkRePass = new FormControl(this.user.rePassword, [
+            Validators.required,
+this.checkConditionRepass.bind(this) 
             
-          ]);
+        ]);
+        this.checkFullname = new FormControl(this.user.fullName, [
+            Validators.required
+
+        ]);
     }
-     emailConditionallyRequiredValidator(formControl: AbstractControl ) {
+
+    checkConditionRepass(formControl: AbstractControl ) {
+        // console.log(this);
+        if (this.checkPass.value != formControl.value) {
+            return {
+                required: true
+            };
+
+        } else {
+            return null
+        }
+    }
+
+    emailConditionallyRequiredValidator(formControl: AbstractControl) {
 
 
         if (formControl.value) {
 
             var t1 = new Date(formControl.value)
             if ((new Date()).getFullYear() - t1.getFullYear() >= 18) {
-return null
+                return null
             } else {
                 return {
-                    checkBirthdayConditionallyRequired:true
+                    not18: true
                 };
             }
         } else {
             return {
-                checkBirthdayConditionallyRequired:true
+                required: true
             };
         }
 
@@ -163,19 +179,19 @@ return null
         // if (!formControl.parent) {
         //   return null;
         // }
-        
+
         // if (formControl.parent.get('myCheckbox').value) {
         //   return Validators.required(formControl); 
         // }
         // return null;
-      }
-    checkValidBirthday(control: FormControl) {
-    const value: string = control.value;
-    if (value && value !== 'custom') {
-      return { customCondition: true };
     }
-    return null;
-  }
+    checkValidBirthday(control: FormControl) {
+        const value: string = control.value;
+        if (value && value !== 'custom') {
+            return { customCondition: true };
+        }
+        return null;
+    }
     checkChangeUsername() {
 
         var check = this.sharedService.checkChangeProperty(this.regexPatternUsername, this.user, "username", "txt-username", this, "showErrorTxtUsername");
@@ -289,6 +305,22 @@ return null
 
     }
 
+    checkValidAfter() {
+        this.checkRePass.updateValueAndValidity();
+        this.checkPass.updateValueAndValidity();
+         
+if(this.checkBirthday.valid && this.checkEmail.valid  && this.checkPhone.valid
+      && (this.data.statusForm == 'edit' || (this.checkPass.valid && this.checkRePass.valid))   && this.checkFullname.valid && !this.checkUsername.invalid){
+    this.disabledAdd = false;
+    return true;
+
+} else {
+    this.disabledAdd = true;
+    return false;
+
+}
+    }
+
     checkValid() {
 
         var validNgaySinh = this.checkChangeNgaySinh()
@@ -306,8 +338,8 @@ return null
         if (validNgaySinh && validUsername
             && validMail && validPass &&
             validRePass && validSdt && validTen) {
-                this.disabledAdd = false;
-                return true;
+            this.disabledAdd = false;
+            return true;
 
         } else {
             this.disabledAdd = true;
@@ -331,8 +363,8 @@ return null
     }
 
     save() {
-        var valid = this.checkValid();
-        if (valid) {
+        // var valid = this.checkValid();
+        // if (valid) {
 
             if (this.data.statusForm == 'add') {
 
@@ -373,7 +405,7 @@ return null
                     });
 
             }
-        }
+        // }
     }
 
     prepareData() {
@@ -389,8 +421,8 @@ return null
     }
 
     saveAdd() {
-        var valid = this.checkValid();
-        if (valid) {
+        // var valid = this.checkValid();
+        // if (valid) {
 
             if (this.data.statusForm == 'add') {
 
@@ -412,7 +444,7 @@ return null
 
                 });
 
-            }
+            // }
 
         }
     }

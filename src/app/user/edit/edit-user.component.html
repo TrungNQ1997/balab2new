@@ -1,11 +1,7 @@
 ﻿<div class="div-edit-user" style="width: 790px;">
     <div class="modal-header bg-primary text-light">
         <h5 class="modal-title fw-bold" id="exampleModalLongTitle">{{data.title}}</h5>
-        <!-- <button type="button" (click)="close()" class="close text-white" data-dismiss="modal" aria-label="Close"
-            style="opacity: 1;">
-            <i class="fa-solid fa-xmark"></i>
-        </button> -->
-
+        
         <div type="button" (click)="close()">
             <i class="fa-solid fa-xmark   "></i>
           </div>
@@ -23,7 +19,7 @@
                     <div class="col">
                     <input type="text" [formControl]="checkUsername" class="form-control  "  
                         [disabled]="data.statusForm == 'edit'" maxlength="50" [(ngModel)]="user.username"
-                        placeholder=" " required="true"    aria-label="Username"
+                        placeholder=" " required="true"    aria-label="Username" (blur)="checkValidAfter()"
                         aria-describedby="basic-addon1">
                     </div>
                         <!-- (change)="checkChangeUsername()" -->
@@ -41,39 +37,17 @@
                     </div>
 <div class="col">
                     <input type="text" class="form-control     "  [formControl]="checkBirthday"  bsDatepicker name="txt-ngay-sinh"
-                        [(ngModel)]="user.birthday"      placeholder="Chọn ngày">
+                        [(ngModel)]="user.birthday"    (blur)="checkValidAfter()"   placeholder="Chọn ngày">
                     </div>
                         <!-- (ngModelChange)="checkChangeNgaySinh()" -->
                 </div>
-                <div class="col-12 ">
-                    <label *ngIf="checkBirthday.invalid && (checkBirthday.dirty || checkBirthday.touched)" class="text-danger mt-1">sai ngày sinh</label>
+                <div class="col-12 "  *ngIf="checkBirthday.invalid && (checkBirthday.dirty || checkBirthday.touched)" >
+                    <label *ngIf="checkBirthday.errors?.['required']" class="text-danger mt-1">Ngày sinh không được để trống </label>
+                    <label *ngIf="checkBirthday.errors?.['not18']" class="text-danger mt-1">Người dùng phải đủ 18 tuổi trở lên </label>
                 </div>
             </div>
 
-
-
-<!-- test -->
-<!-- <div class="col-12">
-<input type="text" id="name" name="name" class="form-control"
-      required minlength="4" appForbiddenName="bob"
-      [(ngModel)]="user.name" #name="ngModel">
-
-<div *ngIf="name.invalid && (name.dirty || name.touched)"
-    class="alert">
-
-  <div *ngIf="name.errors?.['required']">
-    Name is required.
-  </div>
-  <div *ngIf="name.errors?.['minlength']">
-    Name must be at least 4 characters long.
-  </div>
-  <div *ngIf="name.errors?.['forbiddenName']">
-    Name cannot be Bob.
-  </div>
-
-</div></div> -->
-<!-- end test -->
-
+ 
 
 
             <div class="  input-group mb-3 ">
@@ -85,21 +59,13 @@
                     <div class="col">
                     <input [formControl]="checkPhone"  type="text" class="form-control " id="checkPhone"
                     name="checkPhone" maxlength="10"
-                    [(ngModel)]="user.phone" required >
+                    [(ngModel)]="user.phone" required  (blur)="checkValidAfter()">
 
                  
 
 
                 </div>
-                    <!-- <input type="text" class="form-control " 
-                    name="phone" id="phone" maxlength="10"
-                    formControlName="phoneNumber" 
-                        placeholder=" "    
-                        [class.is-invalid]="phone.invalid"  
-                        > -->
-
-                        <!-- (change)="checkChangeSdt()"  (blur)="checkValid()" -->
-
+                  
                 </div>
                 <div class="col-12 ">
                     <div *ngIf="checkPhone.invalid && (checkPhone.dirty || checkPhone.touched)">
@@ -123,38 +89,14 @@
 
 <div class="col">
 
-<app-input-pass [(password)]="user.password"  [(checkVaild)]="checkPass"  inputName="txt-pass"   ></app-input-pass>
-
-    <!-- <div class="input-group ">
-        <input type="password" name="txt-pass" maxlength="100" id="exampleInputPassword11"
-                            [(ngModel)]="user.password" placeholder=" "    (blur)="checkValid()" 
-                            class="form-control" data-toggle="password">
-
-        <span class="input-group-text"  (click)="showPass1()" role="button">
-            <i role="button" class="fa-regular fa-eye"></i>
-        </span>
-      </div> -->
-
-
+<app-input-pass [(password)]="user.password"  [(checkVaild)]="checkPass"  inputName="txt-pass"  (change)="checkValidAfter()" ></app-input-pass>
+ 
 </div>
 
-                    <!-- <div class="input-group">
-                        <input type="password" name="txt-pass" maxlength="100" id="exampleInputPassword11"
-                            [(ngModel)]="user.password" placeholder=" "    (blur)="checkValid()" 
-                            class="form-control" data-toggle="password">
-
-                            (change)="checkChangePass()"
-
-                        <div class="input-group-append" (click)="showPass1()" role="button">
-                            <span class="input-group-text">
-                                <i role="button" class="fa-regular fa-eye"></i>
-                            </span>
-                        </div>
-                    </div> -->
-
+            
                 </div>
                 <div class="col-12 ">
-                    <label  *ngIf="checkPass.invalid && (checkPass.dirty || checkPass.touched)" class="text-danger mt-1">Pass sai</label>
+                    <label  *ngIf="checkPass.invalid && (checkPass.dirty || checkPass.touched)" class="text-danger mt-1">Mật khẩu tối thiểu 6 ký tự, tối đa 100 ký tự, chỉ viết liền, không dấu</label>
                 </div>
             </div>
             <div class="  input-group mb-3 ">
@@ -165,37 +107,15 @@
                     </div>
                     <div class="col">
 
-                        <app-input-pass [(password)]="user.rePassword"  [(checkVaild)]="checkRePass"  inputName="txt-repass"   ></app-input-pass>
+                        <app-input-pass [(password)]="user.rePassword"   [(checkVaild)]="checkRePass"  inputName="txt-repass"  (change)="checkValidAfter()"   ></app-input-pass>
                         </div>
-
-                    <!-- <div class="input-group">
-                        <input type="password" name="txt-repass" maxlength="100" id="exampleInputPassword12"
-                            [(ngModel)]="user.rePassword" placeholder=" "    (blur)="checkValid()" 
-                            class="form-control" data-toggle="password">
-
-                              (change)="checkChangeRePass()"  
-
-                        <div class="input-group-append" role="button" (click)="showPass2()">
-                            <span class="input-group-text">
-                                <i class="fa-regular fa-eye"></i>
-                            </span>
-                        </div>
-                    </div> -->
  
-
                 </div>
                 <div class="col-12 ">
-                    <label *ngIf="showErrorTxtRePass" class="text-danger mt-1">{{errorTxtRePass}}</label>
+                    <label  *ngIf="checkRePass.invalid && (checkRePass.dirty || checkRePass.touched)"  class="text-danger mt-1">Nhập lại mật khẩu không đúng</label>
                 </div>
             </div>
-
-
-
-
-
-
-
-
+ 
 
             </div>
             <div class="col-6">
@@ -206,13 +126,13 @@
                         <label class="color-red">*</label>
                     </div>
                     <div class="col">
-                    <input type="text" class="form-control " name="txt-ten" maxlength="200"
-                        [(ngModel)]="user.fullName" placeholder=" "    (blur)="checkValid()"   >
+                    <input type="text" [formControl]="checkFullname" class="form-control " name="txt-ten" maxlength="200"
+                        [(ngModel)]="user.fullName" placeholder=" "      (blur)="checkValidAfter()"   >
                     </div>
                         <!-- (change)="checkChangeTen()" -->
                 </div>
                 <div class="col-12 ">
-                    <label *ngIf="showErrorTxtTen" class="text-danger mt-1">{{errorTxtTen}}</label>
+                    <label  *ngIf="checkFullname.invalid && (checkFullname.dirty || checkFullname.touched)"  class="text-danger mt-1">Họ tên không được để trống</label>
                 </div>
             </div>
 
@@ -241,12 +161,12 @@
                     </div>
                     <div class="col">
                     <input type="text" [formControl]="checkEmail" class="form-control " name="txt-mail" maxlength="200"
-                        [(ngModel)]="user.email" placeholder=" "      >
+                        [(ngModel)]="user.email" placeholder=" "     (blur)="checkValidAfter()"  >
                     </div>
                         <!-- (change)="checkChangeMail()" -->
                 </div>
                 <div class="col-12">
-                    <label  *ngIf="checkEmail.invalid && (checkEmail.dirty || checkEmail.touched)" class="text-danger">Email phải đúng định dạng, chỉ viết liền, không dấu</label>
+                    <label  *ngIf="checkEmail.invalid && (checkEmail.dirty || checkEmail.touched)" class="text-danger mt-1">Email phải đúng định dạng, chỉ viết liền, không dấu</label>
                 </div>
             </div>
 
@@ -264,7 +184,7 @@
                         <label role="button" for="isActive">Hoạt động</label>
                     </div>
 <div class="">
-                    <input class="mb-2 form-check-input" type="checkbox" role="button" [(ngModel)]="user.is_active" id="isActive">
+                    <input class="mb-2 form-check-input" type="checkbox" role="button" [(ngModel)]="user.isActive" id="isActive">
                 </div>
                 </div>
 

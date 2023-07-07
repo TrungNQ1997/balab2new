@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class SharedService {
 
-
+ public regexAPass = '[a-zA-Z0-9]{6,100}';
   private isNavbarVisibleSubject: Subject<boolean> = new Subject<boolean>();
   public isNavbarVisible$ = this.isNavbarVisibleSubject.asObservable();
   httpOptions = {

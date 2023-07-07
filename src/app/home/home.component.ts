@@ -90,6 +90,7 @@ export class HomeComponent {
   showSlidesNoTimeout(n: any) {
     let i;
     let slides = document.getElementsByClassName("mySlides");
+    
     let dots = document.getElementsByClassName("dot");
     if (n > slides.length) { this.slideIndex = 1 }
     if (n < 1) { this.slideIndex = slides.length }

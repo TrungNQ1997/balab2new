@@ -11,7 +11,7 @@ export class InputPassComponent implements OnInit {
   @Input() checkVaild: any;
   @Input() inputName: string="";
   showPassword: boolean = false;
- 
+  @Output() change: EventEmitter<any> = new EventEmitter<any>();
   @Output() checkVaildChange: EventEmitter<any> = new EventEmitter<any>();
   @Output() passwordChange: EventEmitter<string> = new EventEmitter<string>();
 

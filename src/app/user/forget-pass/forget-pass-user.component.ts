@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../service/shared.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AbstractControl, FormControl, Validators } from '@angular/forms';
 @Component({
     selector: 'app-forget-pass-user',
     templateUrl: './forget-pass-user.component.html',
@@ -28,6 +29,9 @@ export class ForgetPassUserComponent {
     // data: any;
     showMes: boolean=false;
     gioiTinhList: any;
+    checkPassOld:any;
+    checkPass:any;
+    checkRePass:any
     constructor(
 
         private http: HttpClient,
@@ -49,7 +53,36 @@ export class ForgetPassUserComponent {
         this.gioiTinhList = [{ value: 1, viewValue: "Nam" },
         { value: 2, viewValue: "Nữ" },
         { value: 3, viewValue: "Khác" }]
+        this.genValidFormControl()
+    }
 
+    genValidFormControl() {
+        
+        this.checkPassOld = new FormControl(this.user.passwordOld, [
+            Validators.required,
+            Validators.pattern(this.sharedService.regexAPass)
+        ]);
+        this.checkPass = new FormControl(this.user.password, [
+            Validators.required,
+            Validators.pattern(this.sharedService.regexAPass)
+        ]);
+        this.checkRePass = new FormControl(this.user.rePassword, [
+            Validators.required,
+this.checkConditionRepass.bind(this) 
+            
+        ]);
+    }
+
+    checkConditionRepass(formControl: AbstractControl ) {
+        // console.log(this);
+        if (this.checkPass.value != formControl.value) {
+            return {
+                required: true
+            };
+
+        } else {
+            return null
+        }
     }
 
     checkChangePassOld() {
@@ -90,20 +123,29 @@ export class ForgetPassUserComponent {
 
     checkValid() {
 
-        var validPass = true;
-        var validRePass = true;
+        this.checkRePass.updateValueAndValidity();
+        this.checkPass.updateValueAndValidity();
+         
+if(this.checkPass.valid && this.checkPassOld.valid  && this.checkRePass.valid){
+    return true;
+} else {
+    return false;
+}
 
-        validPass = this.checkChangePass();
-        validRePass = this.checkChangeRePass()
+        // var validPass = true;
+        // var validRePass = true;
 
-        var validPassOld = this.checkChangePassOld()
+        // validPass = this.checkChangePass();
+        // validRePass = this.checkChangeRePass()
 
-        if (validPass &&
-            validRePass && validPassOld) {
-            return true;
-        } else {
-            return false;
-        }
+        // var validPassOld = this.checkChangePassOld()
+
+        // if (validPass &&
+        //     validRePass && validPassOld) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
 
     }
 

@@ -121,12 +121,17 @@
                   <span class="bg-success  text-white p-2 rounded  " *ngIf="item.isActive == true">Hoạt động</span>
                   <span class="bg-danger  text-white p-2 rounded  " *ngIf="item.isActive == false">Vô hiệu hóa</span>
                 </td>
-                <td class=" text-center " *ngIf="isRoleEdit"> <i class="fa-regular fa-pen-to-square c-poiter"
-                    (click)="editUser($event,item)"></i></td>
-                <td class=" text-center " *ngIf="isRoleDelete"> <i class="fa-solid fa-trash-can c-poiter text-danger"
-                    (click)="deleteUser($event,item)" accesskey="">
+                <td class=" text-center " *ngIf="isRoleEdit">
+                  <button class="btn"  (click)="editUser($event,item)" ><i class="fa-regular fa-pen-to-square c-poiter"
+                   ></i></button>
+                  </td>
+                <td class=" text-center " *ngIf="isRoleDelete"> 
+                  <button class="btn"  (click)="deleteUser($event,item)" >
+                  <i class="fa-solid fa-trash-can c-poiter text-danger"
+                      accesskey="">
 
-                  </i></td>
+                  </i></button>
+                </td>
 
               </tr>
 

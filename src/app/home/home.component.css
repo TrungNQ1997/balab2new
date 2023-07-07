@@ -226,7 +226,8 @@
   position: absolute;
   width: 15px;
   height: 15px;
-  top: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 10px;
   color: #717171
 }
@@ -247,7 +248,8 @@
   position: absolute;
   width: 10px;
   height: 10px;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 15px;
   color: rgb(30, 74, 102)
 }
@@ -256,7 +258,8 @@
   position: absolute;
   width: 15px;
   height: 15px;
-  top: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 10px;
   color: #717171;
   cursor: pointer;
