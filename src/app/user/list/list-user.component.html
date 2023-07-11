@@ -6,50 +6,35 @@
 
     </div>
 
-    <div class="d-flex row-common container-search" style="margin-bottom:10px;justify-content: space-between;">
-
+    <div class="d-flex row-common container-search flex-wrap" style="margin-bottom:10px;justify-content: space-between;">
+<div class="col">
       <input type="text" class="col input-search form-control margin-top-5 " maxlength="200"  
         [(ngModel)]="textSearch" placeholder="Tìm theo email, họ tên, sđt, tên đăng nhập ">
-
-      <div class="d-flex   p-left-0     pr-0 respon-mobile">
-        <div class="d-flex">
+      </div>
+      <div class="d-flex   p-left-0   flex-wrap  pr-0 respon-mobile">
+        <div class="d-flex mt-1">
           <label class="me-2 ms-2 col-form-label">Ngày sinh từ</label>
 
           <input type="text"   class="form-control datepicker  me-2  " bsDatepicker [(ngModel)]="birthdayFrom"
             placeholder="Chọn ngày">
-
-
-            <!-- <div class="input-group">
-              <input
-                class="form-control"
-                placeholder="nhập ngày"
-                name="dp"
-                [(ngModel)]="birthdayFrom"
-                ngbDatepicker
-                #d="ngbDatepicker"
-              />
-              <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button">
-                <i class="fa-solid fa-magnifying-glass "></i>
-              </button>
-            </div> -->
-
+ 
         </div>
-        <div class="d-flex date-to ">
+        <div class="d-flex date-to mt-1">
           <label class="me-2    col-form-label">Đến</label>
 
           <input type="text"   class="form-control datepicker  me-2  " bsDatepicker [(ngModel)]="birthdayTo"
             placeholder="Chọn ngày">
         </div>
 
-        <div class="d-flex  div-gioi-tinh">
-          <div class="d-flex">
+        <div class="d-flex  flex-wrap">
+          <div class="d-flex mt-1">
             <label class="   me-2  col-form-label">Giới tính</label>
             <select class="w-auto me-2 form-control" role="button" [(ngModel)]="gioiTinhSearch" name="gioiTinhSearch">
               <option *ngFor="let option of gioiTinhList" [value]="option.value">
                 {{ option.viewValue }}</option>
             </select>
           </div>
-          <button *ngIf="isRoleEdit" class="btn btn-primary rounded btn-search" (click)="search()"
+          <button *ngIf="isRoleEdit" class="btn btn-primary rounded btn-search mt-1" (click)="search()"
             style=" margin-right: 0px">
             <i class="fa-solid fa-magnifying-glass p-right-5"></i>
             Tìm</button>
@@ -57,8 +42,8 @@
       </div>
     </div>
 
-    <div class="d-flex row-common container-button" style="margin-bottom:10px;justify-content: space-between;">
-      <div class="d-flex    p-left-0 justify-content-start">
+    <div class="d-flex row-common   flex-wrap" style="margin-bottom:10px;justify-content: space-between;">
+      <div class="d-flex    p-left-0 ">
         <button *ngIf="isRoleAdd" class="btn btn-primary rounded me-2" (click)="add()">
           <i class="fa-solid fa-plus p-right-5"></i>
           Thêm</button>
@@ -69,7 +54,7 @@
 
       </div>
       <div
-        class="   d-flex justify-content-end div-search pr-0 button-export">
+        class="   d-flex mt-1 div-search pr-0 button-export">
         <button *ngIf="isRoleAdd" class="btn btn-primary rounded mx-2" (click)="exportToExcel()">
           <i class="fa-regular fa-file-excel pr-1"></i>
           Xuất Excel</button>
@@ -83,9 +68,9 @@
       <div class="border ">
         <div class="table-scroll">
           <!-- table bootstrap -->
-          <table class="table table-bordered table-hover custom-mat-table" id="tableToExport" width="100%" #table>
-            <thead>
-              <tr>
+          <table class="table table-bordered table-hover custom-mat-table align-middle" id="tableToExport" width="100%" #table>
+            <thead class="align-middle">
+              <tr >
                 <th scope="col" class="w-8 text-light   custom-header  text-center ">STT</th>
                 <th scope="col" class="w-8 custom-header  text-light  text-center " role="button" (click)="selectAll()">
                   Chọn</th>
@@ -140,7 +125,7 @@
         </div>
         <!--end table bootstrap -->
 
-        <nav aria-label="Page navigation example " class="bg-light d-flex pagination-container" style="justify-content: space-between;">
+        <nav aria-label="Page navigation example " class="bg-light d-flex flex-wrap" style="justify-content: space-between;">
           <div class="d-flex flex-wrap">
           <ul class="pagination m-2 flex-wrap">
 
@@ -173,6 +158,7 @@
           <ul class="d-flex pagination m-2 flex-wrap">
             <li class="ms-2 me-2 ">
               <select class="form-control mx-2 combo-item" role="button" [(ngModel)]="pageSize" (change)="ChangeCbbPageSize()">
+                <i style="padding-top: 8px" class="fa-solid fa-caret-down icon-dropbtn"></i>
                 <option *ngFor="let option of listPaging" [value]="option.value">
                   {{ option.value }}</option>
               </select>

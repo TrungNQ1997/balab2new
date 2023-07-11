@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
@@ -9,10 +9,10 @@ export class SharedService {
   private isNavbarVisibleSubject: Subject<boolean> = new Subject<boolean>();
   public isNavbarVisible$ = this.isNavbarVisibleSubject.asObservable();
   httpOptions = {
-    // headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow-Origin': '*'
-    // })
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    })
   };
   private localStorageKey = 'isNavbarVisible'; // Key trong LocalStorage
 

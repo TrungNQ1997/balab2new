@@ -1,7 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+
+
+// @import "../node_modules/bootstrap/scss/mixins";
+
+// @import "../node_modules/bootstrap/scss/functions";
+
+// @import "../node_modules/bootstrap/scss/variables";
+
+ @import 'bootstrap/scss/bootstrap';
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -11,8 +19,16 @@
 // @import url("../node_modules/ngx-toastr/toastr.css");
 // @import url("../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css");
 
-.ng-invalid{
-  border: 1px solid red;
+ .h-15px{
+  height: 15px;
+ }
+
+ .ng-invalid{
+  border: 1px solid #ced4da;
+}
+
+  .ng-invalid{
+  border: 1px solid red!important;
 }
 
 a {

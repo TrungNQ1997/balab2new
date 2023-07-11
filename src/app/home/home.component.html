@@ -9,17 +9,18 @@
       <img class="img-news" src="{{ban.linkImg}}" />
 
       <div class="col-6 div-content-news ">
-        <div class="p-rela">
+        <div class="p-rela d-flex flex-wrap align-items-center p-2">
+          <div style="min-width: 260px;" class="col">
           <div class="title-news">{{ban.title}}</div>
 
           <div class="des-news">
             {{ban.description}}
           </div>
-
-          <div class="div-detail">
+        </div>
+          <div class="div-detail p-2" style="height: fit-content;">
             <a class="a-detail" href="{{ban.linkTopic}}" target="_blank" rel="noopener noreferrer">{{'detail' |
               translate}}</a>
-            <i class="fa-solid fa-xs fa-arrow-right icon-detail"></i>
+            <i class="fa-solid fa-xs fa-arrow-right mt-1 ms-1 icon-detail"></i>
 
           </div>
 
@@ -45,7 +46,7 @@
       </div>
 
       <div class="margin-tb-5 d-flex  " style="justify-content: space-between;width: 100%;">
-        <ul class="no-pad no-mar d-flex">
+        <ul class="no-pad no-mar d-flex ps-0">
 
           <input class="me-2  " type="checkbox" role="button" [(ngModel)]="isRemember" id="isRemember">
           <label class="form-text" role="button" for="isRemember">{{'login.remember_pass'|translate}}</label>

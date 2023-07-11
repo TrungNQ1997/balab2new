@@ -3,7 +3,7 @@
         <h5 class="modal-title fw-bold" id="exampleModalLongTitle">{{data.title}}</h5>
         
         <div type="button" (click)="close()">
-            <i class="fa-solid fa-xmark   "></i>
+            <i class="fa-solid fa-xmark  h-15px "></i>
           </div>
 
     </div>
@@ -89,7 +89,9 @@
 
 <div class="col">
 
-<app-input-pass [(password)]="user.password"  [(checkVaild)]="checkPass"  inputName="txt-pass"  (change)="checkValidAfter()" ></app-input-pass>
+<app-input-pass [(password)]="user.password"  [(checkVaild)]="checkPass"  inputName="txt-pass"  (change)="checkValidAfter()" >
+    
+</app-input-pass>
  
 </div>
 

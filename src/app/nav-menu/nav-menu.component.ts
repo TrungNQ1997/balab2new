@@ -143,6 +143,7 @@ export class NavMenuComponent {
       document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
   }
+
   logout() {
     var notis = "Bạn có đồng ý thoát không?"
     var modalRef = this.modalService.open(ModalComfirmComponent, this.modalOptions);
@@ -165,6 +166,7 @@ export class NavMenuComponent {
 
 
   }
+  
   callLogout() {
     localStorage.clear();
     sessionStorage.clear();

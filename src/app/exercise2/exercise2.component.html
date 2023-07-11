@@ -1,4 +1,33 @@
 <div class="col-12">
+  <!-- <script>
+    // Tạo một mảng số ban đầu
+    var numbers = [1, 2, 3, 4, 5];
+    
+    // Lấy thẻ div để chứa các ô input
+    var inputContainer = document.getElementById('input-container');
+    
+    // Gán các thẻ input dựa trên số phần tử của mảng
+    for (var i = 0; i < numbers.length; i++) {
+      var input = document.createElement('input');
+      input.type = 'number';
+      input.value = numbers[i];
+      input.setAttribute('oninput', 'updateArrayValue(' + i + ', this.value)');
+      inputContainer.appendChild(input);
+    }
+    
+    // Hàm cập nhật giá trị của phần tử trong mảng khi thay đổi ô input
+    function updateArrayValue(index, value) {
+      numbers[index] = Number(value);
+    }
+    
+    // Hàm in ra mảng đã thay đổi
+    function printArray() {
+      console.log(numbers);
+    }
+    
+    
+    
+    </script> -->
   <div class="col-12">
     <table class="table table-bordered">
       <thead>
@@ -55,3 +84,36 @@
 
   </div>
 </div>
+
+<!-- <div class="input-container">
+<input class="input-arr" *ngFor="let item of arrayDiv;let indexOfelement=index;" value="{{item}}" (change)="setValueInput($event,indexOfelement)" >
+
+</div>
+<button (click)="getArr()">get arr</button> -->
+
+<div class="container">
+  <div class="content">
+    <span class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+  </div>
+</div>
+
+<style>
+  .container {
+  display: table;
+  width: 100%;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.text {
+  display: inline-block;
+  line-height: normal;
+}
+
+</style>

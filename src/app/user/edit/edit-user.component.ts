@@ -417,6 +417,12 @@ if(this.checkBirthday.valid && this.checkEmail.valid  && this.checkPhone.valid
 
             // this.user.ngay_sinh = (new Date(this.user.ngay_sinh)).toLocaleDateString();
         }
+        if (this.data.statusForm == 'add') {
+this.user.creator = localStorage.getItem("userId");
+this.user.editor = localStorage.getItem("userId");
+        } else {
+            this.user.editor = localStorage.getItem("userId");
+        }
         return this.user
     }
 

@@ -7,11 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { EditUserComponent } from '../edit/edit-user.component';
 
 import { ModalComfirmComponent } from '../../common/modal-comfirm/modal-comfirm.component';
-import { ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../service/shared.service';
 import * as XLSX from 'xlsx';
-import { ElementRef } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
@@ -21,13 +19,10 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-list-user',
     templateUrl: './list-user.component.html',
-    styleUrls: ['./list-user.component.css']
+    styleUrls: ['./list-user.component.scss']
 })
 export class ListUserComponent {
-    // @ViewChild('table') table: ElementRef;
-    // @ViewChild('table', { read: TemplateRef }) table: TemplateRef<any> ;
-
-    // dataSource: any;
+     
     isUserIconVisible: boolean = false;
     pageSizeOptions: any;
     formatDate = 'dd/MM/yyyy';
