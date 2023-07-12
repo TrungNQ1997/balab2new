@@ -240,7 +240,7 @@ export class HomeComponent {
       var token = this.sharedService.getCookie("token");
       if (token) {
         this.sharedService.callCheckLoginAndGetRole(token).subscribe(result => {
-          if (result.data.success) {
+          if (!result.data.error) {
 
 
             if (result.data.admin) {

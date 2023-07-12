@@ -1,3 +1,5 @@
+<div class="container-home">
+
 <div class="div-body-container-all">
 
   <!-- div bao news, login -->
@@ -42,7 +44,8 @@
         <input type="password" class="form-control border-radius-20 margin-tb-5 p-left-right-30" maxlength="200"
           [(ngModel)]="password" placeholder="{{'login.pass' | translate}}" id="exampleInputPassword1" />
         <i class="fa-solid fa-lock icon-login"></i>
-        <i (click)="showPass()" class="fa-regular fa-eye icon-login-end"></i>
+        <button class="btn border-0 icon-login-end btn-show-pass" (click)="showPass()" ><i  class="fa-regular fa-eye icon-login-end" style="right: 0px;"></i></button>
+        
       </div>
 
       <div class="margin-tb-5 d-flex  " style="justify-content: space-between;width: 100%;">
@@ -112,4 +115,5 @@
     </div>
   </div>
 
+</div>
 </div>

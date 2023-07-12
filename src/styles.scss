@@ -23,13 +23,11 @@
   height: 15px;
  }
 
- .ng-invalid{
-  border: 1px solid #ced4da;
+ .ng-invalid.ng-touched {
+  border: 1px solid red;
 }
 
-  .ng-invalid{
-  border: 1px solid red!important;
-}
+  
 
 a {
   color: #0366d6;

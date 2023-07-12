@@ -365,6 +365,15 @@ if(printWindow){
             });
         }
 
+
+        if(this.pageNumber < 0){
+            this.pageNumber = 0;
+            this.getListUser();
+        } else if(this.pageNumber >= this.arrayPage.length){
+            this.pageNumber = this.arrayPage.length - 1;
+            this.getListUser();
+        }
+
         if (this.totalCountListAll == 0) {
             this.rowStart = 0;
             this.rowEnd = 0;
@@ -461,7 +470,7 @@ if(printWindow){
             var token = this.sharedService.getCookie("token");
             if (token) {
                 this.sharedService.callCheckLoginAndGetRole(token).subscribe(result => {
-                    if (result.data.success) {
+                    if (!result.data.error) {
 
                         this.isRoleAdmin = result.data.admin
                         if (this.isRoleAdmin) {

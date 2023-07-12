@@ -169,7 +169,7 @@ if(this.checkPass.valid && this.checkPassOld.valid  && this.checkRePass.valid){
                 this.user, this.sharedService.httpOptions)
                 .subscribe(response => {
 
-                    if (response.data.success) {
+                    if (!response.data.error) {
                         this.toastr.success('Đổi mật khẩu thành công', 'Thông báo');
 
                         this.modal.close("ok");
