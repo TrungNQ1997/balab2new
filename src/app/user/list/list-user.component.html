@@ -1,17 +1,17 @@
 ﻿<div class="">
-  <div class="div-container-user" style="padding-top:10px">
+  <div class="div-container-user pt-2"  >
 
     <div class="d-flex mt-2 mb-2 fw-bold text-primary">
       Quản trị người dùng
 
     </div>
 
-    <div class="d-flex row-common container-search flex-wrap" style="margin-bottom:10px;justify-content: space-between;">
+    <div class="d-flex row-common container-search flex-wrap mb-2" style="justify-content: space-between;">
 <div class="col">
-      <input type="text" class="col input-search form-control margin-top-5 " maxlength="200"  
+      <input type="text" class="col input-search form-control   " maxlength="200"  
         [(ngModel)]="textSearch" placeholder="Tìm theo email, họ tên, sđt, tên đăng nhập ">
       </div>
-      <div class="d-flex   p-left-0   flex-wrap  pr-0 respon-mobile">
+      <div class="d-flex ps-0     flex-wrap  pr-0 ">
         <div class="d-flex mt-1">
           <label class="me-2 ms-2 col-form-label">Ngày sinh từ</label>
 
@@ -42,8 +42,8 @@
       </div>
     </div>
 
-    <div class="d-flex row-common   flex-wrap" style="margin-bottom:10px;justify-content: space-between;">
-      <div class="d-flex    p-left-0 ">
+    <div class="d-flex row-common   flex-wrap mb-2" style="justify-content: space-between;">
+      <div class="d-flex    ps-0 ">
         <button *ngIf="isRoleAdd" class="btn btn-primary rounded me-2" (click)="add()">
           <i class="fa-solid fa-plus p-right-5"></i>
           Thêm</button>

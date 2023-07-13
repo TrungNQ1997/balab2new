@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 export class SharedService {
 
  public regexAPass = '[a-zA-Z0-9]{6,100}';
+ public url = 'http://10.1.11.110:5017/';
   private isNavbarVisibleSubject: Subject<boolean> = new Subject<boolean>();
   public isNavbarVisible$ = this.isNavbarVisibleSubject.asObservable();
   httpOptions = {
@@ -50,7 +51,7 @@ export class SharedService {
       "menuId": "1"
     }
 
-    return this.http.post<any>('http://10.1.11.110:5017/' + 'user/checklogingetrole',
+    return this.http.post<any>(this.url + 'user/checklogingetrole',
       data, this.httpOptions)
 
   }
@@ -63,7 +64,7 @@ export class SharedService {
       "menuId": "1"
     }
 
-    return this.http.post<any>('http://10.1.11.110:5017/' + 'user/getrole',
+    return this.http.post<any>(this.url + 'user/getrole',
       data, this.httpOptions)
 
   }
@@ -72,7 +73,7 @@ export class SharedService {
 
     user.userId = '2';
 
-    return this.http.post<any>('http://10.1.11.110:5017/' + 'user/adduser',
+    return this.http.post<any>(this.url + 'user/adduser',
       user, this.httpOptions)
 
   }

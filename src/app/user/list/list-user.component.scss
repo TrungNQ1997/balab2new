@@ -1,12 +1,4 @@
- @import 'bootstrap/scss/bootstrap';
-// @include media-breakpoint-down(md) { 
-     
-//   }
   
-//   @include media-breakpoint-up(md) { 
-     
-//    }
- 
 .input-search{
     min-width: 150px;
 }
@@ -19,25 +11,7 @@
     background-color: rgb(45, 156, 219)!important;
 
 }
-
-.mat-form-field-infix {
-    border-top-width: 0px;
-    padding-top: 0px;
-}
-
-
-.p-left-0 {
-    padding-left: 0px;
-}
-
-.w-auto {
-    width: auto;
-}
-
-.pad-left-0 {
-    padding-left: 0px;
-}
-
+  
 .table-scroll {
     height: calc(100vh - 256px);
     min-height: 350px;
@@ -61,96 +35,20 @@
     max-height: calc(100vh - 263px);
  
 }
-
-.ho-ten-column,
-.ngay-sinh-column,
-.email-column,
-.username-column,
-.sdt-column {
-    width: 14%;
-
-}
-
-.select-column,
-.delete-column,
-.edit-column,
-.id-column,
-.gioi-tinh-column {
-    width: 8%;
-
-}
-
-.no-border {
-    border: none;
-}
-
+  
 .border-normal {
     border: 1px solid #ced4da;
     border-radius: 8px;
     padding-right: 7px;
     padding-left: 7px;
 }
-
-.dropdown:hover .dropText {
-    display: block;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-
-}
-
-.w-80px {
-    width: 80px;
-}
-
-.dropText {
-    display: none;
-    position: absolute;
-    /*background-color: skyblue;*/
-    min-width: 130px;
-    width: 130px;
-    background-color: white;
-    z-index: 1;
-}
-
+ 
 .active-page {
     background-color: rgb(97, 148, 194) !important;
     color: white !important;
     border-radius: 8px;
 }
-
-.margin-lr-5 {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.margin-lr-10 {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.pad-top-10 {
-    padding-top: 10px;
-}
-
-.pad-top-4 {
-    padding-top: 4px;
-}
-
-.text-alig-right {
-    text-align: right;
-}
-
-.text-alig-left {
-    text-align: left;
-}
-
-.text-alig-center {
-    text-align: center;
-}
-
+ 
 .button-theme {
     background-color: rgb(97, 148, 194);
     color: white;
@@ -184,7 +82,4 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
-.w-100per {
-    width: 100%;
-}
+ 

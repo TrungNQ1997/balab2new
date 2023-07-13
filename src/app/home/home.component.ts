@@ -164,7 +164,7 @@ export class HomeComponent {
 
     }
 
-    this.http.post<any>('http://10.1.11.110:5017/' + 'user/login',
+    this.http.post<any>(this.sharedService.url + 'user/login',
       data, this.sharedService.httpOptions)
       .subscribe(response => {
 

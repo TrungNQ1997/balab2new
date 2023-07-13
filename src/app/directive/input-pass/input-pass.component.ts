@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-pass',
@@ -8,28 +9,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class InputPassComponent implements OnInit {
   @Input() password: string="";
   @Input() name: string="";
-  @Input() checkVaild: any;
+  @Input() formControl: FormControl = new FormControl;
   @Input() inputName: string="";
   showPassword: boolean = false;
   @Output() change: EventEmitter<any> = new EventEmitter<any>();
-  @Output() checkVaildChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() formControlChange: EventEmitter<any> = new EventEmitter<any>();
   @Output() passwordChange: EventEmitter<string> = new EventEmitter<string>();
 
   onPasswordChange(value: string) {
     this.password = value;
     this.passwordChange.emit(this.password);
-    this.checkVaildChange.emit(this.checkVaild);
+    this.formControlChange.emit(this.formControl);
   }
   constructor() { }
 
   ngOnInit() {
   }
-  checkValid(){
-console.log(this.password);
-  }
-  showPass1(){
-    console.log(this.password);
-  }
+   
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }

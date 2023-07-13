@@ -32,8 +32,7 @@ export class NavMenuComponent {
     { val: "en", text: "English", img: "/assets/img/eng.jpg" }
   ];
   langModel = this.dropDownData[0];
-
-
+ 
   constructor(private translateService: TranslateService,
     private appComponent: AppComponent
     , private sharedService: SharedService, private router: Router,
@@ -47,8 +46,7 @@ export class NavMenuComponent {
     this.translateService.use('vi');
 
   }
-
-
+ 
   ngOnInit() {
     this.langModel = this.dropDownData[0];
     this.translateService.use(this.dropDownData[0].val);
@@ -62,33 +60,29 @@ export class NavMenuComponent {
         this.isNavbarVisible = true;
       }
     }
-
-    // this.subscription = this.sharedService.isNavbarVisible$.subscribe(
-    //   (isVisible: boolean) => {
-    //     this.isNavbarVisible = isVisible;
-    //   }
-    // );
+ 
   }
+  
+  ngOnChanges() {
 
-
-
+  }
+ 
   collapse() {
     this.isExpanded = false;
 
   }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
   onOptionsSelected(value: string) {
     this.translateService.use(value);
   }
-  ngOnChanges() {
 
-  }
 
   onChangePass() {
-
-
+ 
     var modalRef = this.modalService.open(ForgetPassUserComponent, this.modalOptions);
 
     modalRef.componentInstance.data = {
@@ -106,8 +100,7 @@ export class NavMenuComponent {
     }).catch((error) => {
       console.log(error)
     });
-
-
+ 
   }
 
   toggleMenu() {
@@ -163,8 +156,7 @@ export class NavMenuComponent {
     }).catch((error) => {
       console.log(error)
     });
-
-
+ 
   }
   
   callLogout() {

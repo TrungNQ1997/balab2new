@@ -1,11 +1,8 @@
-import { Component,Input, TemplateRef } from '@angular/core';
-// import 'hammerjs';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-// import { MatTableDataSource } from "@angular/material";
 import { TranslateService } from '@ngx-translate/core';
 import { EditUserComponent } from '../edit/edit-user.component';
-
 import { ModalComfirmComponent } from '../../common/modal-comfirm/modal-comfirm.component';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../service/shared.service';
@@ -14,17 +11,15 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
-
-
 @Component({
     selector: 'app-list-user',
     templateUrl: './list-user.component.html',
     styleUrls: ['./list-user.component.scss']
 })
 export class ListUserComponent {
-     
+
     isUserIconVisible: boolean = false;
-    pageSizeOptions: any;
+    pageSizeOptions: number[] = [];
     formatDate = 'dd/MM/yyyy';
     isShowDelete = false;
     isRoleShow = false;
@@ -37,7 +32,7 @@ export class ListUserComponent {
     birthdayTo = "";
     pageNumber = 1;
     textSearch = "";
-    pageSize: number= 10;
+    pageSize: number = 10;
     rowStart: number = 0;
     rowEnd: number = 0;
     totalNumberPage = 0;
@@ -49,12 +44,10 @@ export class ListUserComponent {
 
         centered: true // Căn giữa modal
     };
-    gioiTinhSearch: number=0;
-    gioiTinhList: any;
+    gioiTinhSearch: number = 0;
+    gioiTinhList: any = [];
     listPaging: any;
-    users : any;
-    // users1 = this.users;
-
+    users: any;
 
     constructor(private translateService: TranslateService,
         private http: HttpClient,
@@ -69,18 +62,17 @@ export class ListUserComponent {
     }
 
     ngOnInit() {
+        this.arrayPage = [];
         this.checkLoginAndRole();
-this.users = [];
+        this.users = [];
         this.birthdayFrom = "";
         this.birthdayTo = "";
         this.pageNumber = 0;
         this.textSearch = "";
         this.pageSize = 10;
         this.totalNumberPage = 0;
-        this.totalCountListAll = 0;
-
-        this.pageSizeOptions = [5, 10, 20];
-        // this.dataSource = new MatTableDataSource<any>();
+        this.totalCountListAll = 0; 
+        this.pageSizeOptions = [5, 10, 20]; 
         this.gioiTinhSearch = 0;
         this.getListUser();
         this.listPaging = [
@@ -105,7 +97,7 @@ this.users = [];
     ngAfterViewInit() {
 
     }
-    onPaginateChange($event:any) {
+    onPaginateChange($event: any) {
         this.pageNumber = $event.pageIndex;
         this.pageSize = $event.pageSize;
         this.getListUser();
@@ -113,10 +105,9 @@ this.users = [];
     }
     exportTableToPDF() {
         const doc = new jsPDF();
-        const table:any = document.getElementById('tableToExport');
-        // const table = this.table.nativeElement;
+        const table: any = document.getElementById('tableToExport'); 
 
-        html2canvas(table).then((canvas:any) => {
+        html2canvas(table).then((canvas: any) => {
             const imageData = canvas.toDataURL('image/png');
             const imgWidth = 210; // Width of A4 in mm (approximate)
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
@@ -128,11 +119,10 @@ this.users = [];
     }
 
     printTable() {
-        const doc = new jsPDF();
-        // const table = this.table.nativeElement;
-        const table:any = document.getElementById('tableToExport');
+        const doc = new jsPDF(); 
+        const table: any = document.getElementById('tableToExport');
 
-        html2canvas(table).then((canvas:any) => {
+        html2canvas(table).then((canvas: any) => {
             const imageData = canvas.toDataURL('image/png');
             const imgWidth = 210; // Width of A4 in mm (approximate)
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
@@ -142,13 +132,13 @@ this.users = [];
             doc.autoPrint();
             const printWindow = window.open('', '_blank');
 
-if(printWindow){
-    printWindow.document.open();
-    printWindow.document.write('<html><head><title>In</title></head><body>' + doc.output('datauristring') + '</body></html>');
-    printWindow.document.close();
-}
+            if (printWindow) {
+                printWindow.document.open();
+                printWindow.document.write('<html><head><title>In</title></head><body>' + doc.output('datauristring') + '</body></html>');
+                printWindow.document.close();
+            }
 
-           
+
         });
     }
 
@@ -170,7 +160,7 @@ if(printWindow){
         link.remove();
     }
 
-    deleteUser($event:any, a:any) {
+    deleteUser($event: any, a: any) {
 
         var notis = "Bạn có đồng ý xóa người dùng này không?"
 
@@ -200,7 +190,7 @@ if(printWindow){
     }
 
     selectAll() {
-        this.users.forEach(function (item:any) {
+        this.users.forEach(function (item: any) {
             item.selected = !item.selected;
         })
         this.changCheckBox();
@@ -220,7 +210,7 @@ if(printWindow){
             });
         });
 
-        this.http.post<any>('http://10.1.11.110:5017/' + 'user/deleteUser',
+        this.http.post<any>(this.sharedService.url + 'user/deleteUser',
             data, this.sharedService.httpOptions)
             .subscribe(response => {
                 if (!response.data.list.includes(0)) {
@@ -242,7 +232,7 @@ if(printWindow){
 
             var notis = "Bạn có đồng ý xóa những người dùng này không? ";
             var listUser = "";
-            listDelete.forEach(function (elem:any, idx:any, listDelete:any) {
+            listDelete.forEach(function (elem: any, idx: any, listDelete: any) {
                 if (idx == (listDelete.length - 1)) {
                     listUser = listUser + " " + elem.username + " ";
                 } else {
@@ -279,7 +269,7 @@ if(printWindow){
         data = new Object();
         data.users = this.users.filter((m: { selected: boolean; }) => m.selected == true);
         data.userId = "2";
-        this.http.post<any>('http://10.1.11.110:5017/' + 'user/deleteUser',
+        this.http.post<any>(this.sharedService.url + 'user/deleteUser',
             data, this.sharedService.httpOptions)
             .subscribe(response => {
                 if (!response.data.list.includes(0)) {
@@ -304,7 +294,7 @@ if(printWindow){
 
         var data: any;
 
-        var dayTo:any = "";
+        var dayTo: any = "";
         if (this.birthdayTo) {
             try {
                 const offset = new Date(this.birthdayTo).getTimezoneOffset();
@@ -316,7 +306,7 @@ if(printWindow){
         } else {
             dayTo = null;
         }
-        var dayFrom:any = "";
+        var dayFrom: any = "";
         if (this.birthdayFrom) {
             try {
                 const offset = new Date(this.birthdayFrom).getTimezoneOffset();
@@ -340,16 +330,14 @@ if(printWindow){
 
         }
 
-        this.http.post<any>('http://10.1.11.110:5017/' + 'user/getListUserFilter',
+        this.http.post<any>(this.sharedService.url + 'user/getListUserFilter',
             data, this.sharedService.httpOptions)
             .subscribe(response => {
 
-                this.users = response.data.list;
-                // this.dataSource.data = this.users;
+                this.users = response.data.list; 
                 this.totalCountListAll = response.data.count;
                 this.changCheckBox();
-                this.changePageSize();
-                // this.paginator.length = response.count[0].count;
+                this.changePageSize(); 
             });
 
     }
@@ -365,11 +353,10 @@ if(printWindow){
             });
         }
 
-
-        if(this.pageNumber < 0){
+        if (this.pageNumber < 0) {
             this.pageNumber = 0;
             this.getListUser();
-        } else if(this.pageNumber >= this.arrayPage.length){
+        } else if (this.pageNumber >= this.arrayPage.length) {
             this.pageNumber = this.arrayPage.length - 1;
             this.getListUser();
         }
@@ -565,8 +552,6 @@ if(printWindow){
             console.log(error)
         });
 
-
     }
-
 
 }

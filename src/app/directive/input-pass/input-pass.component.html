@@ -1,5 +1,5 @@
 <div class="input-group ">
-  <input  [type]="showPassword ? 'text' : 'password'"   [attr.name]="inputName" [formControl]="checkVaild"  maxlength="100"  
+  <input  [type]="showPassword ? 'text' : 'password'"   [attr.name]="inputName" [formControl]="formControl"  maxlength="100"  
                       [(ngModel)]="password" placeholder=" " (ngModelChange)="onPasswordChange($event)"   (blur)="change.emit()"
                       class="form-control" data-toggle="password">
 

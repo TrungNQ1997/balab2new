@@ -3,10 +3,10 @@
 <div class="div-body-container-all">
 
   <!-- div bao news, login -->
-  <div class="slideshow-container max-size slide-container-all">
+  <div class="slideshow-container h-100 w-100  slide-container-all">
 
     <!-- Full-width images with number and caption text -->
-    <div *ngFor="let ban of listBanner" class="mySlides max-size">
+    <div *ngFor="let ban of listBanner" class="mySlides h-100 w-100">
 
       <img class="img-news" src="{{ban.linkImg}}" />
 
@@ -35,20 +35,20 @@
       <img id="img" draggable="false" class="style-scope yt-img-shadow img-login" alt="" width="80"
         src="http://gps3.binhanh.vn/assets/images/login/logo.svg" />
       <div class="div-username">
-        <input type="text" class="form-control border-radius-20 margin-tb-5 p-left-30" maxlength="50"
+        <input type="text" class="form-control border-radius-20 mx-1 p-left-30" maxlength="50"
           [(ngModel)]="username" id="exampleInputEmail1" placeholder="{{'login.username' | translate}}"
           aria-describedby="emailHelp" />
         <i class="fa-solid fa-user icon-login"></i>
       </div>
       <div class="div-pass">
-        <input type="password" class="form-control border-radius-20 margin-tb-5 p-left-right-30" maxlength="200"
+        <input type="password" class="form-control border-radius-20 mx-1 p-left-right-30" maxlength="200"
           [(ngModel)]="password" placeholder="{{'login.pass' | translate}}" id="exampleInputPassword1" />
         <i class="fa-solid fa-lock icon-login"></i>
         <button class="btn border-0 icon-login-end btn-show-pass" (click)="showPass()" ><i  class="fa-regular fa-eye icon-login-end" style="right: 0px;"></i></button>
         
       </div>
 
-      <div class="margin-tb-5 d-flex  " style="justify-content: space-between;width: 100%;">
+      <div class="mx-1 d-flex  " style="justify-content: space-between;width: 100%;">
         <ul class="no-pad no-mar d-flex ps-0">
 
           <input class="me-2  " type="checkbox" role="button" [(ngModel)]="isRemember" id="isRemember">
@@ -63,11 +63,11 @@
         <label>{{notis}}</label>
       </div>
 
-      <button type="submit" (click)="login()" class="btn btn-primary border-radius-20 margin-tb-5 btn-login">
+      <button type="submit" (click)="login()" class="btn btn-primary border-radius-20 mx-1 btn-login">
         {{ 'login.login' | translate }}
       </button>
 
-      <img id="img" draggable="false" class="style-scope yt-img-shadow mar-top-25" alt="" width="100"
+      <img id="img" draggable="false" class="style-scope yt-img-shadow mt-4" alt="" width="100"
         src="/assets/img/M5GK-qrcode.png" />
 
       <label>{{'login.qr_code' | translate}}</label>
