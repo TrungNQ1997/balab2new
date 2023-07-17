@@ -9,7 +9,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { Test1Component } from './test1/test1.component';
-
+import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { ModalComfirmComponent } from './common/modal-comfirm/modal-comfirm.component';
 import { ForgetPassUserComponent } from './user/forget-pass/forget-pass-user.component';
@@ -22,18 +22,22 @@ import { Exercise2Component } from './exercise2/exercise2.component'
  import { ListUserComponent } from './user/list/list-user.component';
  import { EditUserComponent } from './user/edit/edit-user.component';
  import { InputPassComponent } from './directive/input-pass/input-pass.component';
-
+ import { JsonPipe } from '@angular/common';
 import { BsDatepickerConfig, BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { viLocale } from 'ngx-bootstrap/locale';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { ReportVehicleSpeedViolationComponent } from './report-vehicle-speed-violation/report-vehicle-speed-violation.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 defineLocale('vi', viLocale);
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  //return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/');
 }
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     Test1Component,
     NavMenuComponent,
@@ -46,15 +50,20 @@ export function HttpLoaderFactory(http: HttpClient) {
       Exercise2Component,
       HomeComponent,
       EditUserComponent,
-      ListUserComponent
-  ],
+      ListUserComponent,
+      ReportVehicleSpeedViolationComponent
+   ],
   imports: [
     BrowserModule,
     FormsModule,
+    NgbTimepickerModule,
+    JsonPipe,
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    TypeaheadModule.forRoot(),
     TranslateModule.forRoot({
       defaultLanguage: 'vi',
       loader: {
@@ -88,3 +97,4 @@ export function getDatepickerConfig(): BsDatepickerConfig {
     dateInputFormat: 'DD/MM/YYYY'
   });
 }
+

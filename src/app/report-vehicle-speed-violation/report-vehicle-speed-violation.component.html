@@ -1,8 +1,8 @@
-﻿<div class="">
+<div class="">
   <div class="div-container-user pt-2"  >
 
     <div class="d-flex mt-2 mb-2 fw-bold text-primary">
-      Quản trị người dùng
+      THỐNG KÊ VI PHẠM VỀ TỐC ĐỘ THEO ĐƠN VỊ VẬN TẢI
 
     </div>
 
@@ -10,43 +10,68 @@
 <div class="row no-gutters mr-0">
   <div class="col-sm-12 col-12 col-lg col-md-12 row no-gutters">
 
-    <div class="col-md-4 col-sm-3 col-12 mt-1">
-      <input type="text" class="col  form-control   " maxlength="200"  
-      [(ngModel)]="textSearch" placeholder="Tìm theo email, họ tên, sđt, tên đăng nhập ">
-    
-    </div>
-    <div class="col-md-4 col-sm-5 col-12 row no-gutters mt-1">
+  
+    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-12 row no-gutters mt-1 pr-2">
        
-      <label class=" col-form-label w-auto mx-2">Ngày sinh từ</label>
-    
-      <input type="text"   class="form-control col datepicker    " bsDatepicker [(ngModel)]="birthdayFrom"
+      <label class=" col-form-label w-100  mx-2">Từ ngày</label>
+      <ngb-timepicker [(ngModel)]="timeFrom" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
+
+      <input type="text"   class="form-control col datepicker  mt-1  " bsDatepicker [(ngModel)]="dayFrom"
         placeholder="Chọn ngày">
        
     </div>
-    <div class="col-md-4 col-sm-4 col-12 row no-gutters mt-1">
-      <label class="  col-form-label w-auto mx-2">Đến</label>
-    
-      <input type="text"   class="form-control col datepicker   " bsDatepicker [(ngModel)]="birthdayTo"
+    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-12 row no-gutters mt-1 pr-2">
+      <label class="  col-form-label w-100  mx-2">Đến ngày</label>
+      <ngb-timepicker [(ngModel)]="timeTo" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
+      <input type="text"   class="form-control col datepicker  mt-1 " bsDatepicker [(ngModel)]="dayTo"
         placeholder="Chọn ngày">
+    </div>
+
+    <div class="col-xl-8 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1">
+      <label class="  col-form-label w-100  mx-2">Phương tiện</label>
+
+      <!-- <input [(ngModel)]="selectedState"
+   [typeahead]="states" 
+   [typeaheadMinLength]="0"
+   class="form-control col mr-2 mt-1 pl-2"> -->
+
+   <ng-multiselect-dropdown
+   [placeholder]="'Chọn phương tiện'"
+   [settings]="dropdownSettings"
+   [data]="dropdownList"
+   [(ngModel)]="selectedItems"
+   (onSelect)="onItemSelect($event)"
+   (onSelectAll)="onSelectAll($event)"
+   class="mr-2 col"
+ >
+ </ng-multiselect-dropdown>
+
+  <button   class="btn btn-primary rounded btn-search mt-1 w-auto" (click)="getDataReport()"
+  style=" margin-right: 0px">
+  <i class="fa-solid fa-magnifying-glass p-right-5"></i>
+  Xem báo cáo</button>
     </div>
 
   </div>
 
 <div class="w-auto row no-gutters">
-  <label class="   mx-2  col-form-label w-auto mt-1">Giới tính</label>
+  <!-- <label class="   mx-2  col-form-label w-auto mt-1">Giới tính</label>
   <select class="w-auto mr-2 mt-1 form-control" role="button" [(ngModel)]="gioiTinhSearch" name="gioiTinhSearch">
     <option *ngFor="let option of gioiTinhList" [value]="option.value">
       {{ option.viewValue }}</option>
-  </select>
-  <button *ngIf="isRoleEdit" class="btn btn-primary rounded btn-search mt-1 w-auto" (click)="search()"
+  </select> -->
+  <!-- <input [(ngModel)]="selectedState"
+   [typeahead]="states"
+   class="form-control">
+  <button   class="btn btn-primary rounded btn-search mt-1 w-auto" (click)="getDataReport()"
   style=" margin-right: 0px">
   <i class="fa-solid fa-magnifying-glass p-right-5"></i>
-  Tìm</button>
+  Xem báo cáo</button> -->
 </div>
 </div>
  
     <div class="row   no-gutters gy-0 mb-2 mt-1" style="justify-content: space-between;">
-      <div class="row no-gutters w-auto      pl-0 ">
+      <!-- <div class="row no-gutters w-auto      pl-0 ">
         <button *ngIf="isRoleAdd" class="btn w-auto btn-primary rounded mr-2 mt-1" (click)="add()">
           <i class="fa-solid fa-plus p-right-5"></i>
           Thêm</button>
@@ -65,7 +90,7 @@
           <i class="fa-regular fa-file-pdf pr-1"></i>
           Xuất Pdf</button>
 
-      </div>
+      </div> -->
     </div>
     <div class="pb-2">
       <div class="border ">
@@ -74,25 +99,37 @@
           <table class="table table-bordered table-hover custom-mat-table align-middle" id="tableToExport" width="100%" #table>
             <thead class="align-middle">
               <tr >
-                <th scope="col" class="w-8 text-light   custom-header  text-center ">STT</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center " role="button" (click)="selectAll()">
-                  Chọn</th>
+                <th scope="col" class="w-8 text-light   custom-header  text-center " rowspan="2">STT</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center " rowspan="2" >Phương tiện</th>
 
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tên đăng nhập</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Họ tên</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Ngày sinh</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Giới tính</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Điện thoại</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Email</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center ">Trạng thái</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center " *ngIf="isRoleEdit">Sửa</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center " *ngIf="isRoleDelete">Xóa</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center " rowspan="2">Loại hình</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="6">Số lần vi phạm tốc độ</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="3">Quãng đường</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="3">Thời gian</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center " rowspan="2">Ghi chú</th>
+                 
+              </tr>
+              <tr >
+                <th scope="col" class="w-8 text-light   custom-header  text-center ">5 km/h - 10 km/h</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center "  >10 km/h - 20 km/h</th>
+
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">20 km/h - 35 km/h</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Trên 35 km/h</th>
+                 
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tổng cộng</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Số lần vi phạm /1000 km phương tiện chạy</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Km vi phạm</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tổng phương tiện chạy</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tỉ lệ %</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Thời gian vi phạm</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tổng thời gian phương tiện chạy</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tỉ lệ %</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of users">
+              <tr *ngFor="let item of dataReport">
                 <td class="w-8 text-center ">{{item.stt}}</td>
-                <td class=" text-center "><input type="checkbox" role="button" (change)="changCheckBox()"
+                <td class=" text-center "><input type="checkbox" role="button"  
                     [(ngModel)]="item.selected"></td>
 
                 <td class=" text-center "
@@ -109,17 +146,17 @@
                   <span class="bg-success  text-white p-2 rounded  " *ngIf="item.isActive == true">Hoạt động</span>
                   <span class="bg-danger  text-white p-2 rounded  " *ngIf="item.isActive == false">Vô hiệu hóa</span>
                 </td>
-                <td class=" text-center " *ngIf="isRoleEdit">
+                <!-- <td class=" text-center "  >
                   <button class="btn"  (click)="editUser($event,item)" ><i class="fa-regular fa-pen-to-square c-poiter"
                    ></i></button>
                   </td>
-                <td class=" text-center " *ngIf="isRoleDelete"> 
+                <td class=" text-center "  > 
                   <button class="btn"  (click)="deleteUser($event,item)" >
                   <i class="fa-solid fa-trash-can c-poiter text-danger"
                       accesskey="">
 
                   </i></button>
-                </td>
+                </td> -->
 
               </tr>
 
@@ -177,7 +214,7 @@
           <ul class="flex-right m-2 pagination">
             <li class="d-flex align-items-center h-100">
               <label class="mr-2 mb-0">{{rowStart}} - {{rowEnd}} trên tổng {{totalCountListAll}} dòng</label>
-              <i class="fa-solid fa-rotate-right" role="button" (click)="getListUser()"></i>
+              <i class="fa-solid fa-rotate-right" role="button" (click)="getDataReport()"></i>
             </li>
 
           </ul>

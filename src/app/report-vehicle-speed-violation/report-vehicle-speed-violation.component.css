@@ -1,0 +1,14 @@
+.table-scroll {
+    height: calc(100vh - 256px);
+    min-height: 350px;
+    overflow: auto;
+}
+.custom-mat-table {
+    max-height: calc(100vh - 263px);
+ 
+}
+.div-container-user {
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+
+}

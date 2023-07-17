@@ -17,7 +17,7 @@ export class EditUserComponent {
     inputField: any;
     formControlPhone: FormControl = new FormControl;
     formControlEmail: FormControl = new FormControl;
-    formControlUsername: FormControl = new FormControl;
+    // formControlUsername: FormControl = new FormControl;
     formControlBirthday: FormControl = new FormControl;
     formControlPass: FormControl = new FormControl;
     formControlFullname: FormControl = new FormControl;
@@ -28,13 +28,15 @@ export class EditUserComponent {
     regexAUsername = '[a-zA-Z0-9]{1,50}';
     regexAPass = '[a-zA-Z0-9]{6,100}';
     regexAEmail = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,200}';
-    
+    regexPatternUsername = /^[a-zA-Z0-9]{1,50}$/;
     isLoadList: boolean = false;
      
     user: any;
     showMes: boolean = false;
     disabledAdd: boolean = true;
     gioiTinhList: any;
+    isErrorUsername:boolean = false;
+    errorUsername:string = '';
 
     constructor(
 
@@ -70,6 +72,20 @@ export class EditUserComponent {
 
     }
 
+    checkChangeUsername(){
+        if(!this.user.username){
+            this.isErrorUsername = true;
+            this.errorUsername="Tên đăng nhập không được bỏ trống!"
+        } else {
+            if(this.regexPatternUsername.test(this.user.username)){
+                this.isErrorUsername = false;
+            } else {
+                this.isErrorUsername = true;
+                this.errorUsername="Tên đăng nhập từ 1 đến 50 ký tự, chỉ viết liền, không dấu"
+            }
+        }
+    }
+
     genValidFormControl() {
 
         this.formControlPhone = new FormControl(this.user.phone, [
@@ -79,13 +95,13 @@ export class EditUserComponent {
         this.formControlEmail = new FormControl(this.user.email, [
             Validators.pattern(this.regexAEmail)
         ]);
-        this.formControlUsername = new FormControl({
-            value: this.user.phone,
-            disabled: this.data.statusForm == 'edit'
-        }, [
-            Validators.required,
-            Validators.pattern(this.regexAUsername)
-        ]);
+        // this.formControlUsername = new FormControl({
+        //     value: this.user.phone,
+        //     disabled: this.data.statusForm == 'edit'
+        // }, [
+        //     Validators.required,
+        //     Validators.pattern(this.regexAUsername)
+        // ]);
         this.formControlBirthday = new FormControl(this.user.birthday, [
             Validators.required,
             this.emailConditionallyRequiredValidator
@@ -149,7 +165,9 @@ export class EditUserComponent {
         this.formControlPass.updateValueAndValidity();
 
         if (this.formControlBirthday.valid && this.formControlEmail.valid && this.formControlPhone.valid
-            && (this.data.statusForm == 'edit' || (this.formControlPass.valid && this.formControlRePass.valid)) && this.formControlFullname.valid && !this.formControlUsername.invalid) {
+            && (this.data.statusForm == 'edit' || (this.formControlPass.valid && this.formControlRePass.valid)) && this.formControlFullname.valid 
+            // && !this.formControlUsername.invalid
+            ) {
             this.disabledAdd = false;
             return true;
 

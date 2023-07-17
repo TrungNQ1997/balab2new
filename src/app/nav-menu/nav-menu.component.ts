@@ -28,8 +28,8 @@ export class NavMenuComponent {
     centered: true // Căn giữa modal
   };
   dropDownData = [
-    { val: "vi", text: "Tiếng Việt", img: "/assets/img/icon-co-vn.png" },
-    { val: "en", text: "English", img: "/assets/img/eng.jpg" }
+    { val: "vi", text: "Tiếng Việt", img: "assets/img/icon-co-vn.png" },
+    { val: "en", text: "English", img: "assets/img/eng.jpg" }
   ];
   langModel = this.dropDownData[0];
  

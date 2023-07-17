@@ -17,16 +17,26 @@
                             <label class="color-red">*</label>
                         </div>
                         <div class="col">
-                            <input type="text" [formControl]="formControlUsername" class="form-control  "
+                            <!-- <input type="text" [formControl]="formControlUsername" class="form-control  "
                                 [disabled]="data.statusForm == 'edit'" maxlength="50" [(ngModel)]="user.username"
                                 placeholder=" " required="true" aria-label="Username" (blur)="checkValidAfter()"
+                                aria-describedby="basic-addon1"> -->
+
+                                <input type="text"   class="form-control  "
+                                [disabled]="data.statusForm == 'edit'" maxlength="50" [(ngModel)]="user.username"
+                                [ngClass]="{'is-invalid' : isErrorUsername == true }"
+                                placeholder=" " required="true" aria-label="Username" (change)="checkChangeUsername()"
                                 aria-describedby="basic-addon1">
+
                         </div>
 
                     </div>
                     <div class="col-12 ">
-                        <label *ngIf="formControlUsername.invalid && (formControlUsername.dirty || formControlUsername.touched)"
-                            class="text-danger mt-1">Tên đăng nhập từ 1 đến 50 ký tự, chỉ viết liền, không dấu</label>
+                        <label *ngIf="isErrorUsername"
+                        class="text-danger mt-1">{{errorUsername}}</label>
+
+                        <!-- <label *ngIf="formControlUsername.invalid && (formControlUsername.dirty || formControlUsername.touched)"
+                            class="text-danger mt-1">Tên đăng nhập từ 1 đến 50 ký tự, chỉ viết liền, không dấu</label> -->
                     </div>
                 </div>
                 <div class="  input-group mb-3 ">
