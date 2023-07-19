@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../service/shared.service';
 import { HttpClient } from '@angular/common/http';
-import {  IDropdownSettings } from 'ng-multiselect-dropdown';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 
 @Component({
-  selector: 'app-report-vehicle-speed-violation',
-  templateUrl: './report-vehicle-speed-violation.component.html',
-  styleUrls: ['./report-vehicle-speed-violation.component.css']
+    selector: 'app-report-vehicle-speed-violation',
+    templateUrl: './report-vehicle-speed-violation.component.html',
+    styleUrls: ['./report-vehicle-speed-violation.component.css']
 })
 export class ReportVehicleSpeedViolationComponent implements OnInit {
 
-  pageNumber = 1;
+    pageNumber = 0;
     textSearch = "";
     pageSize: number = 10;
     rowStart: number = 0;
@@ -19,187 +20,240 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
     totalNumberPage = 0;
     totalCountListAll = 0;
     arrayPage: any = [];
-    dayFrom = "";
-    dayTo = "";
-    dataReport:any;
+    dayFrom: Date = new Date;
+    dayTo: Date = new Date;
+    dataReport: any;
     formatDate = 'dd/MM/yyyy';
     timeFrom = { hour: 13, minute: 30 };
     timeTo = { hour: 13, minute: 30 };
-    dropdownList:Array<{  privateCode: string}> = [];
-  selectedItems:Array<{  privateCode: string}> = [];
-  dropdownSettings:IDropdownSettings = {};
+    dropdownList: Array<{ privateCode: string }> = [];
+    selectedItems: Array<{ pK_VehicleID: string }> = [];
+    dropdownSettings: IDropdownSettings = {};
     listPaging = [
-      {
-          value: 5
-      },
-      {
-          value: 10
-      },
-      {
-          value: 20
-      }
-  ];
-  selectedState: string="";
-   states: string[] = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado']
-
-  constructor(private sharedService: SharedService,private http: HttpClient,) { }
-
-  ngOnInit() {
-    this.dropdownList = [
-     
+        {
+            value: 5
+        },
+        {
+            value: 10
+        },
+        {
+            value: 20
+        }
     ];
-    this.selectedItems = [
-    
-    ];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'privateCode',
-      textField: 'privateCode',
-      selectAllText: 'Chọn tất cả',
-      unSelectAllText: 'Bỏ chọn tất cả',
-      searchPlaceholderText:'Tìm',
-      itemsShowLimit: 7,
-      allowSearchFilter: true
-    };
-    this.getDataVehicles();
-  }
+    selectedState: string = "";
+    states: string[] = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado']
 
-  onItemSelect(item: any) {
-    console.log(this.selectedItems);
-  }
-  onSelectAll(items: any) {
-    console.log(this.selectedItems);
-  }
+    constructor(private sharedService: SharedService, private http: HttpClient, private toastr: ToastrService,) { }
 
-  selectPage(i: number) {
-    this.pageNumber = i;
-    this.getDataReport();
-}
+    ngOnInit() {
+        this.dropdownList = [
 
-nextPage() {
-    if (this.pageNumber < (this.totalNumberPage - 1))
-        this.pageNumber = this.pageNumber + 1;
-    this.getDataReport();
-}
-prePage() {
-    if (this.pageNumber > 0)
-        this.pageNumber = this.pageNumber - 1;
-    this.getDataReport();
-}
-maxPage() {
+        ];
+        this.selectedItems = [
 
-    this.pageNumber = this.totalNumberPage - 1;
-    this.getDataReport();
-}
-minPage() {
+        ];
+        this.dropdownSettings = {
+            singleSelection: false,
+            idField: 'pK_VehicleID',
+            textField: 'privateCode',
+            selectAllText: 'Chọn tất cả',
+            unSelectAllText: 'Bỏ chọn tất cả',
+            searchPlaceholderText: 'Tìm',
+            itemsShowLimit: 7,
+            allowSearchFilter: true
+        };
+        this.getDataVehicles();
+        this.setDefaultControl();
+    }
 
-    this.pageNumber = 0;
-    this.getDataReport();
-}
-ChangeCbbPageSize() {
-    this.pageNumber = 0;
-    this.getDataReport();
-}
+    onItemSelect(item: any) {
+        console.log(this.selectedItems);
+    }
 
-changePageSize() {
+    onSelectAll(items: any) {
+        console.log(this.selectedItems);
+    }
 
-  this.totalNumberPage = Math.ceil(this.totalCountListAll / this.pageSize);
-  this.arrayPage = [];
-  for (var i = 0; i < this.totalNumberPage; i++) {
-      this.arrayPage.push({
-          value: i,
-          text: (i + 1)
-      });
-  }
+    selectPage(i: number) {
+        this.pageNumber = i;
+        this.getDataReport();
+    }
 
-  if (this.pageNumber < 0) {
-      this.pageNumber = 0;
-      this.getDataReport();
-  } else if (this.pageNumber >= this.arrayPage.length) {
-      this.pageNumber = this.arrayPage.length - 1;
-      this.getDataReport();
-  }
+    nextPage() {
+        if (this.pageNumber < (this.totalNumberPage - 1))
+            this.pageNumber = this.pageNumber + 1;
+        this.getDataReport();
+    }
 
-  if (this.totalCountListAll == 0) {
-      this.rowStart = 0;
-      this.rowEnd = 0;
-  } else {
-      this.rowStart = (this.pageSize * this.pageNumber) + 1;
-      this.rowEnd = this.rowStart + this.dataReport.length - 1;
-  }
+    prePage() {
+        if (this.pageNumber > 0)
+            this.pageNumber = this.pageNumber - 1;
+        this.getDataReport();
+    }
 
-}
+    maxPage() {
 
-getDataReport() {
+        this.pageNumber = this.totalNumberPage - 1;
+        this.getDataReport();
+    }
 
-  var data: any;
+    minPage() {
 
-  var dayTo: any = "";
-  if (this.dayTo) {
-      try {
-          const offset = new Date(this.dayTo).getTimezoneOffset();
-          dayTo = new Date(new Date(this.dayTo).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
+        this.pageNumber = 0;
+        this.getDataReport();
+    }
 
-      } catch (error) {
-          this.dayTo = "";
-      }
-  } else {
-      dayTo = null;
-  }
-  var dayFrom: any = "";
-  if (this.dayFrom) {
-      try {
-          const offset = new Date(this.dayFrom).getTimezoneOffset();
-          dayFrom = new Date(new Date(this.dayFrom).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
+    ChangeCbbPageSize() {
+        this.pageNumber = 0;
+        this.getDataReport();
+    }
 
-      } catch (error) {
-          this.dayFrom = ""
-      }
-  } else {
-      dayFrom = null;
-  }
+    changePageSize() {
 
-  data = {
-      "userId": "1",
-      "pageNumber": this.pageNumber + 1,
-      // "gioiTinhSearch": this.gioiTinhSearch,
-      "dayTo": this.dayTo == "" ? null : dayTo,
-      "dayFrom": this.dayFrom == "" ? null : dayFrom,
-      "textSearch": this.textSearch,
-      "pageSize": this.pageSize
+        this.totalNumberPage = Math.ceil(this.totalCountListAll / this.pageSize);
+        this.arrayPage = [];
+        for (var i = 0; i < this.totalNumberPage; i++) {
+            this.arrayPage.push({
+                value: i,
+                text: (i + 1)
+            });
+        }
 
-  }
+        if (this.pageNumber < 0) {
+            this.pageNumber = 0;
+            this.getDataReport();
+        } else if (this.pageNumber >= this.arrayPage.length && this.arrayPage.length != 0) {
+            this.pageNumber = this.arrayPage.length - 1;
+            this.getDataReport();
+        }
 
-  this.http.post<any>(this.sharedService.url + 'user/getListUserFilter',
-      data, this.sharedService.httpOptions)
-      .subscribe(response => {
+        if (this.totalCountListAll == 0) {
+            this.rowStart = 0;
+            this.rowEnd = 0;
+        } else {
+            this.rowStart = (this.pageSize * this.pageNumber) + 1;
+            this.rowEnd = this.rowStart + this.dataReport.length - 1;
+        }
 
-          this.dataReport = response.data.list; 
-          this.totalCountListAll = response.data.count;
-          
-          this.changePageSize(); 
-      });
+    }
 
-}
+    getDataReport() {
 
+        if (this.checkValid()) {
 
-getDataVehicles() {
+            var data: any;
 
-  
-  var data = {
-       
+            var dayTo: any = "";
+            if (this.dayTo) {
+                var oldDate = this.dayTo;
+                try {
+                    const offset = new Date(this.dayTo).getTimezoneOffset();
+                    dayTo = new Date(new Date(this.dayTo).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
-  }
+                } catch (error) {
+                    this.dayTo = oldDate;
+                }
+            } else {
+                dayTo = null;
+            }
+            var dayFrom: any = "";
+            if (this.dayFrom) {
+                var oldDate = this.dayFrom;
+                try {
+                    const offset = new Date(this.dayFrom).getTimezoneOffset();
+                    dayFrom = new Date(new Date(this.dayFrom).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
-  this.http.get<any>(this.sharedService.url + 'user/getVehicles', this.sharedService.httpOptions)
-      .subscribe(response => {
+                } catch (error) {
+                    this.dayFrom = oldDate
+                }
+            } else {
+                dayFrom = null;
+            }
 
-          this.dropdownList = response.data.list; 
-          // this.totalCountListAll = response.data.count;
-          
-          // this.changePageSize(); 
-      });
+            var timeFrom: string = "";
+            if (this.timeFrom) {
+                timeFrom = "T" + this.timeFrom.hour.toString().padStart(2, "0") + ":" + this.timeFrom.minute.toString().padStart(2, "0")
+            }
 
-}
+            var timeTo: string = "";
+            if (this.timeTo) {
+                timeTo = "T" + this.timeTo.hour.toString().padStart(2, "0") + ":" + this.timeTo.minute.toString().padStart(2, "0")
+            }
+
+            data = {
+                "userId": "1",
+                "pageNumber": this.pageNumber + 1,
+                // "gioiTinhSearch": this.gioiTinhSearch,
+                "birthdayTo": this.dayTo == null ? null : dayTo + timeTo,
+
+                "birthdayFrom": this.dayFrom == null ? null : dayFrom + timeFrom,
+                "textSearch": this.selectedItems.map(function (item) {
+                    return item.pK_VehicleID;
+                }).toString(),
+                "pageSize": this.pageSize
+
+            }
+
+            this.http.post<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getDataReport',
+                data, this.sharedService.httpOptions)
+                .subscribe(response => {
+
+                    this.dataReport = response.data.list;
+                    this.totalCountListAll = response.data.count;
+
+                    this.changePageSize();
+                });
+
+        }
+    }
+
+    checkValid() {
+        var valid = false;
+        if (!this.dayFrom) {
+            valid = false
+            this.toastr.error("Từ ngày không được bỏ trống");
+            return valid;
+        }
+        if (!this.dayTo) {
+            valid = false
+            this.toastr.error("Đến ngày không được bỏ trống");
+            return valid;
+        }
+        if (this.dayFrom > this.dayTo) {
+            valid = false
+            this.toastr.error("Từ ngày không được lớn hơn đến ngày");
+            return valid;
+        }
+        var diff = (this.dayTo.getTime() - this.dayFrom.getTime()) / 1000;
+        diff /= (60 * 60 * 24);
+        if (diff > 60) {
+            valid = false
+            this.toastr.error("Vui lòng tìm kiếm báo cáo trong phạm vi 60 ngày!");
+            return valid;
+        }
+        return true;
+    }
+
+    setDefaultControl() {
+        this.dayFrom = new Date();
+        this.dayTo = new Date();
+        this.timeFrom.hour = this.dayFrom.getHours();
+        this.timeFrom.minute = this.dayFrom.getMinutes();
+        this.timeTo.hour = this.dayFrom.getHours();
+        this.timeTo.minute = this.dayFrom.getMinutes();
+    }
+
+    getDataVehicles() {
+
+        this.http.get<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getVehicles', this.sharedService.httpOptions)
+            .subscribe(response => {
+
+                this.dropdownList = response.data.list;
+                // this.totalCountListAll = response.data.count;
+
+                // this.changePageSize(); 
+            });
+
+    }
 
 }

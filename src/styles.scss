@@ -19,6 +19,10 @@
 // @import url("../node_modules/ngx-toastr/toastr.css");
 // @import url("../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css");
 
+.h-fit{
+  height: fit-content;
+}
+
  .h-15px{
   height: 15px;
  }
@@ -54,7 +58,7 @@ code {
    .dropdown-btn{
     margin-top: 3px!important;
     border-color: #ced4da!important ;
-    color: #ced4da;
+    // color: #ced4da;
     padding-top: 4px!important;
       padding-bottom: 4px!important;
   }

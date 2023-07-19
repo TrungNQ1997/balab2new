@@ -1,7 +1,7 @@
 <div class="">
   <div class="div-container-user pt-2"  >
 
-    <div class="d-flex mt-2 mb-2 fw-bold text-primary">
+    <div class="d-flex mt-2 mb-2 font-weight-bold text-primary">
       THỐNG KÊ VI PHẠM VỀ TỐC ĐỘ THEO ĐƠN VỊ VẬN TẢI
 
     </div>
@@ -27,14 +27,11 @@
         placeholder="Chọn ngày">
     </div>
 
-    <div class="col-xl-8 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1">
-      <label class="  col-form-label w-100  mx-2">Phương tiện</label>
+    <div class="col-xl-8 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1" style="flex-direction: column;">
+      <label class="  col-form-label w-100  mx-2 h-fit">Phương tiện</label>
 
-      <!-- <input [(ngModel)]="selectedState"
-   [typeahead]="states" 
-   [typeaheadMinLength]="0"
-   class="form-control col mr-2 mt-1 pl-2"> -->
-
+      
+<div class="w-100 row no-gutters" >
    <ng-multiselect-dropdown
    [placeholder]="'Chọn phương tiện'"
    [settings]="dropdownSettings"
@@ -46,51 +43,20 @@
  >
  </ng-multiselect-dropdown>
 
-  <button   class="btn btn-primary rounded btn-search mt-1 w-auto" (click)="getDataReport()"
-  style=" margin-right: 0px">
-  <i class="fa-solid fa-magnifying-glass p-right-5"></i>
-  Xem báo cáo</button>
+  <button   class="btn btn-primary rounded btn-search mt-1 mr-0 h-fit" (click)="getDataReport()">
+  <i class="fa-solid fa-magnifying-glass pr-2"></i>
+  Xem báo cáo</button></div>
     </div>
 
   </div>
 
 <div class="w-auto row no-gutters">
-  <!-- <label class="   mx-2  col-form-label w-auto mt-1">Giới tính</label>
-  <select class="w-auto mr-2 mt-1 form-control" role="button" [(ngModel)]="gioiTinhSearch" name="gioiTinhSearch">
-    <option *ngFor="let option of gioiTinhList" [value]="option.value">
-      {{ option.viewValue }}</option>
-  </select> -->
-  <!-- <input [(ngModel)]="selectedState"
-   [typeahead]="states"
-   class="form-control">
-  <button   class="btn btn-primary rounded btn-search mt-1 w-auto" (click)="getDataReport()"
-  style=" margin-right: 0px">
-  <i class="fa-solid fa-magnifying-glass p-right-5"></i>
-  Xem báo cáo</button> -->
+  
 </div>
 </div>
  
     <div class="row   no-gutters gy-0 mb-2 mt-1" style="justify-content: space-between;">
-      <!-- <div class="row no-gutters w-auto      pl-0 ">
-        <button *ngIf="isRoleAdd" class="btn w-auto btn-primary rounded mr-2 mt-1" (click)="add()">
-          <i class="fa-solid fa-plus p-right-5"></i>
-          Thêm</button>
-        <button *ngIf="isRoleDelete && isShowDelete" class="btn w-auto btn-danger rounded mr-2 mt-1" (click)="deleteList()">
-          <i class="fa-solid fa-trash-can p-right-5" accesskey="">
-
-          </i>Xóa</button>
-
-      </div>
-      <div
-        class="   row w-auto  div-search pr-0 button-export no-gutters">
-        <button *ngIf="isRoleAdd" class="btn w-auto btn-primary rounded mr-2 mt-1" (click)="exportToExcel()">
-          <i class="fa-regular fa-file-excel pr-1"></i>
-          Xuất Excel</button>
-        <button *ngIf="isRoleAdd" class="btn w-auto btn-primary rounded mt-1" (click)="exportTableToPDF()">
-          <i class="fa-regular fa-file-pdf pr-1"></i>
-          Xuất Pdf</button>
-
-      </div> -->
+       
     </div>
     <div class="pb-2">
       <div class="border ">
@@ -129,35 +95,32 @@
             <tbody>
               <tr *ngFor="let item of dataReport">
                 <td class="w-8 text-center ">{{item.stt}}</td>
-                <td class=" text-center "><input type="checkbox" role="button"  
-                    [(ngModel)]="item.selected"></td>
-
+                <td class="w-8 text-center ">{{item.privateCode}}</td>
+                 
                 <td class=" text-center "
-                  [ngClass]="{'text-primary': item.isActive == true,'text-danger': item.isActive == false}">
-                  {{item.username}}</td>
-                <td class=" text-center " [ngClass]="{'text-end': item.sexId == 1, 
-         'text-start': item.sexId == 2, 'text-center': item.sexId == 3}">
-                  {{item.fullName}}</td>
-                <td class=" text-center ">{{item.birthday | date: formatDate}}</td>
-                <td class=" text-center ">{{item.gioiTinhText}}</td>
-                <td class=" text-center ">{{item.phone | phoneFormat }}</td>
-                <td class=" text-center ">{{item.email}}</td>
-                <td class=" text-center min-w-105">
-                  <span class="bg-success  text-white p-2 rounded  " *ngIf="item.isActive == true">Hoạt động</span>
-                  <span class="bg-danger  text-white p-2 rounded  " *ngIf="item.isActive == false">Vô hiệu hóa</span>
-                </td>
-                <!-- <td class=" text-center "  >
-                  <button class="btn"  (click)="editUser($event,item)" ><i class="fa-regular fa-pen-to-square c-poiter"
-                   ></i></button>
-                  </td>
-                <td class=" text-center "  > 
-                  <button class="btn"  (click)="deleteUser($event,item)" >
-                  <i class="fa-solid fa-trash-can c-poiter text-danger"
-                      accesskey="">
-
-                  </i></button>
-                </td> -->
-
+                   
+                  >
+                  {{item.transportTypeName}}</td>
+                <td class=" text-center " 
+                
+         >
+         <!-- [ngClass]="{'text-end': item.sexId == 1, 
+         'text-start': item.sexId == 2, 'text-center': item.sexId == 3}" -->
+                  {{item.sum1}}</td>
+                <td class=" text-center ">{{item.sum2}}</td>
+                <td class=" text-center ">{{item.sum3}}</td>
+                <td class=" text-center ">{{item.sum4}}</td>
+                <td class=" text-center text-primary">{{item.sumTotal}}</td>
+                <!-- <td class=" text-center ">{{item.phone | phoneFormat }}</td> -->
+                <td class=" text-center ">{{item.violatePer100Km}}</td>
+                <td class=" text-center ">{{item.violateKm}}</td>
+                <td class=" text-center ">{{item.totalKm}}</td>
+                <td class=" text-center ">{{item.percentRate}}</td>
+                <td class=" text-center ">{{item.violateTime}}</td>
+                <td class=" text-center ">{{item.totalTime}}</td>
+                <td class=" text-center ">{{item.percentRateTime}}</td>
+                <td class=" text-center "> </td>
+               
               </tr>
 
             </tbody>
