@@ -389,25 +389,30 @@ export class ListUserComponent {
             this.pageNumber = this.pageNumber + 1;
         this.getListUser();
     }
+
     prePage() {
         if (this.pageNumber > 0)
             this.pageNumber = this.pageNumber - 1;
         this.getListUser();
     }
+
     maxPage() {
 
         this.pageNumber = this.totalNumberPage - 1;
         this.getListUser();
     }
+
     minPage() {
 
         this.pageNumber = 0;
         this.getListUser();
     }
+
     ChangeCbbPageSize() {
         this.pageNumber = 0;
         this.getListUser();
     }
+    
     checkLoginAndRole() {
 
         var session = sessionStorage.getItem("login");

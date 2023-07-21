@@ -6,8 +6,8 @@ import { Subject } from 'rxjs';
 export class SharedService {
 
  public regexAPass = '[a-zA-Z0-9]{6,100}';
- //public url = 'http://10.1.11.110:5017/';
- public url = 'http://localhost:5017/';
+ public url = 'http://10.1.11.110:5017/';
+ //public url = 'http://localhost:5017/';
   private isNavbarVisibleSubject: Subject<boolean> = new Subject<boolean>();
   public isNavbarVisible$ = this.isNavbarVisibleSubject.asObservable();
   httpOptions = {

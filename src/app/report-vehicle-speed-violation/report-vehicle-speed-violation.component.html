@@ -1,126 +1,126 @@
 <div class="">
-  <div class="div-container-user pt-2"  >
+  <div class="div-container-user pt-2">
 
     <div class="d-flex mt-2 mb-2 font-weight-bold text-primary">
       THỐNG KÊ VI PHẠM VỀ TỐC ĐỘ THEO ĐƠN VỊ VẬN TẢI
 
     </div>
 
+    <div class="row no-gutters mr-0">
+      <div class="col-sm-12 col-12 col-lg col-md-12 row no-gutters">
 
-<div class="row no-gutters mr-0">
-  <div class="col-sm-12 col-12 col-lg col-md-12 row no-gutters">
 
-  
-    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-12 row no-gutters mt-1 pr-2">
-       
-      <label class=" col-form-label w-100  mx-2">Từ ngày</label>
-      <ngb-timepicker [(ngModel)]="timeFrom" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
+        <div class="col-xl-5 col-lg-6 col-md-7 col-sm-7 col-12 row no-gutters">
 
-      <input type="text"   class="form-control col datepicker  mt-1  " bsDatepicker [(ngModel)]="dayFrom"
-        placeholder="Chọn ngày">
-       
-    </div>
-    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-12 row no-gutters mt-1 pr-2">
-      <label class="  col-form-label w-100  mx-2">Đến ngày</label>
-      <ngb-timepicker [(ngModel)]="timeTo" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
-      <input type="text"   class="form-control col datepicker  mt-1 " bsDatepicker [(ngModel)]="dayTo"
-        placeholder="Chọn ngày">
-    </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1 pr-4">
 
-    <div class="col-xl-8 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1" style="flex-direction: column;">
-      <label class="  col-form-label w-100  mx-2 h-fit">Phương tiện</label>
+          <label class=" col-form-label w-100  mx-2">Từ ngày</label>
+          <ngb-timepicker [(ngModel)]="timeFrom" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
 
-      
-<div class="w-100 row no-gutters" >
-   <ng-multiselect-dropdown
-   [placeholder]="'Chọn phương tiện'"
-   [settings]="dropdownSettings"
-   [data]="dropdownList"
-   [(ngModel)]="selectedItems"
-   (onSelect)="onItemSelect($event)"
-   (onSelectAll)="onSelectAll($event)"
-   class="mr-2 col"
- >
- </ng-multiselect-dropdown>
+          <input type="text" class="form-control col datepicker  mt-1  " bsDatepicker [(ngModel)]="dayFrom"
+            placeholder="Chọn ngày">
 
-  <button   class="btn btn-primary rounded btn-search mt-1 mr-0 h-fit" (click)="getDataReport()">
-  <i class="fa-solid fa-magnifying-glass pr-2"></i>
-  Xem báo cáo</button></div>
-    </div>
-
-  </div>
-
-<div class="w-auto row no-gutters">
-  
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1 pr-4">
+          <label class="  col-form-label w-100  mx-2">Đến ngày</label>
+          <ngb-timepicker [(ngModel)]="timeTo" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
+          <input type="text" class="form-control col datepicker  mt-1 " bsDatepicker [(ngModel)]="dayTo"
+            placeholder="Chọn ngày">
+        </div>
 </div>
-</div>
- 
+
+
+
+        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-5 col-12 row no-gutters mt-1" style="flex-direction: column;">
+          <label class="  col-form-label w-100  mx-2 h-fit">Phương tiện</label>
+
+
+          <div class="w-100 row no-gutters">
+            <ng-multiselect-dropdown [placeholder]="'Chọn phương tiện'" [settings]="dropdownSettings"
+              [data]="dropdownList" [(ngModel)]="selectedItems" class="mr-4 col">
+            </ng-multiselect-dropdown>
+
+            <button class="btn btn-primary rounded btn-search mt-1 mr-0 h-fit" (click)="getDataReport()">
+              <i class="fa-solid fa-magnifying-glass pr-2"></i>
+              Xem báo cáo</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="w-auto row no-gutters">
+
+      </div>
+    </div>
+
     <div class="row   no-gutters gy-0 mb-2 mt-1" style="justify-content: space-between;">
-       
+
     </div>
     <div class="pb-2">
       <div class="border ">
         <div class="table-scroll">
           <!-- table bootstrap -->
-          <table class="table table-bordered table-hover custom-mat-table align-middle" id="tableToExport" width="100%" #table>
+          <table class="table table-bordered table-hover custom-mat-table align-middle" id="tableToExport" width="100%"
+            #table>
             <thead class="align-middle">
-              <tr >
+              <tr>
                 <th scope="col" class="w-8 text-light   custom-header  text-center " rowspan="2">STT</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center " rowspan="2" >Phương tiện</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center " rowspan="2">Phương tiện</th>
 
                 <th scope="col" class="w-10 custom-header  text-light  text-center " rowspan="2">Loại hình</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="6">Số lần vi phạm tốc độ</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="3">Quãng đường</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="3">Thời gian</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="6">Số lần
+                  vi phạm tốc độ</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="3">Quãng
+                  đường</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="3">Thời
+                  gian</th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center " rowspan="2">Ghi chú</th>
-                 
-              </tr>
-              <tr >
-                <th scope="col" class="w-8 text-light   custom-header  text-center ">5 km/h - 10 km/h</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center "  >10 km/h - 20 km/h</th>
 
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">20 km/h - 35 km/h</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Trên 35 km/h</th>
-                 
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tổng cộng</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Số lần vi phạm /1000 km phương tiện chạy</th>
+              </tr>
+              <tr>
+                <th scope="col" class="w-8 text-light   custom-header  text-center w-80px">5 km/h - 10 km/h</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center w-80px">10 km/h - 20 km/h</th>
+
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px">20 km/h - 35 km/h</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px">Trên 35 km/h</th>
+
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px">Tổng cộng</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-160px">Số lần vi phạm /1000 km phương tiện
+                  chạy</th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center ">Km vi phạm</th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center ">Tổng phương tiện chạy</th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center ">Tỉ lệ %</th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center ">Thời gian vi phạm</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tổng thời gian phương tiện chạy</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-135px">Tổng thời gian phương tiện chạy
+                </th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center ">Tỉ lệ %</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of dataReport">
-                <td class="w-8 text-center ">{{item.stt}}</td>
-                <td class="w-8 text-center ">{{item.privateCode}}</td>
-                 
-                <td class=" text-center "
-                   
-                  >
+                <td class="w-8 text-center align-middle">{{item.stt}}</td>
+                <td class="w-8 text-center align-middle">{{item.privateCode | vehiclePlate }}</td>
+
+                <td class=" text-center align-middle">
                   {{item.transportTypeName}}</td>
-                <td class=" text-center " 
-                
-         >
-         <!-- [ngClass]="{'text-end': item.sexId == 1, 
+                <td class=" text-center align-middle">
+                  <!-- [ngClass]="{'text-end': item.sexId == 1, 
          'text-start': item.sexId == 2, 'text-center': item.sexId == 3}" -->
-                  {{item.sum1}}</td>
-                <td class=" text-center ">{{item.sum2}}</td>
-                <td class=" text-center ">{{item.sum3}}</td>
-                <td class=" text-center ">{{item.sum4}}</td>
-                <td class=" text-center text-primary">{{item.sumTotal}}</td>
-                <!-- <td class=" text-center ">{{item.phone | phoneFormat }}</td> -->
-                <td class=" text-center ">{{item.violatePer100Km}}</td>
-                <td class=" text-center ">{{item.violateKm}}</td>
-                <td class=" text-center ">{{item.totalKm}}</td>
-                <td class=" text-center ">{{item.percentRate}}</td>
-                <td class=" text-center ">{{item.violateTime}}</td>
-                <td class=" text-center ">{{item.totalTime}}</td>
-                <td class=" text-center ">{{item.percentRateTime}}</td>
-                <td class=" text-center "> </td>
-               
+                  {{item.sum1 | numberReport}}
+                </td>
+                <td class=" text-center align-middle">{{item.sum2 | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.sum3 | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.sum4 | numberReport}}</td>
+                <td class=" text-center text-primary align-middle">{{item.sumTotal | numberReport}}</td>
+                <td class=" text-center  align-middle">{{item.violatePer100Km | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.violateKm | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.totalKm | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.percentRate | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.violateTimeText}}</td>
+                <td class=" text-center align-middle">{{item.totalTimeText}}</td>
+                <td class=" text-center align-middle">{{item.percentRateTime | numberReport}}</td>
+                <td class=" text-center align-middle"> </td>
+
               </tr>
 
             </tbody>
@@ -128,52 +128,54 @@
         </div>
         <!--end table bootstrap -->
 
-        <nav aria-label="Page navigation example " class="bg-light d-flex flex-wrap" style="justify-content: space-between;">
+        <nav aria-label="Page navigation example " class="bg-light d-flex flex-wrap footer-table"
+          style="justify-content: space-between;">
           <div class="d-flex flex-wrap">
-          <ul class="pagination m-2 flex-wrap">
+            <ul class="pagination m-2 flex-wrap">
 
-            <li class="page-item">
-              <a class="page-link" role="button" (click)="minPage()">
-                <i class="fa-solid fa-backward-step"></i>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" role="button" (click)="prePage()">
-                <i class="fa-solid fa-play  " style="transform: rotate(180deg); "></i>
-              </a>
-            </li>
-            <li class="page-item" [ngClass]="{'active': pageNumber == page.value}" *ngFor="let page of arrayPage">
-              <a class="page-link" role="button" (click)="selectPage(page.value)">{{page.text}}</a>
-            </li>
+              <li class="page-item">
+                <a class="page-link" role="button" (click)="minPage()">
+                  <i class="fa-solid fa-backward-step"></i>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" role="button" (click)="prePage()">
+                  <i class="fa-solid fa-play  " style="transform: rotate(180deg); "></i>
+                </a>
+              </li>
+              <li class="page-item" [ngClass]="{'active': pageNumber == page.value}" *ngFor="let page of arrayPage">
+                <a class="page-link" role="button" (click)="selectPage(page.value)">{{page.text}}</a>
+              </li>
 
-            <li class="page-item">
-              <a class="page-link" role="button" (click)="nextPage()">
-                <i class="fa-solid fa-play  "></i>
-              </a>
-            </li>
-            <li class="page-item  ">
-              <a class="page-link" role="button" (click)="maxPage()">
-                <i class="fa-solid fa-forward-step"></i>
-              </a>
-            </li>
-            
-          </ul>
-          <ul class="d-flex pagination m-2 flex-wrap">
-            <li class="ml-2 mr-2 ">
-              <select class="form-control mx-2 combo-item" role="button" [(ngModel)]="pageSize" (change)="ChangeCbbPageSize()">
-                <i style="padding-top: 8px" class="fa-solid fa-caret-down icon-dropbtn"></i>
-                <option *ngFor="let option of listPaging" [value]="option.value">
-                  {{ option.value }}</option>
-              </select>
+              <li class="page-item">
+                <a class="page-link" role="button" (click)="nextPage()">
+                  <i class="fa-solid fa-play  "></i>
+                </a>
+              </li>
+              <li class="page-item  ">
+                <a class="page-link" role="button" (click)="maxPage()">
+                  <i class="fa-solid fa-forward-step"></i>
+                </a>
+              </li>
 
-            </li>
-            <li class="d-flex align-items-center">
-              <label class="mb-0 ml-2">Dòng mỗi trang</label>
-            </li>
+            </ul>
+            <ul class="d-flex pagination m-2 flex-wrap">
+              <li class="ml-2 mr-2 ">
+                <select class="form-control mx-2 combo-item" role="button" [(ngModel)]="pageSize"
+                  (change)="ChangeCbbPageSize()">
+                  <i style="padding-top: 8px" class="fa-solid fa-caret-down icon-dropbtn"></i>
+                  <option *ngFor="let option of listPaging" [value]="option.value">
+                    {{ option.value }}</option>
+                </select>
+
+              </li>
+              <li class="d-flex align-items-center">
+                <label class="mb-0 ml-2">Dòng mỗi trang</label>
+              </li>
 
 
-          </ul>
-        </div>
+            </ul>
+          </div>
           <ul class="flex-right m-2 pagination">
             <li class="d-flex align-items-center h-100">
               <label class="mr-2 mb-0">{{rowStart}} - {{rowEnd}} trên tổng {{totalCountListAll}} dòng</label>

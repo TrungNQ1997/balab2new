@@ -6,49 +6,36 @@
 
  @import "../../../node_modules/bootstrap/scss/variables";
 
-@include media-breakpoint-up(xxl) { 
-  .div-body-container-all {
-  height: calc(100vh - 215px) !important;
-  min-height: 468px
-} 
-}
-
-@include media-breakpoint-down(xxl) { 
-  .div-body-container-all {
-  height: calc(100vh - 220px) !important;
-  min-height: 468px
-} 
-}
-  
+ 
 @include media-breakpoint-down(xl) { 
   .div-body-container-all {
-    height: calc(100vh - 260px) !important;
+    height: calc(100vh - 230px) !important;
     min-height: 468px
   }
-
+ 
 }
 
 @include media-breakpoint-down(lg) { 
   .div-body-container-all {
-    height: calc(100vh - 360px) !important;
+    height: calc(100vh - 270px) !important;
     min-height: 468px
   }
-
+   
 }
 
 @include media-breakpoint-down(md) { 
   .div-body-container-all {
     height: calc(100vh - 280px) !important;
-    min-height: 500px!important
+    min-height: 468px!important
   }
 
   .div-xl-bran {
     flex: 0 0 32% !important;
     max-width: 32% !important;
   }
-
+   
 }
-
+ 
 @include media-breakpoint-down(sm) 
 // bắt đầu co div-login div tin tức vào giữa
 {

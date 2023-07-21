@@ -3,8 +3,7 @@ import { SharedService } from '../service/shared.service';
 import { HttpClient } from '@angular/common/http';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Toast, ToastrService } from 'ngx-toastr';
-
-
+ 
 @Component({
     selector: 'app-report-vehicle-speed-violation',
     templateUrl: './report-vehicle-speed-violation.component.html',
@@ -40,9 +39,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
             value: 20
         }
     ];
-    selectedState: string = "";
-    states: string[] = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado']
-
+ 
     constructor(private sharedService: SharedService, private http: HttpClient, private toastr: ToastrService,) { }
 
     ngOnInit() {
@@ -59,19 +56,12 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
             selectAllText: 'Chọn tất cả',
             unSelectAllText: 'Bỏ chọn tất cả',
             searchPlaceholderText: 'Tìm',
+            noDataAvailablePlaceholderText:'Không có dữ liệu',
             itemsShowLimit: 7,
             allowSearchFilter: true
         };
         this.getDataVehicles();
         this.setDefaultControl();
-    }
-
-    onItemSelect(item: any) {
-        console.log(this.selectedItems);
-    }
-
-    onSelectAll(items: any) {
-        console.log(this.selectedItems);
     }
 
     selectPage(i: number) {
@@ -137,65 +127,68 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
 
     }
 
+    prepareInput(){
+        var data: any;
+
+        var dayTo: any = "";
+        if (this.dayTo) {
+            var oldDate = this.dayTo;
+            try {
+                const offset = new Date(this.dayTo).getTimezoneOffset();
+                dayTo = new Date(new Date(this.dayTo).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
+
+            } catch (error) {
+                this.dayTo = oldDate;
+            }
+        } else {
+            dayTo = null;
+        }
+        var dayFrom: any = "";
+        if (this.dayFrom) {
+            var oldDate = this.dayFrom;
+            try {
+                const offset = new Date(this.dayFrom).getTimezoneOffset();
+                dayFrom = new Date(new Date(this.dayFrom).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
+
+            } catch (error) {
+                this.dayFrom = oldDate
+            }
+        } else {
+            dayFrom = null;
+        }
+
+        var timeFrom: string = "";
+        if (this.timeFrom) {
+            timeFrom = "T" + this.timeFrom.hour.toString().padStart(2, "0") + ":" + this.timeFrom.minute.toString().padStart(2, "0")
+        }
+
+        var timeTo: string = "";
+        if (this.timeTo) {
+            timeTo = "T" + this.timeTo.hour.toString().padStart(2, "0") + ":" + this.timeTo.minute.toString().padStart(2, "0")
+        }
+
+        data = {
+            "userId": "1",
+            "pageNumber": this.pageNumber + 1,
+            // "gioiTinhSearch": this.gioiTinhSearch,
+            "birthdayTo": this.dayTo == null ? null : dayTo + timeTo,
+
+            "birthdayFrom": this.dayFrom == null ? null : dayFrom + timeFrom,
+            "textSearch": this.selectedItems.map(function (item) {
+                return item.pK_VehicleID;
+            }).toString(),
+            "pageSize": this.pageSize
+
+        }
+        return data
+    }
+
     getDataReport() {
 
         if (this.checkValid()) {
-
-            var data: any;
-
-            var dayTo: any = "";
-            if (this.dayTo) {
-                var oldDate = this.dayTo;
-                try {
-                    const offset = new Date(this.dayTo).getTimezoneOffset();
-                    dayTo = new Date(new Date(this.dayTo).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
-
-                } catch (error) {
-                    this.dayTo = oldDate;
-                }
-            } else {
-                dayTo = null;
-            }
-            var dayFrom: any = "";
-            if (this.dayFrom) {
-                var oldDate = this.dayFrom;
-                try {
-                    const offset = new Date(this.dayFrom).getTimezoneOffset();
-                    dayFrom = new Date(new Date(this.dayFrom).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
-
-                } catch (error) {
-                    this.dayFrom = oldDate
-                }
-            } else {
-                dayFrom = null;
-            }
-
-            var timeFrom: string = "";
-            if (this.timeFrom) {
-                timeFrom = "T" + this.timeFrom.hour.toString().padStart(2, "0") + ":" + this.timeFrom.minute.toString().padStart(2, "0")
-            }
-
-            var timeTo: string = "";
-            if (this.timeTo) {
-                timeTo = "T" + this.timeTo.hour.toString().padStart(2, "0") + ":" + this.timeTo.minute.toString().padStart(2, "0")
-            }
-
-            data = {
-                "userId": "1",
-                "pageNumber": this.pageNumber + 1,
-                // "gioiTinhSearch": this.gioiTinhSearch,
-                "birthdayTo": this.dayTo == null ? null : dayTo + timeTo,
-
-                "birthdayFrom": this.dayFrom == null ? null : dayFrom + timeFrom,
-                "textSearch": this.selectedItems.map(function (item) {
-                    return item.pK_VehicleID;
-                }).toString(),
-                "pageSize": this.pageSize
-
-            }
-
+ 
             this.http.post<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getDataReport',
-                data, this.sharedService.httpOptions)
+                this.prepareInput(), this.sharedService.httpOptions)
                 .subscribe(response => {
 
                     this.dataReport = response.data.list;
@@ -249,9 +242,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
             .subscribe(response => {
 
                 this.dropdownList = response.data.list;
-                // this.totalCountListAll = response.data.count;
 
-                // this.changePageSize(); 
             });
 
     }

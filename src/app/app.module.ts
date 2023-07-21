@@ -31,6 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { ReportVehicleSpeedViolationComponent } from './report-vehicle-speed-violation/report-vehicle-speed-violation.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { VehiclePlatePipe } from './pipe/vehicle-plate.pipe/vehicle-plate.pipe';
+import { NumberReportPipe } from './pipe/number-report.pipe/number-report.pipe';
 defineLocale('vi', viLocale);
 export function HttpLoaderFactory(http: HttpClient) {
   //return new TranslateHttpLoader(http);
@@ -44,6 +46,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ModalComfirmComponent,
     ForgetPassUserComponent,
     PhoneFormatPipe,
+    NumberReportPipe,
+    VehiclePlatePipe,
     SimpleComponent,
     InputPassComponent,
       Exercise1Component,
