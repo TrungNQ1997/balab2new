@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LOCALE_ID } from '@angular/core'; // Import LOCALE_ID
+import { LocalizationService  } from '@progress/kendo-angular-l10n'; // Import LocalizationService
 
 import { Test1Component } from './test1/test1.component';
 import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,6 +35,15 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { VehiclePlatePipe } from './pipe/vehicle-plate.pipe/vehicle-plate.pipe';
 import { NumberReportPipe } from './pipe/number-report.pipe/number-report.pipe';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+//import { IntlModule } from '@progress/kendo-angular-intl';
+
+
+// import "@progress/kendo-angular-intl/locales/vi/all";
+// import localeVi from '@angular/common/locales/vi';
+// registerLocaleData(localeVi);
+
+//import '@progress/kendo-locale-vi/all';
 defineLocale('vi', viLocale);
 export function HttpLoaderFactory(http: HttpClient) {
   //return new TranslateHttpLoader(http);
@@ -62,8 +73,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     NgbTimepickerModule,
     JsonPipe,
+    // IntlModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    DateInputsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
@@ -85,6 +98,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     SharedService,
     { provide: BsDatepickerConfig, useFactory: getDatepickerConfig },
+    { provide: LOCALE_ID, useValue: 'en-US' }, // Set your desired locale here
+    LocalizationService // Provide LocalizationService
+  
   ],
   bootstrap: [AppComponent]
 })

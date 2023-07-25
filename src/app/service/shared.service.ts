@@ -13,7 +13,8 @@ export class SharedService {
   httpOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'CompanyID': 15076
     })
   };
   private localStorageKey = 'isNavbarVisible'; // Key trong LocalStorage

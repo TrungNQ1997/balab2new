@@ -24,8 +24,13 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1 pr-4">
           <label class="  col-form-label w-100  mx-2">Đến ngày</label>
           <ngb-timepicker [(ngModel)]="timeTo" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
-          <input type="text" class="form-control col datepicker  mt-1 " bsDatepicker [(ngModel)]="dayTo"
-            placeholder="Chọn ngày">
+          <kendo-datepicker  [value]="dayTo"  class="form-control col datepicker  mt-1 " 
+          placeholder="Chọn ngày" ></kendo-datepicker>
+          <kendo-datepicker [value]="dayTo" [format]="'dd/MM/yyyy'"  [(ngModel)]="dayTo"  class="form-control col datepicker  mt-1 " 
+          placeholder="Chọn ngày"  ></kendo-datepicker>
+
+          <!-- <input type="text" class="form-control col datepicker  mt-1 " bsDatepicker [(ngModel)]="dayTo"
+            placeholder="Chọn ngày"> -->
         </div>
 </div>
  

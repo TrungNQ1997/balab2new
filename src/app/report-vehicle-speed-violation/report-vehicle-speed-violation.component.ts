@@ -170,7 +170,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
         data = {
             "userId": "1",
             "pageNumber": this.pageNumber + 1,
-            // "gioiTinhSearch": this.gioiTinhSearch,
+            
             "birthdayTo": this.dayTo == null ? null : dayTo + timeTo,
 
             "birthdayFrom": this.dayFrom == null ? null : dayFrom + timeFrom,
