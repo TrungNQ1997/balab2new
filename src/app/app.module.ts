@@ -11,7 +11,7 @@ import { LOCALE_ID } from '@angular/core'; // Import LOCALE_ID
 import { LocalizationService  } from '@progress/kendo-angular-l10n'; // Import LocalizationService
 
 import { Test1Component } from './test1/test1.component';
-import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { ModalComfirmComponent } from './common/modal-comfirm/modal-comfirm.component';
 import { ForgetPassUserComponent } from './user/forget-pass/forget-pass-user.component';
@@ -25,7 +25,7 @@ import { Exercise2Component } from './exercise2/exercise2.component'
  import { EditUserComponent } from './user/edit/edit-user.component';
  import { InputPassComponent } from './directive/input-pass/input-pass.component';
  import { JsonPipe } from '@angular/common';
-import { BsDatepickerConfig, BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
+//import { BsDatepickerConfig, BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { viLocale } from 'ngx-bootstrap/locale';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -36,15 +36,19 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { VehiclePlatePipe } from './pipe/vehicle-plate.pipe/vehicle-plate.pipe';
 import { NumberReportPipe } from './pipe/number-report.pipe/number-report.pipe';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
-//import { IntlModule } from '@progress/kendo-angular-intl';
+import { IntlModule } from '@progress/kendo-angular-intl';
+import { registerLocaleData } from '@angular/common'; // Import registerLocaleData
+import localeVi from '@angular/common/locales/vi'; // Import localeVi từ gói ngôn ngữ tiếng Việt
 
 
-// import "@progress/kendo-angular-intl/locales/vi/all";
+ import "@progress/kendo-angular-intl/locales/vi/all";
+//import "@progress/kendo-angular-intl/locales/es/all";
+
 // import localeVi from '@angular/common/locales/vi';
 // registerLocaleData(localeVi);
-
+registerLocaleData(localeVi, 'vi-VN');
 //import '@progress/kendo-locale-vi/all';
-defineLocale('vi', viLocale);
+//defineLocale('vi', viLocale);
 export function HttpLoaderFactory(http: HttpClient) {
   //return new TranslateHttpLoader(http);
   return new TranslateHttpLoader(http, './assets/i18n/');
@@ -71,9 +75,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     FormsModule,
-    NgbTimepickerModule,
+    //NgbTimepickerModule,
     JsonPipe,
-    // IntlModule,
+     IntlModule,
     ReactiveFormsModule,
     AppRoutingModule,
     DateInputsModule,
@@ -93,12 +97,12 @@ export function HttpLoaderFactory(http: HttpClient) {
       timeOut: 3000,
       positionClass: 'toast-bottom-right'
     }) ,
-    BsDatepickerModule.forRoot()
-  ],
+  //   BsDatepickerModule.forRoot()
+   ],
   providers: [
     SharedService,
-    { provide: BsDatepickerConfig, useFactory: getDatepickerConfig },
-    { provide: LOCALE_ID, useValue: 'en-US' }, // Set your desired locale here
+    //{ provide: BsDatepickerConfig, useFactory: getDatepickerConfig },
+    { provide: LOCALE_ID, useValue: 'vi-VN' }, // Set your desired locale here
     LocalizationService // Provide LocalizationService
   
   ],
@@ -106,15 +110,18 @@ export function HttpLoaderFactory(http: HttpClient) {
 })
 export class AppModule {
   constructor(
-    private bsLocaleService: BsLocaleService
+    //private bsLocaleService: BsLocaleService
+    //private localizationService: LocalizationService
    ) {
-    this.bsLocaleService.use('vi');
+    
+    //this.localizationService.set('today', 'Hôm nay');
+    //this.bsLocaleService.use('vi');
 }
  }
-export function getDatepickerConfig(): BsDatepickerConfig {
-  return Object.assign(new BsDatepickerConfig(), {
-    containerClass: 'theme-dark-blue',
-    dateInputFormat: 'DD/MM/YYYY'
-  });
-}
+// export function getDatepickerConfig(): BsDatepickerConfig {
+//   return Object.assign(new BsDatepickerConfig(), {
+//     containerClass: 'theme-dark-blue',
+//     dateInputFormat: 'DD/MM/YYYY'
+//   });
+// }
 

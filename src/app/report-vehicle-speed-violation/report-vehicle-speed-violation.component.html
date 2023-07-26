@@ -15,22 +15,53 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1 pr-4">
 
           <label class=" col-form-label w-100  mx-2">Từ ngày</label>
-          <ngb-timepicker [(ngModel)]="timeFrom" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
+          <!-- <ngb-timepicker [(ngModel)]="timeFrom" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker> -->
 
-          <input type="text" class="form-control col datepicker  mt-1  " bsDatepicker [(ngModel)]="dayFrom"
-            placeholder="Chọn ngày">
+          <!-- <input type="text" class="form-control col datepicker  mt-1  " bsDatepicker [(ngModel)]="dayFrom"
+            placeholder="Chọn ngày"> -->
+            <kendo-timepicker [value]="timeFrom"   (blur)="setDefaultTimeFrom()"   class=" border timepicker mr-2 mt-1" [(ngModel)]="timeFrom"  >
+              <kendo-timepicker-messages
+              accept="Chọn"
+                        acceptLabel="Chọn giờ"
+                        cancel="Hủy"
+                        cancelLabel="Hủy chọn"
+                        now="Giờ hiện tại"
+                        nowLabel="Chọn giờ hiện tại"
+                        toggle="Chọn giờ"
+          ></kendo-timepicker-messages>
+            </kendo-timepicker>
+            
+            <kendo-datepicker [value]="dayFrom"  (blur)="setDefaultDayFrom()"  [(ngModel)]="dayFrom"  class=" border  col datepicker  mt-1 " 
+              >
+              <kendo-datepicker-messages
+              today="Hôm nay"
+              toggle="Chọn ngày"
+          ></kendo-datepicker-messages>
+            </kendo-datepicker>
 
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1 pr-4">
           <label class="  col-form-label w-100  mx-2">Đến ngày</label>
-          <ngb-timepicker [(ngModel)]="timeTo" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker>
-          <kendo-datepicker  [value]="dayTo"  class="form-control col datepicker  mt-1 " 
-          placeholder="Chọn ngày" ></kendo-datepicker>
-          <kendo-datepicker [value]="dayTo" [format]="'dd/MM/yyyy'"  [(ngModel)]="dayTo"  class="form-control col datepicker  mt-1 " 
-          placeholder="Chọn ngày"  ></kendo-datepicker>
-
-          <!-- <input type="text" class="form-control col datepicker  mt-1 " bsDatepicker [(ngModel)]="dayTo"
-            placeholder="Chọn ngày"> -->
+          <kendo-timepicker [value]="timeTo"    (blur)="setDefaultTimeTo()"  class=" border timepicker mr-2 mt-1" [(ngModel)]="timeTo"  >
+            <kendo-timepicker-messages
+            accept="Chọn"
+                      acceptLabel="Chọn giờ"
+                      cancel="Hủy"
+                      cancelLabel="Hủy chọn"
+                      now="Giờ hiện tại"
+                      nowLabel="Chọn giờ hiện tại"
+                      toggle="Chọn giờ"
+        ></kendo-timepicker-messages>
+          </kendo-timepicker>
+          
+          <kendo-datepicker [value]="dayTo"  (blur)="setDefaultDayTo()"  [(ngModel)]="dayTo"  class=" border  col datepicker  mt-1 " 
+            >
+            <kendo-datepicker-messages
+            today="Hôm nay"
+            toggle="Chọn ngày"
+        ></kendo-datepicker-messages>
+          </kendo-datepicker>
+          
         </div>
 </div>
  
@@ -40,7 +71,7 @@
 
           <div class="w-100 row no-gutters">
             <ng-multiselect-dropdown [placeholder]="'Chọn phương tiện'" [settings]="dropdownSettings"
-              [data]="dropdownList" [(ngModel)]="selectedItems" class="mr-4 col">
+              [data]="dropdownList" [(ngModel)]="selectedItems" class=" mr-4 col">
             </ng-multiselect-dropdown>
 
             <button class="btn btn-primary rounded btn-search mt-1 mr-0 h-fit" (click)="getDataReport()">
@@ -109,11 +140,11 @@
                 <td class=" text-center align-middle">
                   <!-- [ngClass]="{'text-end': item.sexId == 1, 
          'text-start': item.sexId == 2, 'text-center': item.sexId == 3}" -->
-                  {{item.sum1 | numberReport}}
+                  {{item.sum5To10 | numberReport}}
                 </td>
-                <td class=" text-center align-middle">{{item.sum2 | numberReport}}</td>
-                <td class=" text-center align-middle">{{item.sum3 | numberReport}}</td>
-                <td class=" text-center align-middle">{{item.sum4 | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.sum10To20 | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.sum20To35 | numberReport}}</td>
+                <td class=" text-center align-middle">{{item.sumFrom35 | numberReport}}</td>
                 <td class=" text-center text-primary align-middle">{{item.sumTotal | numberReport}}</td>
                 <td class=" text-center  align-middle">{{item.violatePer100Km | numberReport}}</td>
                 <td class=" text-center align-middle">{{item.violateKm | numberReport}}</td>

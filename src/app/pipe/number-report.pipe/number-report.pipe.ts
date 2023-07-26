@@ -8,7 +8,7 @@ export class NumberReportPipe implements PipeTransform {
   transform(value: any, args?: any): any {
 var text = "";
 if(value){
-return value
+return value.toString().replace('.',',');
 } else {
   return ""
 }

@@ -33,7 +33,8 @@
 
   .multiselect-dropdown{
     .dropdown-btn{
-      height: 31.25px;
+      min-height: 32px;
+      height: auto;
     }
   }
 
@@ -55,14 +56,16 @@ code {
    .dropdown-list{
     height: 300px;
     overflow: auto;
+    min-width: 170px;
   }
   .item2{
     max-height: unset!important;
   }
    .dropdown-btn{
     margin-top: 3px!important;
-    border-color: #ced4da!important ;
+    
     // color: #ced4da;
+    border: 1px solid #dee2e6!important;
     padding-top: 4px!important;
       padding-bottom: 4px!important;
   }
@@ -73,10 +76,12 @@ code {
   background-color: rgb(45, 156, 219)!important;
 vertical-align: middle!important;
 }
-
+.timepicker{
+  width: 100px;
+}
 .datepicker{
-  min-width: 90px;
-  padding-left: 9px!important;
+  min-width: 110px;
+  //padding-left: 9px!important;
   // max-width: 120px;
 }
  

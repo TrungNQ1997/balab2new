@@ -27,8 +27,8 @@
             "inlineStyleLanguage": "scss",
             
             "styles": [
-              "node_modules/@progress/kendo-theme-default/dist/all.css",
-  
+              
+              "node_modules/@progress/kendo-theme-default/dist/default-ocean-blue.scss",
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
    
@@ -108,8 +108,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/@progress/kendo-theme-default/dist/all.css",
-  
+              "node_modules/@progress/kendo-theme-default/dist/default-ocean-blue.scss",
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",

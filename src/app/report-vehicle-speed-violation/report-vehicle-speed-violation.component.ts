@@ -3,7 +3,7 @@ import { SharedService } from '../service/shared.service';
 import { HttpClient } from '@angular/common/http';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Toast, ToastrService } from 'ngx-toastr';
- 
+
 @Component({
     selector: 'app-report-vehicle-speed-violation',
     templateUrl: './report-vehicle-speed-violation.component.html',
@@ -23,8 +23,8 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
     dayTo: Date = new Date;
     dataReport: any;
     formatDate = 'dd/MM/yyyy';
-    timeFrom = { hour: 13, minute: 30 };
-    timeTo = { hour: 13, minute: 30 };
+    timeFrom: Date = new Date;
+    timeTo: Date = new Date;
     dropdownList: Array<{ privateCode: string }> = [];
     selectedItems: Array<{ pK_VehicleID: string }> = [];
     dropdownSettings: IDropdownSettings = {};
@@ -39,7 +39,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
             value: 20
         }
     ];
- 
+
     constructor(private sharedService: SharedService, private http: HttpClient, private toastr: ToastrService,) { }
 
     ngOnInit() {
@@ -56,7 +56,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
             selectAllText: 'Chọn tất cả',
             unSelectAllText: 'Bỏ chọn tất cả',
             searchPlaceholderText: 'Tìm',
-            noDataAvailablePlaceholderText:'Không có dữ liệu',
+            noDataAvailablePlaceholderText: 'Không có dữ liệu',
             itemsShowLimit: 7,
             allowSearchFilter: true
         };
@@ -127,7 +127,9 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
 
     }
 
-    prepareInput(){
+
+
+    prepareInput() {
         var data: any;
 
         var dayTo: any = "";
@@ -159,21 +161,21 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
 
         var timeFrom: string = "";
         if (this.timeFrom) {
-            timeFrom = "T" + this.timeFrom.hour.toString().padStart(2, "0") + ":" + this.timeFrom.minute.toString().padStart(2, "0")
+            timeFrom = "T" + this.timeFrom.getHours().toString().padStart(2, "0") + ":" + this.timeFrom.getMinutes().toString().padStart(2, "0")
         }
 
         var timeTo: string = "";
         if (this.timeTo) {
-            timeTo = "T" + this.timeTo.hour.toString().padStart(2, "0") + ":" + this.timeTo.minute.toString().padStart(2, "0")
+            timeTo = "T" + this.timeTo.getHours().toString().padStart(2, "0") + ":" + this.timeTo.getMinutes().toString().padStart(2, "0")
         }
 
         data = {
             "userId": "1",
             "pageNumber": this.pageNumber + 1,
-            
-            "birthdayTo": this.dayTo == null ? null : dayTo + timeTo,
 
-            "birthdayFrom": this.dayFrom == null ? null : dayFrom + timeFrom,
+            "dayTo": this.dayTo == null ? null : dayTo + timeTo,
+
+            "dayFrom": this.dayFrom == null ? null : dayFrom + timeFrom,
             "textSearch": this.selectedItems.map(function (item) {
                 return item.pK_VehicleID;
             }).toString(),
@@ -186,17 +188,45 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
     getDataReport() {
 
         if (this.checkValid()) {
- 
+
             this.http.post<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getDataReport',
                 this.prepareInput(), this.sharedService.httpOptions)
                 .subscribe(response => {
-
+                    var list = response.data.list;
+                    var stt = this.pageNumber * this.pageSize;
+                    for (let i = 0; i < list.length; i++) {
+                        stt++;
+                        list[i].stt = stt;
+                    }
                     this.dataReport = response.data.list;
                     this.totalCountListAll = response.data.count;
 
                     this.changePageSize();
                 });
 
+        }
+    }
+
+    setDefaultTimeTo() {
+        if (!this.timeTo) {
+            this.timeTo = new Date();
+        }
+    }
+
+    setDefaultTimeFrom() {
+        if (!this.timeFrom) {
+            this.timeFrom = new Date();
+        }
+    }
+
+    setDefaultDayTo() {
+        if (!this.dayTo) {
+            this.dayTo = new Date();
+        }
+    }
+    setDefaultDayFrom() {
+        if (!this.dayFrom) {
+            this.dayFrom = new Date();
         }
     }
 
@@ -230,10 +260,12 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
     setDefaultControl() {
         this.dayFrom = new Date();
         this.dayTo = new Date();
-        this.timeFrom.hour = this.dayFrom.getHours();
-        this.timeFrom.minute = this.dayFrom.getMinutes();
-        this.timeTo.hour = this.dayFrom.getHours();
-        this.timeTo.minute = this.dayFrom.getMinutes();
+        this.timeFrom = new Date();
+        this.timeTo = new Date();
+        // this.timeFrom.hour = this.dayFrom.getHours();
+        // this.timeFrom.minute = this.dayFrom.getMinutes();
+        // this.timeTo.hour = this.dayFrom.getHours();
+        // this.timeTo.minute = this.dayFrom.getMinutes();
     }
 
     getDataVehicles() {
