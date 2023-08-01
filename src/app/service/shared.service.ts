@@ -5,17 +5,17 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class SharedService {
 
- public regexAPass = '[a-zA-Z0-9]{6,100}';
- //public url = 'http://10.1.11.110:5017/';
- //public url = 'http://localhost:5017/';
- public url = 'http://localhost:6017/';
+  public regexAPass = '[a-zA-Z0-9]{6,100}';
+  //public url = 'http://10.1.11.110:5017/';
+
+  public url = 'http://localhost:6017/';
   private isNavbarVisibleSubject: Subject<boolean> = new Subject<boolean>();
   public isNavbarVisible$ = this.isNavbarVisibleSubject.asObservable();
   httpOptions = {
     headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'CompanyID': 15076
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'CompanyID': 15076
     })
   };
   private localStorageKey = 'isNavbarVisible'; // Key trong LocalStorage
@@ -31,7 +31,7 @@ export class SharedService {
     localStorage.setItem(this.localStorageKey, JSON.stringify(isVisible)); // Lưu vào LocalStorage
   }
 
-  public getCookie(cname:any) {
+  public getCookie(cname: any) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
@@ -81,7 +81,7 @@ export class SharedService {
 
   }
 
-  public checkChangeProperty(regex:any, objCheck:any, property:string, nameControl:string, vm:any, propertyShowLabelError:any) {
+  public checkChangeProperty(regex: any, objCheck: any, property: string, nameControl: string, vm: any, propertyShowLabelError: any) {
     var isValid = regex.test(objCheck[property]);
     let txtInput = document.getElementsByName(nameControl);
     if (isValid) {
@@ -99,7 +99,7 @@ export class SharedService {
   }
 
 
-  public showPass(name:string) {
+  public showPass(name: string) {
     let password = document.querySelector(name);
     if (password) {
       const type = password.getAttribute('type') === 'password' ? 'text' : 'password';

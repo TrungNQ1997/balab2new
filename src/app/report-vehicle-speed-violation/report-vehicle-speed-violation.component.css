@@ -3,27 +3,34 @@
     min-height: 350px;
     overflow: auto;
 }
+
 .custom-mat-table {
     max-height: calc(100vh - 263px);
- 
+
 }
+
 .div-container-user {
     margin-left: 30px !important;
     margin-right: 30px !important;
 
 }
-.footer-table{
-    border-top: 1px solid #dee2e6!important ;
+
+.footer-table {
+    border-top: 1px solid #dee2e6 !important;
 }
-.w-160px{
+
+.w-160px {
     width: 160px;
 }
-.w-80px{
+
+.w-80px {
     width: 80px;
 }
-.w-135px{
+
+.w-135px {
     width: 135px;
 }
-.dropdown-btn{
+
+.dropdown-btn {
     height: 31.25px;
 }

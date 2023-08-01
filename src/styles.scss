@@ -3,40 +3,40 @@
 /* Importing Bootstrap SCSS file. */
 
 
- //@import "../node_modules/bootstrap/scss/mixins";
+//@import "../node_modules/bootstrap/scss/mixins";
 
 // @import "../node_modules/bootstrap/scss/functions";
 
- //@import "../node_modules/bootstrap/scss/variables";
+//@import "../node_modules/bootstrap/scss/variables";
 
- //@import '../node_modules/bootstrap/scss/bootstrap';
+//@import '../node_modules/bootstrap/scss/bootstrap';
 
 /* You can add global styles to this file, and also import other style files */
 
 
 /* Provide sufficient contrast against white background */
- 
+
 // @import url("../node_modules/ngx-toastr/toastr.css");
 // @import url("../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css");
 
-.h-fit{
+.h-fit {
   height: fit-content;
 }
 
- .h-15px{
+.h-15px {
   height: 15px;
- }
+}
 
- .ng-invalid.ng-touched {
+.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
-  .multiselect-dropdown{
-    .dropdown-btn{
-      min-height: 32px;
-      height: auto;
-    }
+.multiselect-dropdown {
+  .dropdown-btn {
+    min-height: 32px;
+    height: auto;
   }
+}
 
 a {
   color: #0366d6;
@@ -46,161 +46,192 @@ code {
   color: #e01a76;
 }
 
-.multiselect-dropdown{
-  .dropdown-btn .selected-item-container .selected-item{
-    margin-bottom: 0px!important;
+.multiselect-dropdown {
+  .dropdown-btn .selected-item-container .selected-item {
+    margin-bottom: 0px !important;
   }
-   .multiselect-item-checkbox{
-    display: block!important;
+
+  .multiselect-item-checkbox {
+    display: block !important;
   }
-   .dropdown-list{
+
+  .dropdown-list {
     height: 300px;
     overflow: auto;
     min-width: 170px;
   }
-  .item2{
-    max-height: unset!important;
+
+  .item2 {
+    max-height: unset !important;
   }
-   .dropdown-btn{
-    margin-top: 3px!important;
-    
+
+  .dropdown-btn {
+    margin-top: 3px !important;
+
     // color: #ced4da;
-    border: 1px solid #dee2e6!important;
-    padding-top: 4px!important;
-      padding-bottom: 4px!important;
+    border: 1px solid #dee2e6 !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
   }
-   
+
 }
- 
+
 .custom-header {
-  background-color: rgb(45, 156, 219)!important;
-vertical-align: middle!important;
+  background-color: rgb(45, 156, 219) !important;
+  vertical-align: middle !important;
 }
-.timepicker{
+
+.timepicker {
   width: 100px;
 }
-.datepicker{
+
+.datepicker {
   min-width: 110px;
   //padding-left: 9px!important;
   // max-width: 120px;
 }
- 
-.div-item-lang{
+
+.div-item-lang {
   min-height: 40px;
   cursor: pointer;
- border:  1px solid #ced4da;
- 
+  border: 1px solid #ced4da;
+
 }
 
-.btn-primary-common{
-  background-color: rgb(97,148,194)!important; 
-  margin-right:20px!important;
+.btn-primary-common {
+  background-color: rgb(97, 148, 194) !important;
+  margin-right: 20px !important;
 }
 
-.position-icon-pass{
+.position-icon-pass {
   position: absolute;
   right: 21px;
   top: 14px;
 
 }
-.w-100per-position-relative{
+
+.w-100per-position-relative {
   width: 100%;
   position: relative;
 }
-.h-40{
+
+.h-40 {
   height: 40px;
 }
+
 .div-item-lang:hover {
   background-color: rgb(206, 214, 224);
 }
+
 .border-normal {
   border: 1px solid #ced4da;
   border-radius: 8px;
   padding-right: 7px;
   padding-left: 7px;
 }
-.no-pad{
+
+.no-pad {
   padding: 0px;
 }
-.c-poiter{
+
+.c-poiter {
   cursor: pointer;
 }
-.no-mar{
+
+.no-mar {
   margin: 0px;
 }
+
 .button-theme {
   background-color: rgb(97, 148, 194);
   color: white;
   border: 1px solid rgb(97, 148, 194);
   /* min-width: 90px; */
 }
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
- 
+
 .margin-div-container {
   margin-left: 30px !important;
   margin-right: 30px !important;
   width: 100%;
   max-width: unset !important;
-} 
-* {
-    font-size:13px!important;
-    font-family:Arial;
 }
 
-table
-th,td{border: 1px solid back!important;} 
+* {
+  font-size: 13px !important;
+  font-family: Arial;
+}
 
-.mat-paginator-page-size-label{
+table th,
+td {
+  border: 1px solid back !important;
+}
+
+.mat-paginator-page-size-label {
   padding-top: 15px;
 }
+
 .p-right-5 {
   padding-right: 5px;
 }
+
 .pad-rl-5 {
   padding-right: 5px;
   padding-left: 5px;
 }
- 
+
 .custom-mat-table thead {
-    
+
   position: sticky;
-   top: -1px; /*tùy thuộc độ rộng border set lên để lấp chỗ trống */
+  top: -1px;
+  /*tùy thuộc độ rộng border set lên để lấp chỗ trống */
   z-index: 1;
-  background-color:white;
+  background-color: white;
 
 }
+
 .dp-block {
-  display: block!important;
+  display: block !important;
 }
 
 .dp-none {
-  display: none!important;
+  display: none !important;
 }
+
 .font-menu * {
-  color: rgb(97,148,194) !important;
+  color: rgb(97, 148, 194) !important;
 }
 
 .font-menu {
-  color: rgb(97,148,194) !important;
+  color: rgb(97, 148, 194) !important;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .mat-form-field-infix {
-    border-top-width: 0px;
-    padding-top: 0px!important;
+  border-top-width: 0px;
+  padding-top: 0px !important;
 }
-.modal-dialog{
+
+.modal-dialog {
   /* margin-top: 0px;
   margin-bottom: 0px; */
   max-width: max-content;
 }
- .modal{
-  overflow: auto!important;
- }
- 
+
+.modal {
+  overflow: auto !important;
+}

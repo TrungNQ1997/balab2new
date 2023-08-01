@@ -39,6 +39,7 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { registerLocaleData } from '@angular/common'; // Import registerLocaleData
 import localeVi from '@angular/common/locales/vi'; // Import localeVi từ gói ngôn ngữ tiếng Việt
+import { MultiSelectModule } from '@progress/kendo-angular-dropdowns';
 
 
  import "@progress/kendo-angular-intl/locales/vi/all";
@@ -78,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     //NgbTimepickerModule,
     JsonPipe,
      IntlModule,
+     MultiSelectModule,
     ReactiveFormsModule,
     AppRoutingModule,
     DateInputsModule,

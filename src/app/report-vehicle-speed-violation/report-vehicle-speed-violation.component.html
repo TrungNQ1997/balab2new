@@ -6,68 +6,45 @@
 
     </div>
 
-    <div class="row no-gutters mr-0">
-      <div class="col-sm-12 col-12 col-lg col-md-12 row no-gutters">
+    <div class="row no-gutters mr-0 mb-3">
+      <div class=" col  row no-gutters">
 
+        <div class="col-xl-5 col-lg-6  col-sm-7 col-12 row no-gutters">
 
-        <div class="col-xl-5 col-lg-6 col-md-7 col-sm-7 col-12 row no-gutters">
+          <div class="col-sm-6 col-12 row no-gutters mt-1 pr-4">
 
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1 pr-4">
+            <label class=" col-form-label w-100  mx-2">Từ ngày</label>
 
-          <label class=" col-form-label w-100  mx-2">Từ ngày</label>
-          <!-- <ngb-timepicker [(ngModel)]="timeFrom" [spinners]="false" class="mr-2 mt-1"></ngb-timepicker> -->
-
-          <!-- <input type="text" class="form-control col datepicker  mt-1  " bsDatepicker [(ngModel)]="dayFrom"
-            placeholder="Chọn ngày"> -->
-            <kendo-timepicker [value]="timeFrom"   (blur)="setDefaultTimeFrom()"   class=" border timepicker mr-2 mt-1" [(ngModel)]="timeFrom"  >
-              <kendo-timepicker-messages
-              accept="Chọn"
-                        acceptLabel="Chọn giờ"
-                        cancel="Hủy"
-                        cancelLabel="Hủy chọn"
-                        now="Giờ hiện tại"
-                        nowLabel="Chọn giờ hiện tại"
-                        toggle="Chọn giờ"
-          ></kendo-timepicker-messages>
+            <kendo-timepicker [value]="timeFrom" (blur)="setDefaultTimeFrom()" class=" border timepicker mr-2 mt-1"
+              [(ngModel)]="timeFrom">
+              <kendo-timepicker-messages accept="Chọn" acceptLabel="Chọn giờ" cancel="Hủy" cancelLabel="Hủy chọn"
+                now="Giờ hiện tại" nowLabel="Chọn giờ hiện tại" toggle="Chọn giờ"></kendo-timepicker-messages>
             </kendo-timepicker>
-            
-            <kendo-datepicker [value]="dayFrom"  (blur)="setDefaultDayFrom()"  [(ngModel)]="dayFrom"  class=" border  col datepicker  mt-1 " 
-              >
-              <kendo-datepicker-messages
-              today="Hôm nay"
-              toggle="Chọn ngày"
-          ></kendo-datepicker-messages>
+
+            <kendo-datepicker [value]="dayFrom" (blur)="setDefaultDayFrom()" [(ngModel)]="dayFrom"
+              class=" border  col datepicker  mt-1 ">
+              <kendo-datepicker-messages today="Hôm nay" toggle="Chọn ngày"></kendo-datepicker-messages>
             </kendo-datepicker>
 
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 row no-gutters mt-1 pr-4">
-          <label class="  col-form-label w-100  mx-2">Đến ngày</label>
-          <kendo-timepicker [value]="timeTo"    (blur)="setDefaultTimeTo()"  class=" border timepicker mr-2 mt-1" [(ngModel)]="timeTo"  >
-            <kendo-timepicker-messages
-            accept="Chọn"
-                      acceptLabel="Chọn giờ"
-                      cancel="Hủy"
-                      cancelLabel="Hủy chọn"
-                      now="Giờ hiện tại"
-                      nowLabel="Chọn giờ hiện tại"
-                      toggle="Chọn giờ"
-        ></kendo-timepicker-messages>
-          </kendo-timepicker>
-          
-          <kendo-datepicker [value]="dayTo"  (blur)="setDefaultDayTo()"  [(ngModel)]="dayTo"  class=" border  col datepicker  mt-1 " 
-            >
-            <kendo-datepicker-messages
-            today="Hôm nay"
-            toggle="Chọn ngày"
-        ></kendo-datepicker-messages>
-          </kendo-datepicker>
-          
-        </div>
-</div>
- 
-        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-5 col-12 row no-gutters mt-1" style="flex-direction: column;">
-          <label class="  col-form-label w-100  mx-2 h-fit">Phương tiện</label>
+          </div>
+          <div class="col-sm-6 col-12 row no-gutters mt-1 pr-4">
+            <label class="  col-form-label w-100  mx-2">Đến ngày</label>
+            <kendo-timepicker [value]="timeTo" (blur)="setDefaultTimeTo()" class=" border timepicker mr-2 mt-1"
+              [(ngModel)]="timeTo">
+              <kendo-timepicker-messages accept="Chọn" acceptLabel="Chọn giờ" cancel="Hủy" cancelLabel="Hủy chọn"
+                now="Giờ hiện tại" nowLabel="Chọn giờ hiện tại" toggle="Chọn giờ"></kendo-timepicker-messages>
+            </kendo-timepicker>
 
+            <kendo-datepicker [value]="dayTo" (blur)="setDefaultDayTo()" [(ngModel)]="dayTo"
+              class=" border  col datepicker  mt-1 ">
+              <kendo-datepicker-messages today="Hôm nay" toggle="Chọn ngày"></kendo-datepicker-messages>
+            </kendo-datepicker>
+
+          </div>
+        </div>
+
+        <div class="col-xl-7 col-lg-6  col-sm-5 col-12 row no-gutters mt-1" style="flex-direction: column;">
+          <label class="  col-form-label w-100  mx-2 h-fit">Phương tiện</label>
 
           <div class="w-100 row no-gutters">
             <ng-multiselect-dropdown [placeholder]="'Chọn phương tiện'" [settings]="dropdownSettings"
@@ -82,64 +59,70 @@
 
       </div>
 
-      <div class="w-auto row no-gutters">
-
-      </div>
     </div>
 
-    <div class="row   no-gutters gy-0 mb-2 mt-1" style="justify-content: space-between;">
-
-    </div>
     <div class="pb-2">
-      <div class="border ">
+      <div class="border border-top-0">
         <div class="table-scroll">
           <!-- table bootstrap -->
-          <table class="table table-bordered table-hover custom-mat-table align-middle" id="tableToExport" width="100%"
-            #table>
+          <table class="table table-bordered table-hover custom-mat-table align-middle border-left-0 border-right-0"
+            id="tableToExport" width="100%" #table>
             <thead class="align-middle">
               <tr>
-                <th scope="col" class="w-8 text-light   custom-header  text-center " rowspan="2">STT</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center " rowspan="2">Phương tiện</th>
+                <th scope="col" class="w-8 text-light   custom-header  text-center border-left-0 border-bottom "
+                  rowspan="2">STT</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center  border-bottom " rowspan="2">Phương
+                  tiện</th>
 
-                <th scope="col" class="w-10 custom-header  text-light  text-center " rowspan="2">Loại hình</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom " rowspan="2">Loại
+                  hình</th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="6">Số lần
                   vi phạm tốc độ</th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="3">Quãng
                   đường</th>
                 <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom-0" colspan="3">Thời
                   gian</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center " rowspan="2">Ghi chú</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center border-right-0 border-bottom "
+                  rowspan="2">Ghi chú</th>
 
               </tr>
               <tr>
-                <th scope="col" class="w-8 text-light   custom-header  text-center w-80px">5 km/h - 10 km/h</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center w-80px">10 km/h - 20 km/h</th>
+                <th scope="col" class="w-8 text-light   custom-header  text-center w-80px border-bottom ">5 km/h - 10
+                  km/h</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center w-80px border-bottom ">10 km/h - 20
+                  km/h</th>
 
-                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px">20 km/h - 35 km/h</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px">Trên 35 km/h</th>
-
-                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px">Tổng cộng</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center w-160px">Số lần vi phạm /1000 km phương tiện
-                  chạy</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Km vi phạm</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tổng phương tiện chạy</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tỉ lệ %</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Thời gian vi phạm</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center w-135px">Tổng thời gian phương tiện chạy
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px border-bottom ">20 km/h - 35
+                  km/h</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px border-bottom ">Trên 35 km/h
                 </th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tỉ lệ %</th>
+
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-80px border-bottom ">Tổng cộng</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center w-160px border-bottom ">Số lần vi
+                  phạm /1000 km
+                  phương tiện
+                  chạy</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Km vi phạm</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Tổng phương tiện
+                  chạy</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Tỉ lệ %</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Thời gian vi phạm
+                </th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom w-135px">Tổng thời
+                  gian phương tiện
+                  chạy
+                </th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Tỉ lệ %</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of dataReport">
-                <td class="w-8 text-center align-middle">{{item.stt}}</td>
-                <td class="w-8 text-center align-middle">{{item.privateCode | vehiclePlate }}</td>
+                <td class="w-8 text-center align-middle border-left-0">{{item.stt}}</td>
+                <td class="w-8 text-center align-middle">{{item.privateCode }}</td>
 
                 <td class=" text-center align-middle">
                   {{item.transportTypeName}}</td>
                 <td class=" text-center align-middle">
-                  <!-- [ngClass]="{'text-end': item.sexId == 1, 
-         'text-start': item.sexId == 2, 'text-center': item.sexId == 3}" -->
                   {{item.sum5To10 | numberReport}}
                 </td>
                 <td class=" text-center align-middle">{{item.sum10To20 | numberReport}}</td>
@@ -153,7 +136,7 @@
                 <td class=" text-center align-middle">{{item.violateTimeText}}</td>
                 <td class=" text-center align-middle">{{item.totalTimeText}}</td>
                 <td class=" text-center align-middle">{{item.percentRateTime | numberReport}}</td>
-                <td class=" text-center align-middle"> </td>
+                <td class=" text-center align-middle  border-right-0"> </td>
 
               </tr>
 
@@ -206,7 +189,6 @@
               <li class="d-flex align-items-center">
                 <label class="mb-0 ml-2">Dòng mỗi trang</label>
               </li>
-
 
             </ul>
           </div>
