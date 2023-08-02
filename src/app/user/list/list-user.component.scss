@@ -1,82 +1,80 @@
-  
-.input-search{
-    min-width: 150px;
-}
+  .input-search {
+      min-width: 150px;
+  }
 
- 
-.combo-item{
-    min-width: 60px;
-}
 
-  
-.table-scroll {
-    height: calc(100vh - 256px);
-    min-height: 350px;
-    overflow: auto;
-}
- 
-.w-8 {
-    width: 8%;
-    min-width: 8%;
-}
+  .combo-item {
+      min-width: 60px;
+  }
 
-.min-w-105 {
-    min-width: 105px;
-}
 
-.w-10 {
-    width: 10%;
-}
+  .table-scroll {
+      height: calc(100vh - 256px);
+      min-height: 350px;
+      overflow: auto;
+  }
 
-.custom-mat-table {
-    max-height: calc(100vh - 263px);
- 
-}
-  
-.border-normal {
-    border: 1px solid #ced4da;
-    border-radius: 8px;
-    padding-right: 7px;
-    padding-left: 7px;
-}
- 
-.active-page {
-    background-color: rgb(97, 148, 194) !important;
-    color: white !important;
-    border-radius: 8px;
-}
- 
-.button-theme {
-    background-color: rgb(97, 148, 194);
-    color: white;
-    border: 1px solid rgb(97, 148, 194);
-    /* min-width: 90px; */
-}
+  .w-8 {
+      width: 8%;
+      min-width: 8%;
+  }
 
-.div-container-user {
-    margin-left: 30px !important;
-    margin-right: 30px !important;
+  .min-w-105 {
+      min-width: 105px;
+  }
 
-}
+  .w-10 {
+      width: 10%;
+  }
 
-.button-white {
-    background-color: white;
-    color: rgb(97, 148, 194);
-    border: none;
-}
+  .custom-mat-table {
+      max-height: calc(100vh - 263px);
 
-.button-white:hover {
-    background-color: rgb(97, 148, 194);
-    color: white;
-    border-radius: 8px;
-}
+  }
 
-.row-common {
-    height: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    display: flex;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
- 
+  .border-normal {
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      padding-right: 7px;
+      padding-left: 7px;
+  }
+
+  .active-page {
+      background-color: rgb(97, 148, 194) !important;
+      color: white !important;
+      border-radius: 8px;
+  }
+
+  .button-theme {
+      background-color: rgb(97, 148, 194);
+      color: white;
+      border: 1px solid rgb(97, 148, 194);
+      /* min-width: 90px; */
+  }
+
+  .div-container-user {
+      margin-left: 30px !important;
+      margin-right: 30px !important;
+
+  }
+
+  .button-white {
+      background-color: white;
+      color: rgb(97, 148, 194);
+      border: none;
+  }
+
+  .button-white:hover {
+      background-color: rgb(97, 148, 194);
+      color: white;
+      border-radius: 8px;
+  }
+
+  .row-common {
+      height: auto;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      display: flex;
+      margin-top: 5px;
+      margin-bottom: 5px;
+  }

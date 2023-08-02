@@ -71,8 +71,8 @@ export class ListUserComponent {
         this.textSearch = "";
         this.pageSize = 10;
         this.totalNumberPage = 0;
-        this.totalCountListAll = 0; 
-        this.pageSizeOptions = [5, 10, 20]; 
+        this.totalCountListAll = 0;
+        this.pageSizeOptions = [5, 10, 20];
         this.gioiTinhSearch = 0;
         this.getListUser();
         this.listPaging = [
@@ -105,7 +105,7 @@ export class ListUserComponent {
     }
     exportTableToPDF() {
         const doc = new jsPDF();
-        const table: any = document.getElementById('tableToExport'); 
+        const table: any = document.getElementById('tableToExport');
 
         html2canvas(table).then((canvas: any) => {
             const imageData = canvas.toDataURL('image/png');
@@ -119,7 +119,7 @@ export class ListUserComponent {
     }
 
     printTable() {
-        const doc = new jsPDF(); 
+        const doc = new jsPDF();
         const table: any = document.getElementById('tableToExport');
 
         html2canvas(table).then((canvas: any) => {
@@ -334,10 +334,10 @@ export class ListUserComponent {
             data, this.sharedService.httpOptions)
             .subscribe(response => {
 
-                this.users = response.data.list; 
+                this.users = response.data.list;
                 this.totalCountListAll = response.data.count;
                 this.changCheckBox();
-                this.changePageSize(); 
+                this.changePageSize();
             });
 
     }
@@ -412,7 +412,7 @@ export class ListUserComponent {
         this.pageNumber = 0;
         this.getListUser();
     }
-    
+
     checkLoginAndRole() {
 
         var session = sessionStorage.getItem("login");

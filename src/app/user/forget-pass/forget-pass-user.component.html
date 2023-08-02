@@ -5,69 +5,75 @@
     <div type="button" (click)="close()">
       <i class="fa-solid fa-xmark  h-15px "></i>
     </div>
- 
+
   </div>
   <div class="modal-body bg-white">
     <div class="col-12">
- 
-      <div class="d-flex flex-wrap form-group  mb-3">
-        <div class="input-group " >
-        <div class="form-text div-flex-center col-5 pl-0">
-          <label>Mật khẩu cũ</label>
-          <label class="color-red">*</label>
-        </div>
- 
-        <div class=" col-7">
 
-          <app-input-pass [(password)]="user.passwordOld"   [(formControl)]="formControlPassOld"  inputName="txt-pass-old"     ></app-input-pass>
- 
+      <div class="d-flex flex-wrap form-group  mb-3">
+        <div class="input-group ">
+          <div class="form-text div-flex-center col-5 pl-0">
+            <label>Mật khẩu cũ</label>
+            <label class="color-red">*</label>
+          </div>
+
+          <div class=" col-7">
+
+            <app-input-pass [(password)]="user.passwordOld" [(formControl)]="formControlPassOld"
+              inputName="txt-pass-old"></app-input-pass>
+
+          </div>
         </div>
-      </div>
 
         <div class="col-12 ">
-          <label  *ngIf="formControlPassOld.invalid && (formControlPassOld.dirty || formControlPassOld.touched)" class="text-danger mt-1">Mật khẩu tối thiểu 6 ký tự, tối đa 100 ký tự, chỉ viết liền, không dấu</label>
-      </div>
+          <label *ngIf="formControlPassOld.invalid && (formControlPassOld.dirty || formControlPassOld.touched)"
+            class="text-danger mt-1">Mật khẩu tối thiểu 6 ký tự, tối đa 100 ký tự, chỉ viết liền, không dấu</label>
+        </div>
 
       </div>
- 
+
       <div class="d-flex flex-wrap form-group  mb-3">
-        <div class="input-group " >
-        <div class="form-text div-flex-center col-5 pl-0">
-          <label>Mật khẩu mới</label>
-          <label class="color-red">*</label>
-        </div>
- 
-        <div class="  col-7">
+        <div class="input-group ">
+          <div class="form-text div-flex-center col-5 pl-0">
+            <label>Mật khẩu mới</label>
+            <label class="color-red">*</label>
+          </div>
 
-          <app-input-pass [(password)]="user.password"   [(formControl)]="formControlPass"  inputName="txt-pass"     ></app-input-pass>
- 
+          <div class="  col-7">
+
+            <app-input-pass [(password)]="user.password" [(formControl)]="formControlPass"
+              inputName="txt-pass"></app-input-pass>
+
+          </div>
+
         </div>
-     
+        <div class="col-12 ">
+          <label *ngIf="formControlPass.invalid && (formControlPass.dirty || formControlPass.touched)"
+            class="text-danger mt-1">Mật khẩu tối thiểu 6 ký tự, tối đa 100 ký tự, chỉ viết liền, không dấu</label>
+        </div>
       </div>
-      <div class="col-12 ">
-        <label  *ngIf="formControlPass.invalid && (formControlPass.dirty || formControlPass.touched)" class="text-danger mt-1">Mật khẩu tối thiểu 6 ký tự, tối đa 100 ký tự, chỉ viết liền, không dấu</label>
-    </div>
-  </div>
- 
+
       <div class="d-flex flex-wrap form-group  mb-3">
-        <div class="input-group " >
-        <div class="form-text div-flex-center col-5 pl-0">
-          <label>Nhập lại mật khẩu mới</label>
-          <label class="color-red">*</label>
-        </div>
- 
-        <div class="  col-7">
+        <div class="input-group ">
+          <div class="form-text div-flex-center col-5 pl-0">
+            <label>Nhập lại mật khẩu mới</label>
+            <label class="color-red">*</label>
+          </div>
 
-          <app-input-pass [(password)]="user.rePassword"   [(formControl)]="formControlRePass"  inputName="txt-re-pass"      ></app-input-pass>
- 
+          <div class="  col-7">
+
+            <app-input-pass [(password)]="user.rePassword" [(formControl)]="formControlRePass"
+              inputName="txt-re-pass"></app-input-pass>
+
+          </div>
         </div>
-      </div>
         <div class="col-12 pl-0">
-          <label  *ngIf="formControlRePass.invalid && (formControlRePass.dirty || formControlRePass.touched)"  class="text-danger mt-1">Nhập lại mật khẩu không đúng</label>
+          <label *ngIf="formControlRePass.invalid && (formControlRePass.dirty || formControlRePass.touched)"
+            class="text-danger mt-1">Nhập lại mật khẩu không đúng</label>
         </div>
       </div>
 
-      
+
     </div>
 
   </div>

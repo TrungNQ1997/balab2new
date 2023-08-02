@@ -10,7 +10,7 @@ import { SharedService } from '../service/shared.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  isRemember: boolean=false;
+  isRemember: boolean = false;
   listBanner = [
     {
       linkTopic: "https://bagps.vn/an-toan-tien-ich-va-ket-noi-dinh-vi-o-to-4g-dem-lai-loi-ich-to-lon-cho-xe-o-to-dien-d2412",
@@ -90,7 +90,7 @@ export class HomeComponent {
   showSlidesNoTimeout(n: any) {
     let i;
     let slides = document.getElementsByClassName("mySlides");
-    
+
     let dots = document.getElementsByClassName("dot");
     if (n > slides.length) { this.slideIndex = 1 }
     if (n < 1) { this.slideIndex = slides.length }
@@ -133,11 +133,12 @@ export class HomeComponent {
       dots[i].className = dots[i].className.replace(" active", "");
     }
 
-    if(slides.length>0 && dots.length>0){
-    slides[this.slideIndex - 1].className = slides[this.slideIndex - 1].className.replace(" dp-none", "");
-    slides[this.slideIndex - 1].className += " dp-block";
-    dots[this.slideIndex - 1].className += " active";}
-    
+    if (slides.length > 0 && dots.length > 0) {
+      slides[this.slideIndex - 1].className = slides[this.slideIndex - 1].className.replace(" dp-none", "");
+      slides[this.slideIndex - 1].className += " dp-block";
+      dots[this.slideIndex - 1].className += " active";
+    }
+
     setTimeout(() => {
       this.showSlides(this.slideIndex += 1)
     }, 5000)
@@ -209,7 +210,7 @@ export class HomeComponent {
 
       this.sharedService.callGetRole("").subscribe(result => {
 
-        if (result.data.admin ) {
+        if (result.data.admin) {
 
           this.router.navigate(['list-user'], { relativeTo: this.route });
 

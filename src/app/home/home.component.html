@@ -1,119 +1,119 @@
 <div class="container-home">
 
-<div class="div-body-container-all">
+  <div class="div-body-container-all">
 
-  <!-- div bao news, login -->
-  <div class="slideshow-container h-100 w-100  slide-container-all">
+    <!-- div bao news, login -->
+    <div class="slideshow-container h-100 w-100  slide-container-all">
 
-    <!-- Full-width images with number and caption text -->
-    <div *ngFor="let ban of listBanner" class="mySlides h-100 w-100">
+      <!-- Full-width images with number and caption text -->
+      <div *ngFor="let ban of listBanner" class="mySlides h-100 w-100">
 
-      <img class="img-news" src="{{ban.linkImg}}" />
+        <img class="img-news" src="{{ban.linkImg}}" />
 
-      <div class="col-6 div-content-news ">
-        <div class="p-rela d-flex flex-wrap align-items-center p-2">
-          <div style="min-width: 260px;" class="col">
-          <div class="title-news">{{ban.title}}</div>
+        <div class="col-6 div-content-news ">
+          <div class="p-rela d-flex flex-wrap align-items-center p-2">
+            <div style="min-width: 260px;" class="col">
+              <div class="title-news">{{ban.title}}</div>
 
-          <div class="des-news">
-            {{ban.description}}
+              <div class="des-news">
+                {{ban.description}}
+              </div>
+            </div>
+            <div class="div-detail p-2" style="height: fit-content;">
+              <a class="a-detail" href="{{ban.linkTopic}}" target="_blank" rel="noopener noreferrer">{{'detail' |
+                translate}}</a>
+              <i class="fa-solid fa-xs fa-arrow-right mt-1 ml-1 icon-detail"></i>
+
+            </div>
+
           </div>
         </div>
-          <div class="div-detail p-2" style="height: fit-content;">
-            <a class="a-detail" href="{{ban.linkTopic}}" target="_blank" rel="noopener noreferrer">{{'detail' |
-              translate}}</a>
-            <i class="fa-solid fa-xs fa-arrow-right mt-1 ml-1 icon-detail"></i>
 
-          </div>
+      </div>
+
+      <div class="div-login">
+        <img id="img" draggable="false" class="style-scope yt-img-shadow img-login" alt="" width="80"
+          src="http://gps3.binhanh.vn/assets/images/login/logo.svg" />
+        <div class="div-username">
+          <input type="text" class="form-control border-radius-20 mx-1 p-left-30" maxlength="50" [(ngModel)]="username"
+            id="exampleInputEmail1" placeholder="{{'login.username' | translate}}" aria-describedby="emailHelp" />
+          <i class="fa-solid fa-user icon-login"></i>
+        </div>
+        <div class="div-pass">
+          <input type="password" class="form-control border-radius-20 mx-1 p-left-right-30" maxlength="200"
+            [(ngModel)]="password" placeholder="{{'login.pass' | translate}}" id="exampleInputPassword1" />
+          <i class="fa-solid fa-lock icon-login"></i>
+          <button class="btn border-0 icon-login-end btn-show-pass" (click)="showPass()"><i
+              class="fa-regular fa-eye icon-login-end" style="right: 0px;"></i></button>
 
         </div>
+
+        <div class="mx-1 d-flex  " style="justify-content: space-between;width: 100%;">
+          <ul class="no-pad no-mar d-flex ps-0">
+
+            <input class="mr-2  " type="checkbox" role="button" [(ngModel)]="isRemember" id="isRemember">
+            <label class="form-text" role="button" for="isRemember">{{'login.remember_pass'|translate}}</label>
+
+          </ul>
+          <ul class="no-pad no-mar">
+            <label class="font-menu form-text">{{'login.forgot_pass'|translate}}</label>
+          </ul>
+        </div>
+        <div *ngIf="showMes" class="div-notis">
+          <label>{{notis}}</label>
+        </div>
+
+        <button type="submit" (click)="login()" class="btn btn-primary border-radius-20 mx-1 btn-login">
+          {{ 'login.login' | translate }}
+        </button>
+
+        <img id="img" draggable="false" class="style-scope yt-img-shadow mt-4" alt="" width="100"
+          src="assets/img/M5GK-qrcode.png" />
+
+        <label>{{'login.qr_code' | translate}}</label>
+      </div>
+      <div *ngIf="listBanner.length > 0" class="div-dot">
+        <span *ngFor="let banner of listBanner;let indexBan = index" class="dot" (click)="currentSlide(indexBan + 1)">
+          <span class="inside-active"></span>
+        </span>
       </div>
 
-    </div>
-
-    <div class="div-login">
-      <img id="img" draggable="false" class="style-scope yt-img-shadow img-login" alt="" width="80"
-        src="http://gps3.binhanh.vn/assets/images/login/logo.svg" />
-      <div class="div-username">
-        <input type="text" class="form-control border-radius-20 mx-1 p-left-30" maxlength="50"
-          [(ngModel)]="username" id="exampleInputEmail1" placeholder="{{'login.username' | translate}}"
-          aria-describedby="emailHelp" />
-        <i class="fa-solid fa-user icon-login"></i>
-      </div>
-      <div class="div-pass">
-        <input type="password" class="form-control border-radius-20 mx-1 p-left-right-30" maxlength="200"
-          [(ngModel)]="password" placeholder="{{'login.pass' | translate}}" id="exampleInputPassword1" />
-        <i class="fa-solid fa-lock icon-login"></i>
-        <button class="btn border-0 icon-login-end btn-show-pass" (click)="showPass()" ><i  class="fa-regular fa-eye icon-login-end" style="right: 0px;"></i></button>
-        
-      </div>
-
-      <div class="mx-1 d-flex  " style="justify-content: space-between;width: 100%;">
-        <ul class="no-pad no-mar d-flex ps-0">
-
-          <input class="mr-2  " type="checkbox" role="button" [(ngModel)]="isRemember" id="isRemember">
-          <label class="form-text" role="button" for="isRemember">{{'login.remember_pass'|translate}}</label>
-
-        </ul>
-        <ul class="no-pad no-mar">
-          <label class="font-menu form-text">{{'login.forgot_pass'|translate}}</label>
-        </ul>
-      </div>
-      <div *ngIf="showMes" class="div-notis">
-        <label>{{notis}}</label>
-      </div>
-
-      <button type="submit" (click)="login()" class="btn btn-primary border-radius-20 mx-1 btn-login">
-        {{ 'login.login' | translate }}
-      </button>
-
-      <img id="img" draggable="false" class="style-scope yt-img-shadow mt-4" alt="" width="100"
-        src="assets/img/M5GK-qrcode.png" />
-
-      <label>{{'login.qr_code' | translate}}</label>
-    </div>
-    <div *ngIf="listBanner.length > 0" class="div-dot">
-      <span *ngFor="let banner of listBanner;let indexBan = index" class="dot" (click)="currentSlide(indexBan + 1)">
-        <span class="inside-active"></span>
-      </span>
     </div>
 
   </div>
 
-</div>
+  <div class="d-flex div-container-footer">
+    <!--div chi nhánh-->
+    <div class="div-container-brans">
 
-<div class="d-flex div-container-footer">
-  <!--div chi nhánh-->
-  <div class="div-container-brans">
+      <div class="div-xl-bran col-lg-md-3 col-sm-4 col-12   div-bran" *ngFor="let branch of listBranch">
+        <!-- col-lg-md-3 col-sm-4 col-12 -->
+        <div class="title-bran">
+          {{branch.title}}</div>
+        <br />
+        <div class="des-bran">
+          {{branch.address}}</div>
 
-    <div class="div-xl-bran col-lg-md-3 col-sm-4 col-12   div-bran" *ngFor="let branch of listBranch">
-      <!-- col-lg-md-3 col-sm-4 col-12 -->
-      <div class="title-bran">
-        {{branch.title}}</div>
-      <br />
-      <div class="des-bran">
-        {{branch.address}}</div>
-
+      </div>
     </div>
-  </div>
-  <div class="div-link-social">
-    <!--div link social-->
+    <div class="div-link-social">
+      <!--div link social-->
 
-    <a href="https://play.google.com/store/apps/details?id=vn.bagps.gpsmobile" target="_blank"
-      rel="noopener noreferrer">
-      <img class="img-app" src="assets/img/google-play.jpg" /></a>
-    <a href="https://itunes.apple.com/us/app/ba-gps/id1466206178?ls=1&mt=8" target="_blank" rel="noopener noreferrer">
-      <img class="img-app" src="assets/img/app-store.jpg" /></a>
-    <div class="d-flex">
-      <a href="https://www.facebook.com/giamsathanhtrinhbinhanh/" target="_blank" rel="noopener noreferrer">
-        <img class="img-social" src="assets/img/Facebook.png.webp" /></a>
-      <a href="https://zalo.me/1958838581480438876" target="_blank" rel="noopener noreferrer">
-        <img class="img-social" src="assets/img/Zalo.webp" /></a>
+      <a href="https://play.google.com/store/apps/details?id=vn.bagps.gpsmobile" target="_blank"
+        rel="noopener noreferrer">
+        <img class="img-app" src="assets/img/google-play.jpg" /></a>
+      <a href="https://itunes.apple.com/us/app/ba-gps/id1466206178?ls=1&mt=8" target="_blank" rel="noopener noreferrer">
+        <img class="img-app" src="assets/img/app-store.jpg" /></a>
+      <div class="d-flex">
+        <a href="https://www.facebook.com/giamsathanhtrinhbinhanh/" target="_blank" rel="noopener noreferrer">
+          <img class="img-social" src="assets/img/Facebook.png.webp" /></a>
+        <a href="https://zalo.me/1958838581480438876" target="_blank" rel="noopener noreferrer">
+          <img class="img-social" src="assets/img/Zalo.webp" /></a>
 
-      <a href="https://www.youtube.com/@BAGPS" target="_blank" rel="noopener noreferrer">
-        <img class="img-social" src="assets/img/youtube.jpg" /></a>
+        <a href="https://www.youtube.com/@BAGPS" target="_blank" rel="noopener noreferrer">
+          <img class="img-social" src="assets/img/youtube.jpg" /></a>
+      </div>
     </div>
-  </div>
 
-</div>
+  </div>
 </div>

@@ -1,63 +1,62 @@
 ﻿<div class="">
-  <div class="div-container-user pt-2"  >
+  <div class="div-container-user pt-2">
 
     <div class="d-flex mt-2 mb-2 font-weight-bold text-primary">
       Quản trị người dùng
 
     </div>
 
+    <div class="row no-gutters mr-0">
+      <div class="col-sm-12 col-12 col-lg col-md-12 row no-gutters">
 
-<div class="row no-gutters mr-0">
-  <div class="col-sm-12 col-12 col-lg col-md-12 row no-gutters">
+        <div class="col-md-4 col-sm-3 col-12 mt-1">
+          <input type="text" class="col  form-control   " maxlength="200" [(ngModel)]="textSearch"
+            placeholder="Tìm theo email, họ tên, sđt, tên đăng nhập ">
 
-    <div class="col-md-4 col-sm-3 col-12 mt-1">
-      <input type="text" class="col  form-control   " maxlength="200"  
-      [(ngModel)]="textSearch" placeholder="Tìm theo email, họ tên, sđt, tên đăng nhập ">
-    
+        </div>
+        <div class="col-md-4 col-sm-5 col-12 row no-gutters mt-1">
+
+          <label class=" col-form-label w-auto mx-2">Ngày sinh từ</label>
+
+          <input type="text" class="form-control col datepicker    " bsDatepicker [(ngModel)]="birthdayFrom"
+            placeholder="Chọn ngày">
+
+        </div>
+        <div class="col-md-4 col-sm-4 col-12 row no-gutters mt-1">
+          <label class="  col-form-label w-auto mx-2">Đến</label>
+
+          <input type="text" class="form-control col datepicker   " bsDatepicker [(ngModel)]="birthdayTo"
+            placeholder="Chọn ngày">
+        </div>
+
+      </div>
+
+      <div class="w-auto row no-gutters">
+        <label class="   mx-2  col-form-label w-auto mt-1">Giới tính</label>
+        <select class="w-auto mr-2 mt-1 form-control" role="button" [(ngModel)]="gioiTinhSearch" name="gioiTinhSearch">
+          <option *ngFor="let option of gioiTinhList" [value]="option.value">
+            {{ option.viewValue }}</option>
+        </select>
+        <button *ngIf="isRoleEdit" class="btn btn-primary rounded btn-search mt-1 w-auto" (click)="search()"
+          style=" margin-right: 0px">
+          <i class="fa-solid fa-magnifying-glass p-right-5"></i>
+          Tìm</button>
+      </div>
     </div>
-    <div class="col-md-4 col-sm-5 col-12 row no-gutters mt-1">
-       
-      <label class=" col-form-label w-auto mx-2">Ngày sinh từ</label>
-    
-      <input type="text"   class="form-control col datepicker    " bsDatepicker [(ngModel)]="birthdayFrom"
-        placeholder="Chọn ngày">
-       
-    </div>
-    <div class="col-md-4 col-sm-4 col-12 row no-gutters mt-1">
-      <label class="  col-form-label w-auto mx-2">Đến</label>
-    
-      <input type="text"   class="form-control col datepicker   " bsDatepicker [(ngModel)]="birthdayTo"
-        placeholder="Chọn ngày">
-    </div>
 
-  </div>
-
-<div class="w-auto row no-gutters">
-  <label class="   mx-2  col-form-label w-auto mt-1">Giới tính</label>
-  <select class="w-auto mr-2 mt-1 form-control" role="button" [(ngModel)]="gioiTinhSearch" name="gioiTinhSearch">
-    <option *ngFor="let option of gioiTinhList" [value]="option.value">
-      {{ option.viewValue }}</option>
-  </select>
-  <button *ngIf="isRoleEdit" class="btn btn-primary rounded btn-search mt-1 w-auto" (click)="search()"
-  style=" margin-right: 0px">
-  <i class="fa-solid fa-magnifying-glass p-right-5"></i>
-  Tìm</button>
-</div>
-</div>
- 
     <div class="row   no-gutters gy-0 mb-2 mt-1" style="justify-content: space-between;">
       <div class="row no-gutters w-auto      pl-0 ">
         <button *ngIf="isRoleAdd" class="btn w-auto btn-primary rounded mr-2 mt-1" (click)="add()">
           <i class="fa-solid fa-plus p-right-5"></i>
           Thêm</button>
-        <button *ngIf="isRoleDelete && isShowDelete" class="btn w-auto btn-danger rounded mr-2 mt-1" (click)="deleteList()">
+        <button *ngIf="isRoleDelete && isShowDelete" class="btn w-auto btn-danger rounded mr-2 mt-1"
+          (click)="deleteList()">
           <i class="fa-solid fa-trash-can p-right-5" accesskey="">
 
           </i>Xóa</button>
 
       </div>
-      <div
-        class="   row w-auto  div-search pr-0 button-export no-gutters">
+      <div class="   row w-auto  div-search pr-0 button-export no-gutters">
         <button *ngIf="isRoleAdd" class="btn w-auto btn-primary rounded mr-2 mt-1" (click)="exportToExcel()">
           <i class="fa-regular fa-file-excel pr-1"></i>
           Xuất Excel</button>
@@ -71,9 +70,10 @@
       <div class="border ">
         <div class="table-scroll">
           <!-- table bootstrap -->
-          <table class="table table-bordered table-hover custom-mat-table align-middle" id="tableToExport" width="100%" #table>
+          <table class="table table-bordered table-hover custom-mat-table align-middle" id="tableToExport" width="100%"
+            #table>
             <thead class="align-middle">
-              <tr >
+              <tr>
                 <th scope="col" class="w-8 text-light   custom-header  text-center ">STT</th>
                 <th scope="col" class="w-8 custom-header  text-light  text-center " role="button" (click)="selectAll()">
                   Chọn</th>
@@ -110,15 +110,14 @@
                   <span class="bg-danger  text-white p-2 rounded  " *ngIf="item.isActive == false">Vô hiệu hóa</span>
                 </td>
                 <td class=" text-center " *ngIf="isRoleEdit">
-                  <button class="btn"  (click)="editUser($event,item)" ><i class="fa-regular fa-pen-to-square c-poiter"
-                   ></i></button>
-                  </td>
-                <td class=" text-center " *ngIf="isRoleDelete"> 
-                  <button class="btn"  (click)="deleteUser($event,item)" >
-                  <i class="fa-solid fa-trash-can c-poiter text-danger"
-                      accesskey="">
+                  <button class="btn" (click)="editUser($event,item)"><i
+                      class="fa-regular fa-pen-to-square c-poiter"></i></button>
+                </td>
+                <td class=" text-center " *ngIf="isRoleDelete">
+                  <button class="btn" (click)="deleteUser($event,item)">
+                    <i class="fa-solid fa-trash-can c-poiter text-danger" accesskey="">
 
-                  </i></button>
+                    </i></button>
                 </td>
 
               </tr>
@@ -128,52 +127,54 @@
         </div>
         <!--end table bootstrap -->
 
-        <nav aria-label="Page navigation example " class="bg-light d-flex flex-wrap" style="justify-content: space-between;">
+        <nav aria-label="Page navigation example " class="bg-light d-flex flex-wrap"
+          style="justify-content: space-between;">
           <div class="d-flex flex-wrap">
-          <ul class="pagination m-2 flex-wrap">
+            <ul class="pagination m-2 flex-wrap">
 
-            <li class="page-item">
-              <a class="page-link" role="button" (click)="minPage()">
-                <i class="fa-solid fa-backward-step"></i>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" role="button" (click)="prePage()">
-                <i class="fa-solid fa-play  " style="transform: rotate(180deg); "></i>
-              </a>
-            </li>
-            <li class="page-item" [ngClass]="{'active': pageNumber == page.value}" *ngFor="let page of arrayPage">
-              <a class="page-link" role="button" (click)="selectPage(page.value)">{{page.text}}</a>
-            </li>
+              <li class="page-item">
+                <a class="page-link" role="button" (click)="minPage()">
+                  <i class="fa-solid fa-backward-step"></i>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" role="button" (click)="prePage()">
+                  <i class="fa-solid fa-play  " style="transform: rotate(180deg); "></i>
+                </a>
+              </li>
+              <li class="page-item" [ngClass]="{'active': pageNumber == page.value}" *ngFor="let page of arrayPage">
+                <a class="page-link" role="button" (click)="selectPage(page.value)">{{page.text}}</a>
+              </li>
 
-            <li class="page-item">
-              <a class="page-link" role="button" (click)="nextPage()">
-                <i class="fa-solid fa-play  "></i>
-              </a>
-            </li>
-            <li class="page-item  ">
-              <a class="page-link" role="button" (click)="maxPage()">
-                <i class="fa-solid fa-forward-step"></i>
-              </a>
-            </li>
-            
-          </ul>
-          <ul class="d-flex pagination m-2 flex-wrap">
-            <li class="ml-2 mr-2 ">
-              <select class="form-control mx-2 combo-item" role="button" [(ngModel)]="pageSize" (change)="ChangeCbbPageSize()">
-                <i style="padding-top: 8px" class="fa-solid fa-caret-down icon-dropbtn"></i>
-                <option *ngFor="let option of listPaging" [value]="option.value">
-                  {{ option.value }}</option>
-              </select>
+              <li class="page-item">
+                <a class="page-link" role="button" (click)="nextPage()">
+                  <i class="fa-solid fa-play  "></i>
+                </a>
+              </li>
+              <li class="page-item  ">
+                <a class="page-link" role="button" (click)="maxPage()">
+                  <i class="fa-solid fa-forward-step"></i>
+                </a>
+              </li>
 
-            </li>
-            <li class="d-flex align-items-center">
-              <label class="mb-0 ml-2">Dòng mỗi trang</label>
-            </li>
+            </ul>
+            <ul class="d-flex pagination m-2 flex-wrap">
+              <li class="ml-2 mr-2 ">
+                <select class="form-control mx-2 combo-item" role="button" [(ngModel)]="pageSize"
+                  (change)="ChangeCbbPageSize()">
+                  <i style="padding-top: 8px" class="fa-solid fa-caret-down icon-dropbtn"></i>
+                  <option *ngFor="let option of listPaging" [value]="option.value">
+                    {{ option.value }}</option>
+                </select>
+
+              </li>
+              <li class="d-flex align-items-center">
+                <label class="mb-0 ml-2">Dòng mỗi trang</label>
+              </li>
 
 
-          </ul>
-        </div>
+            </ul>
+          </div>
           <ul class="flex-right m-2 pagination">
             <li class="d-flex align-items-center h-100">
               <label class="mr-2 mb-0">{{rowStart}} - {{rowEnd}} trên tổng {{totalCountListAll}} dòng</label>

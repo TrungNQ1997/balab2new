@@ -11,18 +11,18 @@ import { AbstractControl, FormControl, Validators } from '@angular/forms';
     styleUrls: ['./forget-pass-user.component.css']
 
 })
-export class ForgetPassUserComponent { 
+export class ForgetPassUserComponent {
     regexPatternPass = /^[a-zA-Z0-9]{6,100}$/;
     @Input() data: any;
- 
-    description: string="";
-    notis: string="";
-    user: any; 
-    showMes: boolean=false;
+
+    description: string = "";
+    notis: string = "";
+    user: any;
+    showMes: boolean = false;
     gioiTinhList: any;
-    formControlPassOld:FormControl = new FormControl;
-    formControlPass:FormControl = new FormControl;
-    formControlRePass:FormControl = new FormControl
+    formControlPassOld: FormControl = new FormControl;
+    formControlPass: FormControl = new FormControl;
+    formControlRePass: FormControl = new FormControl
 
     constructor(
 
@@ -31,7 +31,7 @@ export class ForgetPassUserComponent {
         private sharedService: SharedService,
         public modal: NgbActiveModal
     ) {
- 
+
     }
 
     ngOnInit() {
@@ -48,7 +48,7 @@ export class ForgetPassUserComponent {
     }
 
     genValidFormControl() {
-        
+
         this.formControlPassOld = new FormControl(this.user.passwordOld, [
             Validators.required,
             Validators.pattern(this.sharedService.regexAPass)
@@ -59,12 +59,12 @@ export class ForgetPassUserComponent {
         ]);
         this.formControlRePass = new FormControl(this.user.rePassword, [
             Validators.required,
-this.checkConditionRepass.bind(this) 
-            
+            this.checkConditionRepass.bind(this)
+
         ]);
     }
 
-    checkConditionRepass(formControl: AbstractControl ) {
+    checkConditionRepass(formControl: AbstractControl) {
         // console.log(this);
         if (this.formControlPass.value != formControl.value) {
             return {
@@ -75,18 +75,18 @@ this.checkConditionRepass.bind(this)
             return null
         }
     }
- 
+
     checkValid() {
 
         this.formControlRePass.updateValueAndValidity();
         this.formControlPass.updateValueAndValidity();
-         
-if(this.formControlPass.valid && this.formControlPassOld.valid  && this.formControlRePass.valid){
-    return true;
-} else {
-    return false;
-}
- 
+
+        if (this.formControlPass.valid && this.formControlPassOld.valid && this.formControlRePass.valid) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     refreshUser() {
@@ -123,7 +123,7 @@ if(this.formControlPass.valid && this.formControlPassOld.valid  && this.formCont
 
         }
     }
- 
+
     close() {
 
         this.modal.close();

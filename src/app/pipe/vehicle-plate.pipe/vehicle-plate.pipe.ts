@@ -13,14 +13,13 @@ export class VehiclePlatePipe implements PipeTransform {
       return '';
     }
     var formattedNumber = "";
-if(value.length > 7)
-{
-  formattedNumber =  value.replace(vehiclePlatePattern5, '$1 $2.$3');
-} else {
- formattedNumber =  value.replace(vehiclePlatePattern, '$1 $2');
-}
+    if (value.length > 7) {
+      formattedNumber = value.replace(vehiclePlatePattern5, '$1 $2.$3');
+    } else {
+      formattedNumber = value.replace(vehiclePlatePattern, '$1 $2');
+    }
 
-   
+
     return formattedNumber;
   }
 

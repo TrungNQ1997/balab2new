@@ -1,9 +1,9 @@
 <div class="input-group ">
-  <input  [type]="showPassword ? 'text' : 'password'"   [attr.name]="inputName" [formControl]="formControl"  maxlength="100"  
-                      [(ngModel)]="password" placeholder=" " (ngModelChange)="onPasswordChange($event)"   (blur)="change.emit()"
-                      class="form-control" data-toggle="password">
+  <input [type]="showPassword ? 'text' : 'password'" [attr.name]="inputName" [formControl]="formControl" maxlength="100"
+    [(ngModel)]="password" placeholder=" " (ngModelChange)="onPasswordChange($event)" (blur)="change.emit()"
+    class="form-control" data-toggle="password">
 
-  <span class="input-group-text"  (click)="toggleShowPassword()"role="button">
-      <i role="button" class="fa-regular fa-eye"></i>
+  <span class="input-group-text" (click)="toggleShowPassword()" role="button">
+    <i role="button" class="fa-regular fa-eye"></i>
   </span>
 </div>

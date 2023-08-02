@@ -13,8 +13,8 @@ export class ModalComfirmComponent {
     @Input() data: any;
 
     description: string = "";
-    notis: string="";
-    content: string="";
+    notis: string = "";
+    content: string = "";
     user: any;
 
     // showMes: boolean=true;

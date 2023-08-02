@@ -32,7 +32,7 @@ export class NavMenuComponent {
     { val: "en", text: "English", img: "assets/img/eng.jpg" }
   ];
   langModel = this.dropDownData[0];
- 
+
   constructor(private translateService: TranslateService,
     private appComponent: AppComponent
     , private sharedService: SharedService, private router: Router,
@@ -46,10 +46,18 @@ export class NavMenuComponent {
     this.translateService.use('vi');
 
   }
- 
+
   ngOnInit() {
-    this.langModel = this.dropDownData[0];
-    this.translateService.use(this.dropDownData[0].val);
+
+    var lan = localStorage.getItem("language");
+    if (lan) {
+      this.langModel = this.dropDownData.filter(m => m.val == lan)[0];
+      this.translateService.use(lan);
+    } else {
+      this.langModel = this.dropDownData[0];
+      this.translateService.use(this.dropDownData[0].val);
+      localStorage.setItem("language", this.dropDownData[0].val);
+    }
 
     var visi = this.sharedService.getCookie("token");
     var login = sessionStorage.getItem("login");
@@ -60,13 +68,13 @@ export class NavMenuComponent {
         this.isNavbarVisible = true;
       }
     }
- 
+
   }
-  
+
   ngOnChanges() {
 
   }
- 
+
   collapse() {
     this.isExpanded = false;
 
@@ -82,7 +90,7 @@ export class NavMenuComponent {
 
 
   onChangePass() {
- 
+
     var modalRef = this.modalService.open(ForgetPassUserComponent, this.modalOptions);
 
     modalRef.componentInstance.data = {
@@ -100,7 +108,7 @@ export class NavMenuComponent {
     }).catch((error) => {
       console.log(error)
     });
- 
+
   }
 
   toggleMenu() {
@@ -121,10 +129,12 @@ export class NavMenuComponent {
 
   }
 
-  setLanguage(lang: any, index: any) {
+  setLanguage(lang: string, index: number) {
     this.translateService.use(lang);
+    localStorage.setItem("language", lang);
     this.appComponent.setCurLang(lang);
     this.langModel = this.dropDownData[index];
+    window.location.reload();
   }
   deleteAllCookies() {
     const cookies = document.cookie.split(";");
@@ -156,9 +166,9 @@ export class NavMenuComponent {
     }).catch((error) => {
       console.log(error)
     });
- 
+
   }
-  
+
   callLogout() {
     localStorage.clear();
     sessionStorage.clear();

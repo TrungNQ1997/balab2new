@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LOCALE_ID } from '@angular/core'; // Import LOCALE_ID
-import { LocalizationService  } from '@progress/kendo-angular-l10n'; // Import LocalizationService
+import { LocalizationService } from '@progress/kendo-angular-l10n'; // Import LocalizationService
 
 import { Test1Component } from './test1/test1.component';
 // import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,14 +20,11 @@ import { PhoneFormatPipe } from './pipe/phone-format.pipe/phone-format.pipe';
 import { SimpleComponent } from './simple/simple.component';
 import { Exercise1Component } from './exercise1/exercise1.component';
 import { Exercise2Component } from './exercise2/exercise2.component'
- import { HomeComponent } from './home/home.component';
- import { ListUserComponent } from './user/list/list-user.component';
- import { EditUserComponent } from './user/edit/edit-user.component';
- import { InputPassComponent } from './directive/input-pass/input-pass.component';
- import { JsonPipe } from '@angular/common';
-//import { BsDatepickerConfig, BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { defineLocale } from 'ngx-bootstrap/chronos';
-import { viLocale } from 'ngx-bootstrap/locale';
+import { HomeComponent } from './home/home.component';
+import { ListUserComponent } from './user/list/list-user.component';
+import { EditUserComponent } from './user/edit/edit-user.component';
+import { InputPassComponent } from './directive/input-pass/input-pass.component';
+import { JsonPipe } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { ReportVehicleSpeedViolationComponent } from './report-vehicle-speed-violation/report-vehicle-speed-violation.component';
@@ -39,23 +36,17 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { registerLocaleData } from '@angular/common'; // Import registerLocaleData
 import localeVi from '@angular/common/locales/vi'; // Import localeVi từ gói ngôn ngữ tiếng Việt
-import { MultiSelectModule } from '@progress/kendo-angular-dropdowns';
+import { MultiSelectModule } from '@progress/kendo-angular-dropdowns'; 
+import "@progress/kendo-angular-intl/locales/vi/all";
 
-
- import "@progress/kendo-angular-intl/locales/vi/all";
-//import "@progress/kendo-angular-intl/locales/es/all";
-
-// import localeVi from '@angular/common/locales/vi';
-// registerLocaleData(localeVi);
 registerLocaleData(localeVi, 'vi-VN');
-//import '@progress/kendo-locale-vi/all';
-//defineLocale('vi', viLocale);
+
 export function HttpLoaderFactory(http: HttpClient) {
-  //return new TranslateHttpLoader(http);
+
   return new TranslateHttpLoader(http, './assets/i18n/');
 }
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     Test1Component,
     NavMenuComponent,
@@ -66,20 +57,19 @@ export function HttpLoaderFactory(http: HttpClient) {
     VehiclePlatePipe,
     SimpleComponent,
     InputPassComponent,
-      Exercise1Component,
-      Exercise2Component,
-      HomeComponent,
-      EditUserComponent,
-      ListUserComponent,
-      ReportVehicleSpeedViolationComponent
-   ],
+    Exercise1Component,
+    Exercise2Component,
+    HomeComponent,
+    EditUserComponent,
+    ListUserComponent,
+    ReportVehicleSpeedViolationComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
-    //NgbTimepickerModule,
     JsonPipe,
-     IntlModule,
-     MultiSelectModule,
+    IntlModule,
+    MultiSelectModule,
     ReactiveFormsModule,
     AppRoutingModule,
     DateInputsModule,
@@ -98,32 +88,21 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right'
-    }) ,
-  //   BsDatepickerModule.forRoot()
-   ],
+    }),
+  ],
   providers: [
     SharedService,
-    //{ provide: BsDatepickerConfig, useFactory: getDatepickerConfig },
     { provide: LOCALE_ID, useValue: 'vi-VN' }, // Set your desired locale here
     LocalizationService // Provide LocalizationService
-  
+
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(
-    //private bsLocaleService: BsLocaleService
-    //private localizationService: LocalizationService
-   ) {
-    
-    //this.localizationService.set('today', 'Hôm nay');
-    //this.bsLocaleService.use('vi');
+  ) {
+
+  }
 }
- }
-// export function getDatepickerConfig(): BsDatepickerConfig {
-//   return Object.assign(new BsDatepickerConfig(), {
-//     containerClass: 'theme-dark-blue',
-//     dateInputFormat: 'DD/MM/YYYY'
-//   });
-// }
+
 

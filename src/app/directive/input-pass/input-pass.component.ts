@@ -7,10 +7,10 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./input-pass.component.css']
 })
 export class InputPassComponent implements OnInit {
-  @Input() password: string="";
-  @Input() name: string="";
+  @Input() password: string = "";
+  @Input() name: string = "";
   @Input() formControl: FormControl = new FormControl;
-  @Input() inputName: string="";
+  @Input() inputName: string = "";
   showPassword: boolean = false;
   @Output() change: EventEmitter<any> = new EventEmitter<any>();
   @Output() formControlChange: EventEmitter<any> = new EventEmitter<any>();
@@ -25,7 +25,7 @@ export class InputPassComponent implements OnInit {
 
   ngOnInit() {
   }
-   
+
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }

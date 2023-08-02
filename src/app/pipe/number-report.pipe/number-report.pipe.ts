@@ -5,15 +5,23 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NumberReportPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
+  transform(value: number): string {
     var text = "";
-    if (value) {
-      return value.toString().replace('.', ',');
-    } else {
-      return ""
-    }
+    var lang = localStorage.getItem("language");
 
-    return null;
+    if (value) {
+      if (lang) {
+        if (lang == "vi") {
+          text = value.toString().replace('.', ',');
+        } else {
+          text = value.toString();
+        }
+      } else {
+        text = value.toString().replace('.', ',');
+      }
+
+    }
+    return text
   }
 
 }
