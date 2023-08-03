@@ -75,8 +75,7 @@ export class HomeComponent {
   constructor(private translate: TranslateService, private route: ActivatedRoute,
     private router: Router, private http: HttpClient, private toastr: ToastrService
     , private sharedService: SharedService) {
-
-
+ 
   }
 
 
@@ -89,16 +88,13 @@ export class HomeComponent {
 
   showSlidesNoTimeout(n: any) {
     let i;
-    let slides = document.getElementsByClassName("mySlides");
-
+    let slides = document.getElementsByClassName("mySlides"); 
     let dots = document.getElementsByClassName("dot");
     if (n > slides.length) { this.slideIndex = 1 }
     if (n < 1) { this.slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
-
+    for (i = 0; i < slides.length; i++) { 
       slides[i].className = slides[i].className.replace(" dp-none", "");
-      slides[i].className = slides[i].className.replace(" dp-block", "");
-
+      slides[i].className = slides[i].className.replace(" dp-block", ""); 
       slides[i].className += " dp-none";
     }
     for (i = 0; i < dots.length; i++) {
@@ -112,8 +108,7 @@ export class HomeComponent {
   }
 
   showPass() {
-    this.sharedService.showPass('#exampleInputPassword1');
-
+    this.sharedService.showPass('#exampleInputPassword1'); 
   }
 
   showSlides(n: any) {
@@ -141,9 +136,7 @@ export class HomeComponent {
 
     setTimeout(() => {
       this.showSlides(this.slideIndex += 1)
-    }, 5000)
-
-
+    }, 5000) 
   }
 
   plusSlides(n: any) {
@@ -161,8 +154,7 @@ export class HomeComponent {
     data = {
       "username": this.username,
       "password": this.password,
-      "isRemember": this.isRemember
-
+      "isRemember": this.isRemember 
     }
 
     this.http.post<any>(this.sharedService.url + 'user/login',

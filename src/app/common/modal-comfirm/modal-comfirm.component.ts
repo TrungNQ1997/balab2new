@@ -10,14 +10,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 })
 export class ModalComfirmComponent {
-    @Input() data: any;
-
+    @Input() data: any; 
     description: string = "";
     notis: string = "";
     content: string = "";
-    user: any;
-
-    // showMes: boolean=true;
+    user: any; 
     gioiTinhList: any;
 
     constructor(

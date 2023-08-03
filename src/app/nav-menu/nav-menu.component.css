@@ -32,8 +32,7 @@
    .dropbtn {
      background-color: transparent;
      border: none;
-     padding: 10px;
-     /* font-size: 20px; */
+     padding: 10px; 
      cursor: pointer;
      display: flex;
    }
@@ -46,8 +45,7 @@
 
    .dropText-lang {
      display: none;
-     position: absolute;
-     /*background-color: skyblue;*/
+     position: absolute; 
      min-width: 130px;
      width: 130px;
      background-color: white;
@@ -57,8 +55,7 @@
 
    .dropText {
      display: none;
-     position: absolute;
-     /*background-color: skyblue;*/
+     position: absolute; 
      min-width: 130px;
      width: 130px;
      background-color: white;
@@ -74,8 +71,7 @@
      cursor: pointer;
    }
 
-   .dropText a:hover {
-     /*background-color: blue;*/
+   .dropText a:hover { 
      color: red;
    }
 
@@ -108,11 +104,9 @@
 
    .div-tel {
      border-radius: 25px;
-     border: 0.5px solid rgb(11, 176, 229);
-     /*padding: 5px;*/
+     border: 0.5px solid rgb(11, 176, 229); 
      color: rgb(11, 176, 229);
-     text-decoration: none;
-
+     text-decoration: none; 
      text-align: center;
      padding: 5px;
      padding-right: 10px;

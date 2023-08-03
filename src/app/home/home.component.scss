@@ -35,7 +35,8 @@
 
  }
 
- @include media-breakpoint-down(sm) // bắt đầu co div-login div tin tức vào giữa
+  // bắt đầu co div-login div tin tức vào giữa
+ @include media-breakpoint-down(sm)
 
    {
 
@@ -285,8 +286,7 @@
  .title-news {
    white-space: nowrap;
    overflow: hidden;
-   text-overflow: ellipsis;
-   // padding-right: 120px;
+   text-overflow: ellipsis; 
    font-weight: bold;
    padding-top: 5px;
    padding-left: 10px;
@@ -297,8 +297,7 @@
  .des-news {
    white-space: nowrap;
    overflow: hidden;
-   text-overflow: ellipsis;
-   // padding-right: 120px;
+   text-overflow: ellipsis; 
    height: 30px;
    padding-top: 5px;
    padding-bottom: 5px;
@@ -349,7 +348,6 @@
    bottom: 40px;
    margin-left: 40px;
    background: rgba(6, 33, 63, .7);
-   // height: 70px
  }
 
  /* Slideshow container */

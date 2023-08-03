@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 @Injectable()
-export class SharedService {
-
+export class SharedService { 
   public regexAPass = '[a-zA-Z0-9]{6,100}';
   public url = 'http://10.1.11.110:5017/';
   //public url = 'http://localhost:6017/';
@@ -17,17 +16,16 @@ export class SharedService {
       'CompanyID': 15076
     })
   };
-  private localStorageKey = 'isNavbarVisible'; // Key trong LocalStorage
+  private localStorageKey = 'isNavbarVisible';  
 
-  constructor(private http: HttpClient) {
-    // Khởi tạo giá trị ban đầu từ LocalStorage
+  constructor(private http: HttpClient) { 
     const storedValue = localStorage.getItem(this.localStorageKey);
     this.isNavbarVisibleSubject.next(storedValue ? JSON.parse(storedValue) : true);
   }
 
   public setIsNavbarVisible(isVisible: boolean): void {
     this.isNavbarVisibleSubject.next(isVisible);
-    localStorage.setItem(this.localStorageKey, JSON.stringify(isVisible)); // Lưu vào LocalStorage
+    localStorage.setItem(this.localStorageKey, JSON.stringify(isVisible));  
   }
 
   public getCookie(cname: any) {
@@ -58,8 +56,7 @@ export class SharedService {
 
   }
 
-  public callGetRole(token: any): Observable<any> {
-
+  public callGetRole(token: any): Observable<any> { 
     var data: any;
     data = {
       "userId": localStorage.getItem("userId"),
@@ -71,10 +68,8 @@ export class SharedService {
 
   }
 
-  public callAddUser(user: any): Observable<any> {
-
-    user.userId = '2';
-
+  public callAddUser(user: any): Observable<any> { 
+    user.userId = '2'; 
     return this.http.post<any>(this.url + 'user/adduser',
       user, this.httpOptions)
 
@@ -96,8 +91,7 @@ export class SharedService {
     }
 
   }
-
-
+ 
   public showPass(name: string) {
     let password = document.querySelector(name);
     if (password) {

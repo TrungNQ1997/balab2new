@@ -17,9 +17,7 @@ export class VehiclePlatePipe implements PipeTransform {
       formattedNumber = value.replace(vehiclePlatePattern5, '$1 $2.$3');
     } else {
       formattedNumber = value.replace(vehiclePlatePattern, '$1 $2');
-    }
-
-
+    } 
     return formattedNumber;
   }
 

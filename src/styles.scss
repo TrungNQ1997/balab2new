@@ -1,24 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Importing Bootstrap SCSS file. */
-
-
-//@import "../node_modules/bootstrap/scss/mixins";
-
-// @import "../node_modules/bootstrap/scss/functions";
-
-//@import "../node_modules/bootstrap/scss/variables";
-
-//@import '../node_modules/bootstrap/scss/bootstrap';
-
-/* You can add global styles to this file, and also import other style files */
-
-
-/* Provide sufficient contrast against white background */
-
-// @import url("../node_modules/ngx-toastr/toastr.css");
-// @import url("../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css");
-
+ 
 .h-fit {
   height: fit-content;
 }
@@ -66,16 +46,14 @@ code {
   }
 
   .dropdown-btn {
-    margin-top: 3px !important;
-
-    // color: #ced4da;
+    margin-top: 3px !important; 
     border: 1px solid #dee2e6 !important;
     padding-top: 4px !important;
     padding-bottom: 4px !important;
   }
 
 }
-
+ 
 .custom-header {
   background-color: rgb(45, 156, 219) !important;
   vertical-align: middle !important;
@@ -86,9 +64,7 @@ code {
 }
 
 .datepicker {
-  min-width: 110px;
-  //padding-left: 9px!important;
-  // max-width: 120px;
+  min-width: 110px; 
 }
 
 .div-item-lang {
@@ -145,8 +121,7 @@ code {
 .button-theme {
   background-color: rgb(97, 148, 194);
   color: white;
-  border: 1px solid rgb(97, 148, 194);
-  /* min-width: 90px; */
+  border: 1px solid rgb(97, 148, 194); 
 }
 
 .btn-primary {
@@ -226,9 +201,7 @@ body {
   padding-top: 0px !important;
 }
 
-.modal-dialog {
-  /* margin-top: 0px;
-  margin-bottom: 0px; */
+.modal-dialog { 
   max-width: max-content;
 }
 

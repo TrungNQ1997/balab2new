@@ -12,7 +12,6 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 
 })
 export class EditUserComponent {
-    /*form: FormGroup;*/
     @Input() data: any;
     inputField: any;
     formControlPhone: FormControl = new FormControl;
@@ -22,14 +21,12 @@ export class EditUserComponent {
     formControlFullname: FormControl = new FormControl;
     formControlRePass: FormControl = new FormControl;
     @ViewChild('inputFieldRef') inputFieldRef!: ElementRef;
-
     regexASdt = '[0-9]{1,10}';
     regexAUsername = '[a-zA-Z0-9]{1,50}';
     regexAPass = '[a-zA-Z0-9]{6,100}';
     regexAEmail = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,200}';
     regexPatternUsername = /^[a-zA-Z0-9]{1,50}$/;
     isLoadList: boolean = false;
-
     user: any;
     showMes: boolean = false;
     disabledAdd: boolean = true;
@@ -38,7 +35,6 @@ export class EditUserComponent {
     errorUsername: string = '';
 
     constructor(
-
         private http: HttpClient,
         private toastr: ToastrService,
         private sharedService: SharedService,
@@ -49,9 +45,7 @@ export class EditUserComponent {
     }
 
     ngOnInit() {
-
         this.inputField = ViewChild('inputFieldRef')
-
         this.showMes = false;
         if (this.data.statusForm == 'edit') {
             this.user = this.data.data;
@@ -86,7 +80,6 @@ export class EditUserComponent {
     }
 
     genValidFormControl() {
-
         this.formControlPhone = new FormControl(this.user.phone, [
             Validators.required,
             Validators.pattern(this.regexASdt)
@@ -115,7 +108,6 @@ export class EditUserComponent {
     }
 
     checkConditionRepass(formControl: AbstractControl) {
-        // console.log(this);
         if (this.formControlPass.value != formControl.value) {
             return {
                 required: true
@@ -127,9 +119,7 @@ export class EditUserComponent {
     }
 
     emailConditionallyRequiredValidator(formControl: AbstractControl) {
-
         if (formControl.value) {
-
             var t1 = new Date(formControl.value)
             if ((new Date()).getFullYear() - t1.getFullYear() >= 18) {
                 return null
@@ -159,7 +149,6 @@ export class EditUserComponent {
 
         if (this.formControlBirthday.valid && this.formControlEmail.valid && this.formControlPhone.valid
             && (this.data.statusForm == 'edit' || (this.formControlPass.valid && this.formControlRePass.valid)) && this.formControlFullname.valid
-            // && !this.formControlUsername.invalid
         ) {
             this.disabledAdd = false;
             return true;
@@ -172,8 +161,7 @@ export class EditUserComponent {
     }
 
     refreshUser() {
-        this.user = new Object();
-
+        this.user = new Object(); 
         this.user.fullName = "";
         this.user.sexId = 1;
         this.user.isAdmin = true;
@@ -185,8 +173,7 @@ export class EditUserComponent {
         this.user.rePassword = "";
     }
 
-    save() {
-
+    save() { 
         if (this.data.statusForm == 'add') {
 
             this.sharedService.callAddUser(this.prepareData()).subscribe(response => {
@@ -207,10 +194,8 @@ export class EditUserComponent {
 
             });
 
-        } else if (this.data.statusForm == 'edit') {
-
-            this.user.user_id = '2';
-
+        } else if (this.data.statusForm == 'edit') { 
+            this.user.user_id = '2'; 
             this.http.post<any>(this.sharedService.url + 'user/edituser',
                 this.prepareData(), this.sharedService.httpOptions)
                 .subscribe(response => {
@@ -225,8 +210,7 @@ export class EditUserComponent {
 
                 });
 
-        }
-        // }
+        } 
     }
 
     prepareData() {
@@ -244,12 +228,9 @@ export class EditUserComponent {
         return this.user
     }
 
-    saveAdd() {
-
-        if (this.data.statusForm == 'add') {
-
-            this.sharedService.callAddUser(this.prepareData()).subscribe(response => {
-
+    saveAdd() { 
+        if (this.data.statusForm == 'add') { 
+            this.sharedService.callAddUser(this.prepareData()).subscribe(response => { 
                 if (response.data.error == false) {
                     this.toastr.success('Thêm người dùng thành công', 'Thông báo');
                     this.isLoadList = true;

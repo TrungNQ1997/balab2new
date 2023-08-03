@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserModule } from '@angular/platform-browser'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LOCALE_ID } from '@angular/core'; // Import LOCALE_ID
-import { LocalizationService } from '@progress/kendo-angular-l10n'; // Import LocalizationService
-
+import { LOCALE_ID } from '@angular/core'; 
+import { LocalizationService } from '@progress/kendo-angular-l10n'; 
 import { Test1Component } from './test1/test1.component';
-// import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { ModalComfirmComponent } from './common/modal-comfirm/modal-comfirm.component';
 import { ForgetPassUserComponent } from './user/forget-pass/forget-pass-user.component';
@@ -34,8 +31,8 @@ import { VehiclePlatePipe } from './pipe/vehicle-plate.pipe/vehicle-plate.pipe';
 import { NumberReportPipe } from './pipe/number-report.pipe/number-report.pipe';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { IntlModule } from '@progress/kendo-angular-intl';
-import { registerLocaleData } from '@angular/common'; // Import registerLocaleData
-import localeVi from '@angular/common/locales/vi'; // Import localeVi từ gói ngôn ngữ tiếng Việt
+import { registerLocaleData } from '@angular/common'; 
+import localeVi from '@angular/common/locales/vi'; 
 import { MultiSelectModule } from '@progress/kendo-angular-dropdowns'; 
 import "@progress/kendo-angular-intl/locales/vi/all";
 

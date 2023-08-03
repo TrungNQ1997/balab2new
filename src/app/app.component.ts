@@ -9,8 +9,7 @@ export class AppComponent {
   birthdayFrom = "";
   title = 'BAUserManager';
   private curLang: string = 'vi';
-
-  
+ 
   getCurLang(): string {
     return this.curLang;
   }
