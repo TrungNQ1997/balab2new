@@ -18,15 +18,26 @@
 
           <label class=" col-form-label w-auto mx-2">Ngày sinh từ</label>
 
-          <input type="text" class="form-control col datepicker    " bsDatepicker [(ngModel)]="birthdayFrom"
-            placeholder="Chọn ngày">
+          <kendo-datepicker [value]="birthdayFrom"  [(ngModel)]="birthdayFrom"
+          class=" border  col datepicker ">
+          <kendo-datepicker-messages today="Hôm nay" toggle="Chọn ngày"></kendo-datepicker-messages>
+        </kendo-datepicker>
+
+          <!-- <input type="text" class="form-control col datepicker    " bsDatepicker [(ngModel)]="birthdayFrom"
+            placeholder="Chọn ngày"> -->
 
         </div>
         <div class="col-md-4 col-sm-4 col-12 row no-gutters mt-1">
           <label class="  col-form-label w-auto mx-2">Đến</label>
 
-          <input type="text" class="form-control col datepicker   " bsDatepicker [(ngModel)]="birthdayTo"
-            placeholder="Chọn ngày">
+          <!-- <input type="text" class="form-control col datepicker   " bsDatepicker [(ngModel)]="birthdayTo"
+            placeholder="Chọn ngày"> -->
+
+            <kendo-datepicker [value]="birthdayTo"  [(ngModel)]="birthdayTo"
+            class=" border  col datepicker ">
+            <kendo-datepicker-messages today="Hôm nay" toggle="Chọn ngày"></kendo-datepicker-messages>
+          </kendo-datepicker>
+
         </div>
 
       </div>
@@ -91,29 +102,29 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of users">
-                <td class="w-8 text-center ">{{item.stt}}</td>
-                <td class=" text-center "><input type="checkbox" role="button" (change)="changCheckBox()"
+                <td class="w-8 text-center align-middle">{{item.stt}}</td>
+                <td class=" text-center align-middle"><input type="checkbox" role="button" (change)="changCheckBox()"
                     [(ngModel)]="item.selected"></td>
 
-                <td class=" text-center "
+                <td class=" text-center align-middle "
                   [ngClass]="{'text-primary': item.isActive == true,'text-danger': item.isActive == false}">
                   {{item.username}}</td>
-                <td class=" text-center " [ngClass]="{'text-end': item.sexId == 1, 
+                <td class=" text-center align-middle " [ngClass]="{'text-end': item.sexId == 1, 
          'text-start': item.sexId == 2, 'text-center': item.sexId == 3}">
                   {{item.fullName}}</td>
-                <td class=" text-center ">{{item.birthday | date: formatDate}}</td>
-                <td class=" text-center ">{{item.gioiTinhText}}</td>
-                <td class=" text-center ">{{item.phone | phoneFormat }}</td>
-                <td class=" text-center ">{{item.email}}</td>
-                <td class=" text-center min-w-105">
+                <td class=" text-center align-middle">{{item.birthday | date: formatDate}}</td>
+                <td class=" text-center align-middle">{{item.gioiTinhText}}</td>
+                <td class=" text-center align-middle">{{item.phone | phoneFormat }}</td>
+                <td class=" text-center align-middle">{{item.email}}</td>
+                <td class=" text-center min-w-105 align-middle">
                   <span class="bg-success  text-white p-2 rounded  " *ngIf="item.isActive == true">Hoạt động</span>
                   <span class="bg-danger  text-white p-2 rounded  " *ngIf="item.isActive == false">Vô hiệu hóa</span>
                 </td>
-                <td class=" text-center " *ngIf="isRoleEdit">
+                <td class=" text-center align-middle" *ngIf="isRoleEdit">
                   <button class="btn" (click)="editUser($event,item)"><i
                       class="fa-regular fa-pen-to-square c-poiter"></i></button>
                 </td>
-                <td class=" text-center " *ngIf="isRoleDelete">
+                <td class=" text-center align-middle" *ngIf="isRoleDelete">
                   <button class="btn" (click)="deleteUser($event,item)">
                     <i class="fa-solid fa-trash-can c-poiter text-danger" accesskey="">
 
@@ -127,7 +138,7 @@
         </div>
         <!--end table bootstrap -->
 
-        <nav aria-label="Page navigation example " class="bg-light d-flex flex-wrap"
+        <nav aria-label="Page navigation example " class="bg-light d-flex flex-wrap footer-table "
           style="justify-content: space-between;">
           <div class="d-flex flex-wrap">
             <ul class="pagination m-2 flex-wrap">

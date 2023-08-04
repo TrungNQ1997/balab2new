@@ -87,8 +87,7 @@ export class ForgetPassUserComponent {
     }
 
     refreshUser() {
-        this.user = new Object();
-
+        this.user = new Object(); 
         this.user.password = "";
         this.user.passwordOld = "";
         this.user.rePassword = "";

@@ -3,6 +3,10 @@
   height: fit-content;
 }
 
+.footer-table {
+  border-top: 1px solid #dee2e6 !important;
+}
+
 .h-15px {
   height: 15px;
 }
@@ -53,7 +57,9 @@ code {
   }
 
 }
- 
+ .k-timepicker{
+  min-width: 100px;
+ }
 .custom-header {
   background-color: rgb(45, 156, 219) !important;
   vertical-align: middle !important;

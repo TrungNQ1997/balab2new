@@ -27,8 +27,8 @@ export class ListUserComponent {
     isRoleEdit = false;
     isRoleDelete = false;
     isExpanded = false;
-    birthdayFrom = "";
-    birthdayTo = "";
+    birthdayFrom :Date =new Date();
+    birthdayTo :Date  =new Date();
     pageNumber = 1;
     textSearch = "";
     pageSize: number = 10;
@@ -62,8 +62,8 @@ export class ListUserComponent {
         this.arrayPage = [];
         this.checkLoginAndRole();
         this.users = [];
-        this.birthdayFrom = "";
-        this.birthdayTo = "";
+        // this.birthdayFrom ;
+        // this.birthdayTo = "";
         this.pageNumber = 0;
         this.textSearch = "";
         this.pageSize = 10;
@@ -291,7 +291,7 @@ export class ListUserComponent {
                 dayTo = new Date(new Date(this.birthdayTo).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
             } catch (error) {
-                this.birthdayTo = "";
+                //this.birthdayTo = ;
             }
         } else {
             dayTo = null;
@@ -303,7 +303,7 @@ export class ListUserComponent {
                 dayFrom = new Date(new Date(this.birthdayFrom).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
             } catch (error) {
-                this.birthdayFrom = ""
+                //this.birthdayFrom = ""
             }
         } else {
             dayFrom = null;
@@ -313,8 +313,8 @@ export class ListUserComponent {
             "userId": "1",
             "pageNumber": this.pageNumber + 1,
             "gioiTinhSearch": this.gioiTinhSearch,
-            "birthdayTo": this.birthdayTo == "" ? null : dayTo,
-            "birthdayFrom": this.birthdayFrom == "" ? null : dayFrom,
+            "DayTo": this.birthdayTo  ? dayTo : null ,
+            "DayFrom": this.birthdayFrom  ? dayFrom : null ,
             "textSearch": this.textSearch,
             "pageSize": this.pageSize
 
@@ -344,10 +344,10 @@ export class ListUserComponent {
 
         if (this.pageNumber < 0) {
             this.pageNumber = 0;
-            this.getListUser();
+            //this.getListUser();
         } else if (this.pageNumber >= this.arrayPage.length) {
             this.pageNumber = this.arrayPage.length - 1;
-            this.getListUser();
+            //this.getListUser();
         }
 
         if (this.totalCountListAll == 0) {
@@ -385,14 +385,12 @@ export class ListUserComponent {
         this.getListUser();
     }
 
-    maxPage() {
-
+    maxPage() { 
         this.pageNumber = this.totalNumberPage - 1;
         this.getListUser();
     }
 
-    minPage() {
-
+    minPage() { 
         this.pageNumber = 0;
         this.getListUser();
     }
@@ -412,8 +410,7 @@ export class ListUserComponent {
                     this.isRoleAdd = true;
                     this.isRoleEdit = true;
                     this.isRoleDelete = true;
-                } else {
-
+                } else { 
                     if (result.data.list) {
                         var roleShow = result.data.list.filter((m: { action: string; }) => m.action == "show");
                         var roleAdd = result.data.list.filter((m: { action: string; }) => m.action == "add");

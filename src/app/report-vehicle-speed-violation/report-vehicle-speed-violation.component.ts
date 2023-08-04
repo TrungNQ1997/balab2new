@@ -123,9 +123,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
         }
 
     }
-
-
-
+ 
     prepareInput() {
         var data: any; 
         var dayTo: any = "";
