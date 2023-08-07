@@ -184,13 +184,13 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
             this.http.post<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getDataReport',
                 this.prepareInput(), this.sharedService.httpOptions)
                 .subscribe(response => {
-                    var list = response.data.list;
+                    var list = response.data.iEnumerable;
                     var stt = this.pageNumber * this.pageSize;
                     for (let i = 0; i < list.length; i++) {
                         stt++;
                         list[i].stt = stt;
                     }
-                    this.dataReport = response.data.list;
+                    this.dataReport = list;
                     this.totalCountListAll = response.data.count; 
                     this.changePageSize();
                 }); 
@@ -257,7 +257,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
     getDataVehicles() { 
         this.http.get<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getVehicles', this.sharedService.httpOptions)
             .subscribe(response => { 
-                this.dropdownList = response.data.list; 
+                this.dropdownList = response.data.iEnumerable; 
             }); 
     }
 

@@ -27,8 +27,8 @@ export class ListUserComponent {
     isRoleEdit = false;
     isRoleDelete = false;
     isExpanded = false;
-    birthdayFrom :Date =new Date();
-    birthdayTo :Date  =new Date();
+    birthdayFrom :Date | null =null;
+    birthdayTo :Date | null  =null;
     pageNumber = 1;
     textSearch = "";
     pageSize: number = 10;
@@ -52,10 +52,8 @@ export class ListUserComponent {
         private router: Router, private toastr: ToastrService,
         private sharedService: SharedService, private modalService: NgbModal
     ) {
-        this.translateService.setDefaultLang('vi');
-
-        this.translateService.use('vi');
-
+        this.translateService.setDefaultLang('vi'); 
+        this.translateService.use('vi'); 
     }
 
     ngOnInit() {
@@ -199,8 +197,7 @@ export class ListUserComponent {
         users.array.forEach((element: { id: any; username: any; }) => {
             data.users.push({
                 id: element.id,
-                username: element.username
-
+                username: element.username 
             });
         });
 
@@ -281,7 +278,19 @@ export class ListUserComponent {
         this.getListUser(); 
     }
 
+    validInputSearch(){
+        if(this.birthdayFrom && this.birthdayTo){
+            if (this.birthdayFrom > this.birthdayTo) {
+                
+                this.toastr.error("Từ ngày không được lớn hơn đến ngày");
+                return false;
+            }
+        }
+        return true;
+    }
+
     getListUser() { 
+        if(this.validInputSearch()) { 
         var data: any;
 
         var dayTo: any = "";
@@ -290,8 +299,7 @@ export class ListUserComponent {
                 const offset = new Date(this.birthdayTo).getTimezoneOffset();
                 dayTo = new Date(new Date(this.birthdayTo).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
-            } catch (error) {
-                //this.birthdayTo = ;
+            } catch (error) { 
             }
         } else {
             dayTo = null;
@@ -302,13 +310,12 @@ export class ListUserComponent {
                 const offset = new Date(this.birthdayFrom).getTimezoneOffset();
                 dayFrom = new Date(new Date(this.birthdayFrom).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
-            } catch (error) {
-                //this.birthdayFrom = ""
+            } catch (error) { 
             }
         } else {
             dayFrom = null;
         }
-
+ 
         data = {
             "userId": "1",
             "pageNumber": this.pageNumber + 1,
@@ -328,9 +335,8 @@ export class ListUserComponent {
                 this.totalCountListAll = response.data.count;
                 this.changCheckBox();
                 this.changePageSize();
-            });
-
-    }
+            }); 
+    }}
 
     changePageSize() { 
         this.totalNumberPage = Math.ceil(this.totalCountListAll / this.pageSize);
