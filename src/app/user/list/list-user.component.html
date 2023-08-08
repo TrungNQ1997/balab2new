@@ -10,7 +10,7 @@
       <div class="col-sm-12 col-12 col-lg col-md-12 row no-gutters">
 
         <div class="col-md-4 col-sm-3 col-12 mt-1">
-          <input type="text" class="col  form-control   " maxlength="200" [(ngModel)]="textSearch"
+          <input type="text" class="col  form-control border" maxlength="200" [(ngModel)]="textSearch"
             placeholder="Tìm theo email, họ tên, sđt, tên đăng nhập ">
 
         </div>
@@ -18,23 +18,15 @@
 
           <label class=" col-form-label w-auto mx-2">Ngày sinh từ</label>
 
-          <kendo-datepicker  [(ngModel)]="birthdayFrom"
-          class=" border  col datepicker ">
-          <kendo-datepicker-messages today="Hôm nay" toggle="Chọn ngày"></kendo-datepicker-messages>
-        </kendo-datepicker>
-
-          <!-- <input type="text" class="form-control col datepicker    " bsDatepicker [(ngModel)]="birthdayFrom"
-            placeholder="Chọn ngày"> -->
+          <kendo-datepicker [(ngModel)]="birthdayFrom" class=" border  col datepicker ">
+            <kendo-datepicker-messages today="Hôm nay" toggle="Chọn ngày"></kendo-datepicker-messages>
+          </kendo-datepicker>
 
         </div>
         <div class="col-md-4 col-sm-4 col-12 row no-gutters mt-1">
           <label class="  col-form-label w-auto mx-2">Đến</label>
 
-          <!-- <input type="text" class="form-control col datepicker   " bsDatepicker [(ngModel)]="birthdayTo"
-            placeholder="Chọn ngày"> -->
-
-            <kendo-datepicker  [(ngModel)]="birthdayTo"
-            class=" border  col datepicker ">
+          <kendo-datepicker [(ngModel)]="birthdayTo" class=" border  col datepicker ">
             <kendo-datepicker-messages today="Hôm nay" toggle="Chọn ngày"></kendo-datepicker-messages>
           </kendo-datepicker>
 
@@ -78,31 +70,35 @@
       </div>
     </div>
     <div class="pb-2">
-      <div class="border ">
+      <div class="border  border-top-0 ">
         <div class="table-scroll">
           <!-- table bootstrap -->
-          <table class="table table-bordered table-hover custom-mat-table align-middle" id="tableToExport" width="100%"
-            #table>
+          <table class="table table-bordered table-hover custom-mat-table align-middle  border-left-0 border-right-0 "
+            id="tableToExport" width="100%" #table>
             <thead class="align-middle">
               <tr>
-                <th scope="col" class="w-8 text-light   custom-header  text-center ">STT</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center " role="button" (click)="selectAll()">
+                <th scope="col" class="w-8 text-light   custom-header  text-center border-left-0 border-bottom ">STT
+                </th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center  border-bottom " role="button"
+                  (click)="selectAll()">
                   Chọn</th>
 
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Tên đăng nhập</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Họ tên</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Ngày sinh</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Giới tính</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Điện thoại</th>
-                <th scope="col" class="w-10 custom-header  text-light  text-center ">Email</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center ">Trạng thái</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center " *ngIf="isRoleEdit">Sửa</th>
-                <th scope="col" class="w-8 custom-header  text-light  text-center " *ngIf="isRoleDelete">Xóa</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Tên đăng nhập</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Họ tên</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Ngày sinh</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Giới tính</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Điện thoại</th>
+                <th scope="col" class="w-10 custom-header  text-light  text-center  border-bottom ">Email</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center  border-bottom ">Trạng thái</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center  border-bottom " *ngIf="isRoleEdit">
+                  Sửa</th>
+                <th scope="col" class="w-8 custom-header  text-light  text-center border-right-0 border-bottom "
+                  *ngIf="isRoleDelete">Xóa</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of users">
-                <td class="w-8 text-center align-middle">{{item.stt}}</td>
+                <td class="w-8 text-center align-middle border-left-0">{{item.stt}}</td>
                 <td class=" text-center align-middle"><input type="checkbox" role="button" (change)="changCheckBox()"
                     [(ngModel)]="item.selected"></td>
 
@@ -124,7 +120,7 @@
                   <button class="btn" (click)="editUser($event,item)"><i
                       class="fa-regular fa-pen-to-square c-poiter"></i></button>
                 </td>
-                <td class=" text-center align-middle" *ngIf="isRoleDelete">
+                <td class=" text-center align-middle border-right-0" *ngIf="isRoleDelete">
                   <button class="btn" (click)="deleteUser($event,item)">
                     <i class="fa-solid fa-trash-can c-poiter text-danger" accesskey="">
 
@@ -182,7 +178,7 @@
               <li class="d-flex align-items-center">
                 <label class="mb-0 ml-2">Dòng mỗi trang</label>
               </li>
- 
+
             </ul>
           </div>
           <ul class="flex-right m-2 pagination">

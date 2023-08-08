@@ -44,13 +44,13 @@
             [(ngModel)]="password" placeholder="{{'login.pass' | translate}}" id="exampleInputPassword1" />
           <i class="fa-solid fa-lock icon-login"></i>
           <button class="btn border-0 icon-login-end btn-show-pass" (click)="showPass()"><i
-              class="fa-regular fa-eye icon-login-end" style="right: 0px;"></i></button> 
+              class="fa-regular fa-eye icon-login-end" style="right: 0px;"></i></button>
         </div>
 
         <div class="mx-1 d-flex  " style="justify-content: space-between;width: 100%;">
           <ul class="no-pad no-mar d-flex ps-0">
 
-            <input class="mr-2  " type="checkbox" role="button" [(ngModel)]="isRemember" id="isRemember">
+            <input class="mr-2  mb-2" type="checkbox" role="button" [(ngModel)]="isRemember" id="isRemember">
             <label class="form-text" role="button" for="isRemember">{{'login.remember_pass'|translate}}</label>
 
           </ul>
@@ -83,13 +83,13 @@
 
   <div class="d-flex div-container-footer">
     <!--div chi nhánh-->
-    <div class="div-container-brans"> 
-      <div class="div-xl-bran col-lg-md-3 col-sm-4 col-12   div-bran" *ngFor="let branch of listBranch"> 
+    <div class="div-container-brans">
+      <div class="div-xl-bran col-lg-md-3 col-sm-4 col-12   div-bran" *ngFor="let branch of listBranch">
         <div class="title-bran">
           {{branch.title}}</div>
         <br />
         <div class="des-bran">
-          {{branch.address}}</div> 
+          {{branch.address}}</div>
       </div>
     </div>
     <div class="div-link-social">

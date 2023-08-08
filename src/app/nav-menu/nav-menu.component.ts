@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'; 
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from '../app.component';
 import { Subscription } from 'rxjs';
@@ -20,9 +20,9 @@ export class NavMenuComponent {
     }
   );
   isExpanded = false;
-  modalOptions: NgbModalOptions = { 
-    windowClass: "myCustomModalClass", 
-    centered: true 
+  modalOptions: NgbModalOptions = {
+    windowClass: "myCustomModalClass",
+    centered: true
   };
   dropDownData = [
     { val: "vi", text: "Tiếng Việt", img: "assets/img/icon-co-vn.png" },
@@ -35,12 +35,12 @@ export class NavMenuComponent {
     , private sharedService: SharedService, private router: Router,
     private route: ActivatedRoute
     , private modalService: NgbModal
-  ) { 
-    this.translateService.setDefaultLang('vi'); 
-    this.translateService.use('vi'); 
+  ) {
+    this.translateService.setDefaultLang('vi');
+    this.translateService.use('vi');
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     var lan = localStorage.getItem("language");
     if (lan) {
       this.langModel = this.dropDownData.filter(m => m.val == lan)[0];
@@ -49,7 +49,7 @@ export class NavMenuComponent {
       this.langModel = this.dropDownData[0];
       this.translateService.use(this.dropDownData[0].val);
       localStorage.setItem("language", this.dropDownData[0].val);
-    } 
+    }
     var visi = this.sharedService.getCookie("token");
     var login = sessionStorage.getItem("login");
     if (login) {
@@ -80,7 +80,7 @@ export class NavMenuComponent {
   }
 
 
-  onChangePass() { 
+  onChangePass() {
     var modalRef = this.modalService.open(ForgetPassUserComponent, this.modalOptions);
 
     modalRef.componentInstance.data = {
@@ -141,20 +141,20 @@ export class NavMenuComponent {
       content: notis
     };
 
-    modalRef.result.then((result) => { 
+    modalRef.result.then((result) => {
       if (result == "ok") {
         this.callLogout();
-      } 
+      }
     }).catch((error) => {
       console.log(error)
-    }); 
+    });
   }
 
   callLogout() {
     localStorage.clear();
     sessionStorage.clear();
     this.deleteAllCookies();
-    this.sharedService.setIsNavbarVisible(false); 
+    this.sharedService.setIsNavbarVisible(false);
     this.router.navigate([''], { relativeTo: this.route });
   }
 

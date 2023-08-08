@@ -1,216 +1,223 @@
- 
-.h-fit {
-  height: fit-content;
-}
-
-.footer-table {
-  border-top: 1px solid #dee2e6 !important;
-}
-
-.h-15px {
-  height: 15px;
-}
-
-.ng-invalid.ng-touched {
-  border: 1px solid red;
-}
-
-.multiselect-dropdown {
-  .dropdown-btn {
-    min-height: 32px;
-    height: auto;
-  }
-}
-
-a {
-  color: #0366d6;
-}
-
-code {
-  color: #e01a76;
-}
-
-.multiselect-dropdown {
-  .dropdown-btn .selected-item-container .selected-item {
-    margin-bottom: 0px !important;
-  }
-
-  .multiselect-item-checkbox {
-    display: block !important;
-  }
-
-  .dropdown-list {
-    height: 300px;
-    overflow: auto;
-    min-width: 170px;
-  }
-
-  .item2 {
-    max-height: unset !important;
-  }
-
-  .dropdown-btn {
-    margin-top: 3px !important; 
-    border: 1px solid #dee2e6 !important;
-    padding-top: 4px !important;
-    padding-bottom: 4px !important;
-  }
-
-}
- .k-timepicker{
-  min-width: 100px;
+ .h-fit {
+   height: fit-content;
  }
-.custom-header {
-  background-color: rgb(45, 156, 219) !important;
-  vertical-align: middle !important;
-}
 
-.timepicker {
-  width: 100px;
-}
+ .footer-table {
+   border-top: 1px solid #dee2e6 !important;
+ }
 
-.datepicker {
-  min-width: 110px; 
-}
+ .h-15px {
+   height: 15px;
+ }
 
-.div-item-lang {
-  min-height: 40px;
-  cursor: pointer;
-  border: 1px solid #ced4da;
+ .ng-invalid.ng-touched {
+   border: 1px solid red !important;
+ }
 
-}
+ .modal-content {
+   width: fit-content !important;
+ }
 
-.btn-primary-common {
-  background-color: rgb(97, 148, 194) !important;
-  margin-right: 20px !important;
-}
 
-.position-icon-pass {
-  position: absolute;
-  right: 21px;
-  top: 14px;
+ .multiselect-dropdown {
+   .dropdown-btn {
+     min-height: 32px;
+     height: auto;
+   }
+ }
 
-}
+ a {
+   color: #0366d6;
+ }
 
-.w-100per-position-relative {
-  width: 100%;
-  position: relative;
-}
+ code {
+   color: #e01a76;
+ }
 
-.h-40 {
-  height: 40px;
-}
+ .multiselect-dropdown {
+   .dropdown-btn .selected-item-container .selected-item {
+     margin-bottom: 0px !important;
+   }
 
-.div-item-lang:hover {
-  background-color: rgb(206, 214, 224);
-}
+   .multiselect-item-checkbox {
+     display: block !important;
+   }
 
-.border-normal {
-  border: 1px solid #ced4da;
-  border-radius: 8px;
-  padding-right: 7px;
-  padding-left: 7px;
-}
+   .dropdown-list {
+     height: 300px;
+     overflow: auto;
+     min-width: 170px;
+   }
 
-.no-pad {
-  padding: 0px;
-}
+   .item2 {
+     max-height: unset !important;
+   }
 
-.c-poiter {
-  cursor: pointer;
-}
+   .dropdown-btn {
+     margin-top: 3px !important;
+     border: 1px solid #dee2e6 !important;
+     padding-top: 4px !important;
+     padding-bottom: 4px !important;
+   }
 
-.no-mar {
-  margin: 0px;
-}
+ }
 
-.button-theme {
-  background-color: rgb(97, 148, 194);
-  color: white;
-  border: 1px solid rgb(97, 148, 194); 
-}
+ .k-timepicker {
+   min-width: 100px;
+ }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
+ .custom-header {
+   background-color: rgb(45, 156, 219) !important;
+   vertical-align: middle !important;
+ }
 
-.margin-div-container {
-  margin-left: 30px !important;
-  margin-right: 30px !important;
-  width: 100%;
-  max-width: unset !important;
-}
+ .timepicker {
+   width: 100px;
+ }
 
-* {
-  font-size: 13px !important;
-  font-family: Arial;
-}
+ .datepicker {
+   min-width: 110px;
+ }
 
-table th,
-td {
-  border: 1px solid back !important;
-}
+ .div-item-lang {
+   min-height: 40px;
+   margin-top: -1px;
+   cursor: pointer;
+   border: 1px solid #ced4da;
 
-.mat-paginator-page-size-label {
-  padding-top: 15px;
-}
+ }
 
-.p-right-5 {
-  padding-right: 5px;
-}
+ .btn-primary-common {
+   background-color: rgb(97, 148, 194) !important;
+   margin-right: 20px !important;
+ }
 
-.pad-rl-5 {
-  padding-right: 5px;
-  padding-left: 5px;
-}
+ .position-icon-pass {
+   position: absolute;
+   right: 21px;
+   top: 14px;
 
-.custom-mat-table thead {
+ }
 
-  position: sticky;
-  top: -1px;
-  /*tùy thuộc độ rộng border set lên để lấp chỗ trống */
-  z-index: 1;
-  background-color: white;
+ .w-100per-position-relative {
+   width: 100%;
+   position: relative;
+ }
 
-}
+ .h-40 {
+   height: 40px;
+ }
 
-.dp-block {
-  display: block !important;
-}
+ .div-item-lang:hover {
+   background-color: rgb(206, 214, 224);
+ }
 
-.dp-none {
-  display: none !important;
-}
+ .border-normal {
+   border: 1px solid #ced4da;
+   border-radius: 8px;
+   padding-right: 7px;
+   padding-left: 7px;
+ }
 
-.font-menu * {
-  color: rgb(97, 148, 194) !important;
-}
+ .no-pad {
+   padding: 0px;
+ }
 
-.font-menu {
-  color: rgb(97, 148, 194) !important;
-}
+ .c-poiter {
+   cursor: pointer;
+ }
 
-html,
-body {
-  height: 100%;
-}
+ .no-mar {
+   margin: 0px;
+ }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+ .button-theme {
+   background-color: rgb(97, 148, 194);
+   color: white;
+   border: 1px solid rgb(97, 148, 194);
+ }
 
-.mat-form-field-infix {
-  border-top-width: 0px;
-  padding-top: 0px !important;
-}
+ .btn-primary {
+   color: #fff;
+   background-color: #1b6ec2;
+   border-color: #1861ac;
+ }
 
-.modal-dialog { 
-  max-width: max-content;
-}
+ .margin-div-container {
+   margin-left: 30px !important;
+   margin-right: 30px !important;
+   width: 100%;
+   max-width: unset !important;
+ }
 
-.modal {
-  overflow: auto !important;
-}
+ * {
+   font-size: 13px !important;
+   font-family: Arial;
+ }
+
+ table th,
+ td {
+   border: 1px solid back !important;
+ }
+
+ .mat-paginator-page-size-label {
+   padding-top: 15px;
+ }
+
+ .p-right-5 {
+   padding-right: 5px;
+ }
+
+ .pad-rl-5 {
+   padding-right: 5px;
+   padding-left: 5px;
+ }
+
+ .custom-mat-table thead {
+
+   position: sticky;
+   top: -1px;
+   /*tùy thuộc độ rộng border set lên để lấp chỗ trống */
+   z-index: 1;
+   background-color: white;
+
+ }
+
+ .dp-block {
+   display: block !important;
+ }
+
+ .dp-none {
+   display: none !important;
+ }
+
+ .font-menu * {
+   color: rgb(97, 148, 194) !important;
+ }
+
+ .font-menu {
+   color: rgb(97, 148, 194) !important;
+ }
+
+ html,
+ body {
+   height: 100%;
+ }
+
+ body {
+   margin: 0;
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+ }
+
+ .mat-form-field-infix {
+   border-top-width: 0px;
+   padding-top: 0px !important;
+ }
+
+ .modal-dialog {
+   max-width: max-content !important;
+ }
+
+ .modal {
+   overflow: auto !important;
+ }

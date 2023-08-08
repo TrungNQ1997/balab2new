@@ -37,9 +37,12 @@
                             <label class="color-red">*</label>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control     " [formControl]="formControlBirthday"
-                                bsDatepicker name="txt-ngay-sinh" [(ngModel)]="user.birthday" (blur)="checkValidAfter()"
-                                placeholder="Chọn ngày">
+
+                            <kendo-datepicker [(ngModel)]="user.birthday" [formControl]="formControlBirthday"
+                                (blur)="checkValidAfter()" class=" border px-0 col datepicker ">
+                                <kendo-datepicker-messages today="Hôm nay"
+                                    toggle="Chọn ngày"></kendo-datepicker-messages>
+                            </kendo-datepicker>
                         </div>
 
                     </div>

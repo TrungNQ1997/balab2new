@@ -274,7 +274,6 @@ export class HomeComponent {
 
   ngAfterViewInit() {
     this.showSlides(this.slideIndex);
-    //this.showSlidesNoTimeout(1)//test
   }
 
 }

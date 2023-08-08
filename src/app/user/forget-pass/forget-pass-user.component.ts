@@ -35,8 +35,8 @@ export class ForgetPassUserComponent {
     }
 
     ngOnInit() {
-        this.notis = ''; 
-        this.showMes = false; 
+        this.notis = '';
+        this.showMes = false;
         this.refreshUser();
 
         this.gioiTinhList = [{ value: 1, viewValue: "Nam" },
@@ -62,7 +62,7 @@ export class ForgetPassUserComponent {
         ]);
     }
 
-    checkConditionRepass(formControl: AbstractControl) { 
+    checkConditionRepass(formControl: AbstractControl) {
         if (this.formControlPass.value != formControl.value) {
             return {
                 required: true
@@ -87,7 +87,7 @@ export class ForgetPassUserComponent {
     }
 
     refreshUser() {
-        this.user = new Object(); 
+        this.user = new Object();
         this.user.password = "";
         this.user.passwordOld = "";
         this.user.rePassword = "";
@@ -96,7 +96,7 @@ export class ForgetPassUserComponent {
 
     save() {
         var valid = this.checkValid();
-        if (valid) { 
+        if (valid) {
             this.user.userId = localStorage.getItem("userId");
             this.user.username = localStorage.getItem("username");
 

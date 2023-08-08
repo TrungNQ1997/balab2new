@@ -161,7 +161,7 @@ export class EditUserComponent {
     }
 
     refreshUser() {
-        this.user = new Object(); 
+        this.user = new Object();
         this.user.fullName = "";
         this.user.sexId = 1;
         this.user.isAdmin = true;
@@ -173,7 +173,7 @@ export class EditUserComponent {
         this.user.rePassword = "";
     }
 
-    save() { 
+    save() {
         if (this.data.statusForm == 'add') {
 
             this.sharedService.callAddUser(this.prepareData()).subscribe(response => {
@@ -194,8 +194,8 @@ export class EditUserComponent {
 
             });
 
-        } else if (this.data.statusForm == 'edit') { 
-            this.user.user_id = '2'; 
+        } else if (this.data.statusForm == 'edit') {
+            this.user.user_id = '2';
             this.http.post<any>(this.sharedService.url + 'user/edituser',
                 this.prepareData(), this.sharedService.httpOptions)
                 .subscribe(response => {
@@ -210,7 +210,7 @@ export class EditUserComponent {
 
                 });
 
-        } 
+        }
     }
 
     prepareData() {
@@ -228,9 +228,9 @@ export class EditUserComponent {
         return this.user
     }
 
-    saveAdd() { 
-        if (this.data.statusForm == 'add') { 
-            this.sharedService.callAddUser(this.prepareData()).subscribe(response => { 
+    saveAdd() {
+        if (this.data.statusForm == 'add') {
+            this.sharedService.callAddUser(this.prepareData()).subscribe(response => {
                 if (response.data.error == false) {
                     this.toastr.success('Thêm người dùng thành công', 'Thông báo');
                     this.isLoadList = true;

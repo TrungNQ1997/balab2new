@@ -16,7 +16,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
     templateUrl: './list-user.component.html',
     styleUrls: ['./list-user.component.scss']
 })
-export class ListUserComponent { 
+export class ListUserComponent {
     isUserIconVisible: boolean = false;
     pageSizeOptions: number[] = [];
     formatDate = 'dd/MM/yyyy';
@@ -27,8 +27,8 @@ export class ListUserComponent {
     isRoleEdit = false;
     isRoleDelete = false;
     isExpanded = false;
-    birthdayFrom :Date | null =null;
-    birthdayTo :Date | null  =null;
+    birthdayFrom: Date | null = null;
+    birthdayTo: Date | null = null;
     pageNumber = 1;
     textSearch = "";
     pageSize: number = 10;
@@ -37,9 +37,9 @@ export class ListUserComponent {
     totalNumberPage = 0;
     totalCountListAll = 0;
     arrayPage: any = [];
-    modalOptions: NgbModalOptions = { 
-        windowClass: "myCustomModalClass", 
-        centered: true  
+    modalOptions: NgbModalOptions = {
+        windowClass: "myCustomModalClass",
+        centered: true
     };
     gioiTinhSearch: number = 0;
     gioiTinhList: any = [];
@@ -52,8 +52,8 @@ export class ListUserComponent {
         private router: Router, private toastr: ToastrService,
         private sharedService: SharedService, private modalService: NgbModal
     ) {
-        this.translateService.setDefaultLang('vi'); 
-        this.translateService.use('vi'); 
+        this.translateService.setDefaultLang('vi');
+        this.translateService.use('vi');
     }
 
     ngOnInit() {
@@ -155,8 +155,8 @@ export class ListUserComponent {
         link.remove();
     }
 
-    deleteUser($event: any, a: any) { 
-        var notis = "Bạn có đồng ý xóa người dùng này không?" 
+    deleteUser($event: any, a: any) {
+        var notis = "Bạn có đồng ý xóa người dùng này không?"
         var modalRef = this.modalService.open(ModalComfirmComponent, this.modalOptions);
 
         modalRef.componentInstance.data = {
@@ -189,7 +189,7 @@ export class ListUserComponent {
         this.changCheckBox();
     }
 
-    callDeleteUser(users: any) { 
+    callDeleteUser(users: any) {
         var data: any;
         data = new Object();
         data.users = [];
@@ -197,7 +197,7 @@ export class ListUserComponent {
         users.array.forEach((element: { id: any; username: any; }) => {
             data.users.push({
                 id: element.id,
-                username: element.username 
+                username: element.username
             });
         });
 
@@ -254,7 +254,7 @@ export class ListUserComponent {
         }
     }
 
-    callDeleteList() { 
+    callDeleteList() {
         var data: any;
         data = new Object();
         data.users = this.users.filter((m: { selected: boolean; }) => m.selected == true);
@@ -273,15 +273,15 @@ export class ListUserComponent {
             });
     }
 
-    search() { 
+    search() {
         this.pageNumber = 0;
-        this.getListUser(); 
+        this.getListUser();
     }
 
-    validInputSearch(){
-        if(this.birthdayFrom && this.birthdayTo){
+    validInputSearch() {
+        if (this.birthdayFrom && this.birthdayTo) {
             if (this.birthdayFrom > this.birthdayTo) {
-                
+
                 this.toastr.error("Từ ngày không được lớn hơn đến ngày");
                 return false;
             }
@@ -289,56 +289,57 @@ export class ListUserComponent {
         return true;
     }
 
-    getListUser() { 
-        if(this.validInputSearch()) { 
-        var data: any;
+    getListUser() {
+        if (this.validInputSearch()) {
+            var data: any;
 
-        var dayTo: any = "";
-        if (this.birthdayTo) {
-            try {
-                const offset = new Date(this.birthdayTo).getTimezoneOffset();
-                dayTo = new Date(new Date(this.birthdayTo).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
+            var dayTo: any = "";
+            if (this.birthdayTo) {
+                try {
+                    const offset = new Date(this.birthdayTo).getTimezoneOffset();
+                    dayTo = new Date(new Date(this.birthdayTo).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
-            } catch (error) { 
+                } catch (error) {
+                }
+            } else {
+                dayTo = null;
             }
-        } else {
-            dayTo = null;
-        }
-        var dayFrom: any = "";
-        if (this.birthdayFrom) {
-            try {
-                const offset = new Date(this.birthdayFrom).getTimezoneOffset();
-                dayFrom = new Date(new Date(this.birthdayFrom).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
+            var dayFrom: any = "";
+            if (this.birthdayFrom) {
+                try {
+                    const offset = new Date(this.birthdayFrom).getTimezoneOffset();
+                    dayFrom = new Date(new Date(this.birthdayFrom).getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
 
-            } catch (error) { 
+                } catch (error) {
+                }
+            } else {
+                dayFrom = null;
             }
-        } else {
-            dayFrom = null;
+
+            data = {
+                "userId": "1",
+                "pageNumber": this.pageNumber + 1,
+                "gioiTinhSearch": this.gioiTinhSearch,
+                "DayTo": this.birthdayTo ? dayTo : null,
+                "DayFrom": this.birthdayFrom ? dayFrom : null,
+                "textSearch": this.textSearch,
+                "pageSize": this.pageSize
+
+            }
+
+            this.http.post<any>(this.sharedService.url + 'user/getListUserFilter',
+                data, this.sharedService.httpOptions)
+                .subscribe(response => {
+
+                    this.users = response.data.list;
+                    this.totalCountListAll = response.data.count;
+                    this.changCheckBox();
+                    this.changePageSize();
+                });
         }
- 
-        data = {
-            "userId": "1",
-            "pageNumber": this.pageNumber + 1,
-            "gioiTinhSearch": this.gioiTinhSearch,
-            "DayTo": this.birthdayTo  ? dayTo : null ,
-            "DayFrom": this.birthdayFrom  ? dayFrom : null ,
-            "textSearch": this.textSearch,
-            "pageSize": this.pageSize
+    }
 
-        }
-
-        this.http.post<any>(this.sharedService.url + 'user/getListUserFilter',
-            data, this.sharedService.httpOptions)
-            .subscribe(response => {
-
-                this.users = response.data.list;
-                this.totalCountListAll = response.data.count;
-                this.changCheckBox();
-                this.changePageSize();
-            }); 
-    }}
-
-    changePageSize() { 
+    changePageSize() {
         this.totalNumberPage = Math.ceil(this.totalCountListAll / this.pageSize);
         this.arrayPage = [];
         for (var i = 0; i < this.totalNumberPage; i++) {
@@ -391,12 +392,12 @@ export class ListUserComponent {
         this.getListUser();
     }
 
-    maxPage() { 
+    maxPage() {
         this.pageNumber = this.totalNumberPage - 1;
         this.getListUser();
     }
 
-    minPage() { 
+    minPage() {
         this.pageNumber = 0;
         this.getListUser();
     }
@@ -406,7 +407,7 @@ export class ListUserComponent {
         this.getListUser();
     }
 
-    checkLoginAndRole() { 
+    checkLoginAndRole() {
         var session = sessionStorage.getItem("login");
         if (session == "true") {
             this.sharedService.callGetRole("").subscribe(result => {
@@ -416,7 +417,7 @@ export class ListUserComponent {
                     this.isRoleAdd = true;
                     this.isRoleEdit = true;
                     this.isRoleDelete = true;
-                } else { 
+                } else {
                     if (result.data.list) {
                         var roleShow = result.data.list.filter((m: { action: string; }) => m.action == "show");
                         var roleAdd = result.data.list.filter((m: { action: string; }) => m.action == "add");
@@ -506,7 +507,7 @@ export class ListUserComponent {
 
     }
 
-    add() { 
+    add() {
         var modalRef = this.modalService.open(EditUserComponent, this.modalOptions);
 
         modalRef.componentInstance.data = {
@@ -527,7 +528,7 @@ export class ListUserComponent {
 
     }
 
-    editUser(event: any, user: any) { 
+    editUser(event: any, user: any) {
         var modalRef = this.modalService.open(EditUserComponent, this.modalOptions);
 
         modalRef.componentInstance.data = {

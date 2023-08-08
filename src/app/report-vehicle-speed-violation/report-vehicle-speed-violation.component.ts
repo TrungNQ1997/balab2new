@@ -81,12 +81,12 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
         this.getDataReport();
     }
 
-    maxPage() { 
+    maxPage() {
         this.pageNumber = this.totalNumberPage - 1;
         this.getDataReport();
     }
 
-    minPage() { 
+    minPage() {
         this.pageNumber = 0;
         this.getDataReport();
     }
@@ -96,7 +96,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
         this.getDataReport();
     }
 
-    changePageSize() { 
+    changePageSize() {
         this.totalNumberPage = Math.ceil(this.totalCountListAll / this.pageSize);
         this.arrayPage = [];
         for (var i = 0; i < this.totalNumberPage; i++) {
@@ -123,9 +123,9 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
         }
 
     }
- 
+
     prepareInput() {
-        var data: any; 
+        var data: any;
         var dayTo: any = "";
         if (this.dayTo) {
             var oldDate = this.dayTo;
@@ -179,8 +179,8 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
         return data
     }
 
-    getDataReport() { 
-        if (this.checkValid()) { 
+    getDataReport() {
+        if (this.checkValid()) {
             this.http.post<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getDataReport',
                 this.prepareInput(), this.sharedService.httpOptions)
                 .subscribe(response => {
@@ -191,9 +191,9 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
                         list[i].stt = stt;
                     }
                     this.dataReport = list;
-                    this.totalCountListAll = response.data.count; 
+                    this.totalCountListAll = response.data.count;
                     this.changePageSize();
-                }); 
+                });
         }
     }
 
@@ -251,14 +251,14 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
         this.dayFrom = new Date();
         this.dayTo = new Date();
         this.timeFrom = new Date();
-        this.timeTo = new Date(); 
+        this.timeTo = new Date();
     }
 
-    getDataVehicles() { 
+    getDataVehicles() {
         this.http.get<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getVehicles', this.sharedService.httpOptions)
-            .subscribe(response => { 
-                this.dropdownList = response.data.iEnumerable; 
-            }); 
+            .subscribe(response => {
+                this.dropdownList = response.data.iEnumerable;
+            });
     }
 
 }
