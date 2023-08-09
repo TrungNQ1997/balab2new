@@ -12,10 +12,10 @@
 
         <div class="col-6 div-content-news ">
           <div class="p-rela d-flex flex-wrap align-items-center p-2">
-            <div style="min-width: 260px;" class="col">
-              <div class="title-news">{{ban.title}}</div>
+            <div class="div-title-content-news col pl-0">
+              <div class="title-news pl-0">{{ban.title}}</div>
 
-              <div class="des-news">
+              <div class="des-news pl-0">
                 {{ban.description}}
               </div>
             </div>
@@ -47,16 +47,16 @@
               class="fa-regular fa-eye icon-login-end" style="right: 0px;"></i></button>
         </div>
 
-        <div class="mx-1 d-flex  " style="justify-content: space-between;width: 100%;">
-          <ul class="no-pad no-mar d-flex ps-0">
+        <div class="mx-1 row d-flex  " style="justify-content: space-between;width: 100%;">
+          <div class="col-auto no-pad no-mar d-flex ps-0  pr-0 pl-1 ">
 
             <input class="mr-2  mb-2" type="checkbox" role="button" [(ngModel)]="isRemember" id="isRemember">
             <label class="form-text" role="button" for="isRemember">{{'login.remember_pass'|translate}}</label>
 
-          </ul>
-          <ul class="no-pad no-mar">
+          </div>
+          <div class="col-auto no-pad no-mar pl-0 pr-2">
             <label class="font-menu form-text">{{'login.forgot_pass'|translate}}</label>
-          </ul>
+          </div>
         </div>
         <div *ngIf="showMes" class="div-notis">
           <label>{{notis}}</label>

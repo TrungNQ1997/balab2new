@@ -319,7 +319,7 @@ export class ListUserComponent {
             data = {
                 "userId": "1",
                 "pageNumber": this.pageNumber + 1,
-                "gioiTinhSearch": this.gioiTinhSearch,
+                "SexSearch": this.gioiTinhSearch,
                 "DayTo": this.birthdayTo ? dayTo : null,
                 "DayFrom": this.birthdayFrom ? dayFrom : null,
                 "textSearch": this.textSearch,
