@@ -170,9 +170,9 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
             "dayTo": this.dayTo == null ? null : dayTo + timeTo,
 
             "dayFrom": this.dayFrom == null ? null : dayFrom + timeFrom,
-            "textSearch": this.selectedItems.map(function (item) {
+            "vehicleSearch": this.selectedItems.map(function (item) {
                 return item.pK_VehicleID;
-            }).toString(),
+            }),
             "pageSize": this.pageSize
 
         }
