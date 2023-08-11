@@ -2,18 +2,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
-@Injectable()
+import * as jwt from 'jsonwebtoken';
+import * as CryptoJS from 'crypto-js';
+@Injectable({
+  providedIn: 'root'
+})
 export class SharedService {
   public regexAPass = '[a-zA-Z0-9]{6,100}';
   //public url = 'http://10.1.11.110:5017/';
   public url = 'http://localhost:6017/';
+  private secretKey = '2b7e151628aed2a6abf7158809cf4f3c'; // Khóa AES 256 bits (32 bytes)
+  private iv = '000102030405060708090a0b0c0d0e0f'; // IV 128 bits (16 bytes)
+
   private isNavbarVisibleSubject: Subject<boolean> = new Subject<boolean>();
   public isNavbarVisible$ = this.isNavbarVisibleSubject.asObservable();
+  public CompanyID = 15076;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'CompanyID': 15076
+      'CompanyID': this.CompanyID
     })
   };
   private localStorageKey = 'isNavbarVisible';
@@ -22,6 +30,33 @@ export class SharedService {
     const storedValue = localStorage.getItem(this.localStorageKey);
     this.isNavbarVisibleSubject.next(storedValue ? JSON.parse(storedValue) : true);
   }
+
+  public getHeaderSecurity(){
+    var httpOptiob = this.httpOptions;
+    const payload = { UserID:1,
+      Token:"EF4A9073-58AB-4D2D-93C1-6936093EE015" ,
+      CompanyID: this.CompanyID };
+      var dataEncryp = payload.UserID + ','+payload.Token+','+payload.CompanyID;
+      var dataEncryp1 = JSON.stringify(payload);
+      var dataEncryp2 = dataEncryp1.replaceAll(" ","");
+      const encryptedPayload = CryptoJS.AES.encrypt(dataEncryp1, CryptoJS.enc.Hex.parse(this.secretKey), {
+        iv: CryptoJS.enc.Hex.parse(this.iv)
+      }).toString();
+
+    
+  // const securityData = jwt.sign(payload, this.secretKey);
+
+  httpOptiob  = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'CompanyID': this.CompanyID,
+      'SecurityData':encryptedPayload
+    })
+  }; 
+  return httpOptiob
+  }
+
 
   public setIsNavbarVisible(isVisible: boolean): void {
     this.isNavbarVisibleSubject.next(isVisible);

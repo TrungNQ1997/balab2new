@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Toast, ToastrService } from 'ngx-toastr';
 
+
 @Component({
     selector: 'app-report-vehicle-speed-violation',
     templateUrl: './report-vehicle-speed-violation.component.html',
@@ -13,6 +14,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
 
     pageNumber = 0;
     textSearch = "";
+    
     pageSize: number = 10;
     rowStart: number = 0;
     rowEnd: number = 0;
@@ -180,9 +182,9 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
     }
 
     getDataReport() {
-        if (this.checkValid()) {
+        if (this.checkValid()) { 
             this.http.post<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getDataReport',
-                this.prepareInput(), this.sharedService.httpOptions)
+                this.prepareInput(), this.sharedService.getHeaderSecurity())
                 .subscribe(response => {
                     var list = response.data.iEnumerable;
                     var stt = this.pageNumber * this.pageSize;
@@ -255,7 +257,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
     }
 
     getDataVehicles() {
-        this.http.get<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getVehicles', this.sharedService.httpOptions)
+        this.http.get<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getVehicles', this.sharedService.getHeaderSecurity())
             .subscribe(response => {
                 this.dropdownList = response.data.iEnumerable;
             });
