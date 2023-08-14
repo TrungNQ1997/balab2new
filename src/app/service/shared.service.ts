@@ -61,11 +61,12 @@ export class SharedService {
     var httpOptiob = new Object();
     var dateNow = new Date();
     dateNow.setDate((new Date()).getDate() + 1);
+    var cook = this.getCookie('token');
     const payload = {
-      UserID: 1,
-      Token: "EF4A9073-58AB-4D2D-93C1-6936093EE015",
-      CompanyID: this.CompanyID,
-      ExpiredDate: this.getDateExactly(dateNow)
+      UserID: localStorage.getItem('userId'),
+      Token: this.getCookie('token'),
+      CompanyID: 1,
+      ExpiredDate: new Date()
     };
     var dataEncryp = JSON.stringify(payload);
     const encryptedPayload = CryptoJS.AES.encrypt(dataEncryp, CryptoJS.enc.Hex.parse(this.secretKey), {
@@ -76,13 +77,13 @@ export class SharedService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'CompanyID': this.CompanyID,
+        'CompanyID': 1,
         'SecurityData': encryptedPayload
       })
     };
     return httpOptiob
   }
-
+  
   public setIsNavbarVisible(isVisible: boolean): void {
     this.isNavbarVisibleSubject.next(isVisible);
     localStorage.setItem(this.localStorageKey, JSON.stringify(isVisible));

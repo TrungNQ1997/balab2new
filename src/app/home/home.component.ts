@@ -75,7 +75,7 @@ export class HomeComponent {
   constructor(private translate: TranslateService, private route: ActivatedRoute,
     private router: Router, private http: HttpClient, private toastr: ToastrService
     , private sharedService: SharedService) {
- 
+
   }
 
 
@@ -88,13 +88,13 @@ export class HomeComponent {
 
   showSlidesNoTimeout(n: any) {
     let i;
-    let slides = document.getElementsByClassName("mySlides"); 
+    let slides = document.getElementsByClassName("mySlides");
     let dots = document.getElementsByClassName("dot");
     if (n > slides.length) { this.slideIndex = 1 }
     if (n < 1) { this.slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) { 
+    for (i = 0; i < slides.length; i++) {
       slides[i].className = slides[i].className.replace(" dp-none", "");
-      slides[i].className = slides[i].className.replace(" dp-block", ""); 
+      slides[i].className = slides[i].className.replace(" dp-block", "");
       slides[i].className += " dp-none";
     }
     for (i = 0; i < dots.length; i++) {
@@ -108,7 +108,7 @@ export class HomeComponent {
   }
 
   showPass() {
-    this.sharedService.showPass('#exampleInputPassword1'); 
+    this.sharedService.showPass('#exampleInputPassword1');
   }
 
   showSlides(n: any) {
@@ -136,7 +136,7 @@ export class HomeComponent {
 
     setTimeout(() => {
       this.showSlides(this.slideIndex += 1)
-    }, 5000) 
+    }, 5000)
   }
 
   plusSlides(n: any) {
@@ -154,7 +154,7 @@ export class HomeComponent {
     data = {
       "username": this.username,
       "password": this.password,
-      "isRemember": this.isRemember 
+      "isRemember": this.isRemember
     }
 
     this.http.post<any>(this.sharedService.url + 'user/login',
@@ -163,18 +163,17 @@ export class HomeComponent {
 
         if (response.data.count == 1) {
           var userInfo = response.data.list[0];
-          if (this.isRemember == true) {
-            var date = new Date(userInfo.expiredDate);
+          var date = new Date(userInfo.expiredDate);
 
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
+          var hours = date.getHours();
+          var minutes = date.getMinutes();
 
-            var datestr = date.toUTCString();
+          var datestr = date.toUTCString();
 
-            var formattedUTCString = datestr.replace(/(\d{2}:\d{2})/, hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0'));
+          var formattedUTCString = datestr.replace(/(\d{2}:\d{2})/, hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0'));
 
-            document.cookie = "token=" + userInfo.token + " ; expires= " + formattedUTCString;
-          }
+          document.cookie = "token=" + userInfo.token + " ; expires= " + formattedUTCString;
+
           sessionStorage.setItem("login", "true");
           localStorage.setItem("username", userInfo.username);
           localStorage.setItem("userId", userInfo.userId);
@@ -273,7 +272,7 @@ export class HomeComponent {
   }
 
   ngAfterViewInit() {
-    this.showSlides(this.slideIndex); 
+    this.showSlides(this.slideIndex);
   }
 
 }
