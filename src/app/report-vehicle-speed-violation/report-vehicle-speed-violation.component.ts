@@ -14,7 +14,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
 
     pageNumber = 0;
     textSearch = "";
-    
+
     pageSize: number = 10;
     rowStart: number = 0;
     rowEnd: number = 0;
@@ -182,7 +182,7 @@ export class ReportVehicleSpeedViolationComponent implements OnInit {
     }
 
     getDataReport() {
-        if (this.checkValid()) { 
+        if (this.checkValid()) {
             this.http.post<any>(this.sharedService.url + 'reportVehicleSpeedViolation/getDataReport',
                 this.prepareInput(), this.sharedService.getHeaderSecurity())
                 .subscribe(response => {

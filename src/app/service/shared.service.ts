@@ -31,36 +31,41 @@ export class SharedService {
     this.isNavbarVisibleSubject.next(storedValue ? JSON.parse(storedValue) : true);
   }
 
-  public getHeaderSecurity(){
-    var httpOptiob = this.httpOptions;
-    const payload = { UserID:1,
-      Token:"EF4A9073-58AB-4D2D-93C1-6936093EE015" ,
-      CompanyID: this.CompanyID };
-      var dataEncryp = payload.UserID + ','+payload.Token+','+payload.CompanyID;
-      var dataEncryp1 = JSON.stringify(payload);
-      var dataEncryp2 = dataEncryp1.replaceAll(" ","");
-      const encryptedPayload = CryptoJS.AES.encrypt(dataEncryp1, CryptoJS.enc.Hex.parse(this.secretKey), {
-        iv: CryptoJS.enc.Hex.parse(this.iv)
-      }).toString();
+  public getHeaderSecurity() {
+    var httpOptiob = new Object();
+    var dateNow = new Date();
+    dateNow.setDate((new Date()).getDate() + 1);
+    const payload = {
+      UserID: 1,
+      Token: "EF4A9073-58AB-4D2D-93C1-6936093EE015",
+      CompanyID: this.CompanyID,
+      ExpiredDate: this.getDateExactly(dateNow)
+    };
+    var dataEncryp = JSON.stringify(payload);
+    const encryptedPayload = CryptoJS.AES.encrypt(dataEncryp, CryptoJS.enc.Hex.parse(this.secretKey), {
+      iv: CryptoJS.enc.Hex.parse(this.iv)
+    }).toString();
 
-    
-  // const securityData = jwt.sign(payload, this.secretKey);
-
-  httpOptiob  = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'CompanyID': this.CompanyID,
-      'SecurityData':encryptedPayload
-    })
-  }; 
-  return httpOptiob
+    httpOptiob = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'CompanyID': this.CompanyID,
+        'SecurityData': encryptedPayload
+      })
+    };
+    return httpOptiob
   }
-
-
+ 
   public setIsNavbarVisible(isVisible: boolean): void {
     this.isNavbarVisibleSubject.next(isVisible);
     localStorage.setItem(this.localStorageKey, JSON.stringify(isVisible));
+  }
+
+  public getDateExactly(yourDate: Date) {
+    const offset = yourDate.getTimezoneOffset()
+    yourDate = new Date(yourDate.getTime() - (offset * 60 * 1000))
+    return yourDate.toISOString().split('T')[0]
   }
 
   public getCookie(cname: any) {
