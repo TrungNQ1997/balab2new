@@ -101,7 +101,7 @@ export class ForgetPassUserComponent {
             this.user.username = localStorage.getItem("username");
 
             this.http.post<any>(this.sharedService.url + 'user/changepass',
-                this.user, this.sharedService.httpOptions)
+                this.user, this.sharedService.getHeaderSecurityUser())
                 .subscribe(response => {
 
                     if (!response.data.error) {

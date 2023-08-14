@@ -56,7 +56,33 @@ export class SharedService {
     };
     return httpOptiob
   }
- 
+
+  public getHeaderSecurityUser() {
+    var httpOptiob = new Object();
+    var dateNow = new Date();
+    dateNow.setDate((new Date()).getDate() + 1);
+    const payload = {
+      UserID: 1,
+      Token: "EF4A9073-58AB-4D2D-93C1-6936093EE015",
+      CompanyID: this.CompanyID,
+      ExpiredDate: this.getDateExactly(dateNow)
+    };
+    var dataEncryp = JSON.stringify(payload);
+    const encryptedPayload = CryptoJS.AES.encrypt(dataEncryp, CryptoJS.enc.Hex.parse(this.secretKey), {
+      iv: CryptoJS.enc.Hex.parse(this.iv)
+    }).toString();
+
+    httpOptiob = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'CompanyID': this.CompanyID,
+        'SecurityData': encryptedPayload
+      })
+    };
+    return httpOptiob
+  }
+
   public setIsNavbarVisible(isVisible: boolean): void {
     this.isNavbarVisibleSubject.next(isVisible);
     localStorage.setItem(this.localStorageKey, JSON.stringify(isVisible));
@@ -92,7 +118,7 @@ export class SharedService {
     }
 
     return this.http.post<any>(this.url + 'user/checklogingetrole',
-      data, this.httpOptions)
+      data, this.getHeaderSecurityUser())
 
   }
 
@@ -104,14 +130,14 @@ export class SharedService {
     }
 
     return this.http.post<any>(this.url + 'user/getrole',
-      data, this.httpOptions)
+      data, this.getHeaderSecurityUser())
 
   }
 
   public callAddUser(user: any): Observable<any> {
     user.userId = '2';
     return this.http.post<any>(this.url + 'user/adduser',
-      user, this.httpOptions)
+      user, this.getHeaderSecurityUser())
 
   }
 

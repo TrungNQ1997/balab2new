@@ -328,7 +328,7 @@ export class ListUserComponent {
             }
 
             this.http.post<any>(this.sharedService.url + 'user/getListUserFilter',
-                data, this.sharedService.httpOptions)
+                data, this.sharedService.getHeaderSecurityUser())
                 .subscribe(response => {
 
                     this.users = response.data.list;

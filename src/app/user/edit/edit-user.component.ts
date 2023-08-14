@@ -197,7 +197,7 @@ export class EditUserComponent {
         } else if (this.data.statusForm == 'edit') {
             this.user.user_id = '2';
             this.http.post<any>(this.sharedService.url + 'user/edituser',
-                this.prepareData(), this.sharedService.httpOptions)
+                this.prepareData(), this.sharedService.getHeaderSecurityUser())
                 .subscribe(response => {
 
                     if (response.data.error == false) {
